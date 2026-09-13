@@ -121,9 +121,44 @@ tr:nth-child(even){background:rgba(255,255,255,.03)}
 
 <div class="tab-content active" id="thresh-global">
 <div class="section">
-<div style="text-align:center;margin-bottom:20px">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Edge_detection_comparison.png/400px-Edge_detection_comparison.png" alt="Edge Detection" style="max-width:100%;border-radius:8px;border:1px solid var(--border)">
-<p style="color:var(--text2);font-size:.85em;margin-top:8px;font-style:italic">Edge detection comparison (Wikimedia Commons CC)</p>
+<div class="hand-drawn">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+  <text x="250" y="16" fill="#a29bfe" font-size="13" text-anchor="middle" font-weight="bold">Thresholding: Grayscale to Binary Conversion</text>
+  <rect x="10" y="28" width="100" height="110" rx="8" fill="none" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="60" y="44" fill="#a29bfe" font-size="10" text-anchor="middle" font-weight="bold">Grayscale</text>
+  <rect x="20" y="52" width="16" height="16" rx="2" fill="#444" stroke="#666" stroke-width="1"/><rect x="38" y="52" width="16" height="16" rx="2" fill="#888" stroke="#aaa" stroke-width="1"/>
+  <rect x="56" y="52" width="16" height="16" rx="2" fill="#222" stroke="#444" stroke-width="1"/><rect x="74" y="52" width="16" height="16" rx="2" fill="#ccc" stroke="#ddd" stroke-width="1"/>
+  <rect x="20" y="70" width="16" height="16" rx="2" fill="#999" stroke="#bbb" stroke-width="1"/><rect x="38" y="70" width="16" height="16" rx="2" fill="#555" stroke="#777" stroke-width="1"/>
+  <rect x="56" y="70" width="16" height="16" rx="2" fill="#ddd" stroke="#eee" stroke-width="1"/><rect x="74" y="70" width="16" height="16" rx="2" fill="#333" stroke="#555" stroke-width="1"/>
+  <rect x="20" y="88" width="16" height="16" rx="2" fill="#666" stroke="#888" stroke-width="1"/><rect x="38" y="88" width="16" height="16" rx="2" fill="#bbb" stroke="#ccc" stroke-width="1"/>
+  <rect x="56" y="88" width="16" height="16" rx="2" fill="#777" stroke="#999" stroke-width="1"/><rect x="74" y="88" width="16" height="16" rx="2" fill="#eee" stroke="#fff" stroke-width="1"/>
+  <text x="60" y="130" fill="#74b9ff" font-size="9" text-anchor="middle">Pixel intensities</text>
+  <text x="60" y="142" fill="#74b9ff" font-size="9" text-anchor="middle">T = 128</text>
+  <text x="145" y="85" fill="#fdcb6e" font-size="28" text-anchor="middle">→</text>
+  <text x="145" y="108" fill="#fdcb6e" font-size="8" text-anchor="middle">if &gt; T → 1</text>
+  <text x="145" y="120" fill="#fdcb6e" font-size="8" text-anchor="middle">else → 0</text>
+  <rect x="185" y="28" width="100" height="110" rx="8" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="235" y="44" fill="#00b894" font-size="10" text-anchor="middle" font-weight="bold">Binary Output</text>
+  <rect x="195" y="52" width="16" height="16" rx="2" fill="#222" stroke="#444" stroke-width="1"/><rect x="213" y="52" width="16" height="16" rx="2" fill="#00b894" stroke="#00b894" stroke-width="1"/>
+  <rect x="231" y="52" width="16" height="16" rx="2" fill="#222" stroke="#444" stroke-width="1"/><rect x="249" y="52" width="16" height="16" rx="2" fill="#00b894" stroke="#00b894" stroke-width="1"/>
+  <rect x="195" y="70" width="16" height="16" rx="2" fill="#00b894" stroke="#00b894" stroke-width="1"/><rect x="213" y="70" width="16" height="16" rx="2" fill="#222" stroke="#444" stroke-width="1"/>
+  <rect x="231" y="70" width="16" height="16" rx="2" fill="#00b894" stroke="#00b894" stroke-width="1"/><rect x="249" y="70" width="16" height="16" rx="2" fill="#222" stroke="#444" stroke-width="1"/>
+  <rect x="195" y="88" width="16" height="16" rx="2" fill="#222" stroke="#444" stroke-width="1"/><rect x="213" y="88" width="16" height="16" rx="2" fill="#00b894" stroke="#00b894" stroke-width="1"/>
+  <rect x="231" y="88" width="16" height="16" rx="2" fill="#222" stroke="#444" stroke-width="1"/><rect x="249" y="88" width="16" height="16" rx="2" fill="#00b894" stroke="#00b894" stroke-width="1"/>
+  <text x="235" y="130" fill="#00b894" font-size="9" text-anchor="middle">0 or 1 only</text>
+  <text x="235" y="142" fill="#00b894" font-size="9" text-anchor="middle">f(x,y) &gt; T ?</text>
+  <rect x="310" y="28" width="175" height="110" rx="8" fill="none" stroke="#fdcb6e" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="397" y="44" fill="#fdcb6e" font-size="10" text-anchor="middle" font-weight="bold">Histogram Analysis</text>
+  <line x1="325" y1="130" x2="325" y2="55" stroke="#a0a0b0" stroke-width="1"/>
+  <line x1="325" y1="130" x2="470" y2="130" stroke="#a0a0b0" stroke-width="1"/>
+  <path d="M330 125 Q340 120,345 100 Q350 80,360 65 Q370 55,375 58 Q380 62,385 80 Q390 100,395 65 Q400 50,410 55 Q420 60,425 70 Q430 85,440 120 Q445 125,465 128" fill="none" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+  <line x1="397" y1="55" x2="397" y2="130" stroke="#e17055" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="397" y="118" fill="#e17055" font-size="9" text-anchor="middle">T*</text>
+  <text x="345" y="75" fill="#a29bfe" font-size="8" text-anchor="middle">Dark</text>
+  <text x="445" y="75" fill="#a29bfe" font-size="8" text-anchor="middle">Bright</text>
+  <text x="397" y="145" fill="#a0a0b0" font-size="8" text-anchor="middle">Intensity →</text>
+</svg>
+<div class="caption">Thresholding converts grayscale to binary: compare each pixel to threshold T and output 0 or 1</div>
 </div>
 <div class="hand-drawn">
 <svg viewBox="0 0 500 180" xmlns="http://www.w3.org/2000/svg">
@@ -167,7 +202,7 @@ tr:nth-child(even){background:rgba(255,255,255,.03)}
 </svg>
 <div class="caption">Thresholding: Grayscale pixels → Binary output based on threshold T</div>
 </div>
-<h2>Definition</h2>
+<h2>Definition of Thresholding (Ch-8)</h2>
 <p>Thresholding converts a <strong>grayscale image</strong> into a <strong>binary image</strong> (0 or 1) by comparing each pixel intensity to a threshold value \(T\).</p>
 <span class="tag def">Definition</span>
 <div class="math-box highlight">
@@ -176,7 +211,7 @@ g(x,y) = \begin{cases} 1 & \text{if } f(x,y) > T \\ 0 & \text{if } f(x,y) \leq T
 $$
 </div>
 <p>Where \(f(x,y)\) is the input pixel intensity and \(g(x,y)\) is the output binary pixel.</p>
-<h3>How it works:</h3>
+<h3>How Thresholding Works (Ch-8):</h3>
 <ol>
 <li>Convert image to grayscale (if color)</li>
 <li>Compute histogram of pixel intensities</li>
@@ -196,6 +231,38 @@ $$
 
 <div class="tab-content" id="thresh-adaptive">
 <div class="section">
+<div class="hand-drawn">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+  <text x="250" y="16" fill="#a29bfe" font-size="13" text-anchor="middle" font-weight="bold">Adaptive Thresholding: Local Thresholds per Region</text>
+  <rect x="10" y="28" width="100" height="110" rx="8" fill="none" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="60" y="44" fill="#a29bfe" font-size="10" text-anchor="middle" font-weight="bold">Input (with shadow)</text>
+  <rect x="20" y="52" width="80" height="72" rx="3" fill="#888" stroke="#aaa" stroke-width="1"/>
+  <rect x="20" y="52" width="40" height="72" fill="#aaa" opacity="0.6"/>
+  <rect x="60" y="52" width="40" height="72" fill="#444" opacity="0.6"/>
+  <text x="40" y="90" fill="#fff" font-size="8" text-anchor="middle">Bright</text>
+  <text x="80" y="90" fill="#fff" font-size="8" text-anchor="middle">Dark</text>
+  <text x="40" y="118" fill="#fdcb6e" font-size="7" text-anchor="middle">T₁=160</text>
+  <text x="80" y="118" fill="#fdcb6e" font-size="7" text-anchor="middle">T₂=80</text>
+  <text x="145" y="80" fill="#fdcb6e" font-size="28" text-anchor="middle">→</text>
+  <text x="145" y="105" fill="#fdcb6e" font-size="8" text-anchor="middle">Local</text>
+  <text x="145" y="118" fill="#fdcb6e" font-size="8" text-anchor="middle">window</text>
+  <rect x="175" y="28" width="100" height="110" rx="8" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="225" y="44" fill="#00b894" font-size="10" text-anchor="middle" font-weight="bold">Adaptive Output</text>
+  <rect x="185" y="52" width="38" height="72" rx="3" fill="#00b894" stroke="#00b894" stroke-width="1.5"/>
+  <rect x="225" y="52" width="38" height="72" rx="3" fill="#222" stroke="#444" stroke-width="1"/>
+  <text x="204" y="90" fill="#000" font-size="8" text-anchor="middle">1</text>
+  <text x="244" y="90" fill="#fff" font-size="8" text-anchor="middle">0</text>
+  <text x="225" y="138" fill="#00b894" font-size="8" text-anchor="middle">Handles shadows!</text>
+  <rect x="295" y="28" width="195" height="110" rx="8" fill="none" stroke="#fdcb6e" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="392" y="44" fill="#fdcb6e" font-size="10" text-anchor="middle" font-weight="bold">How It Works</text>
+  <text x="392" y="62" fill="#e0e0e0" font-size="9" text-anchor="middle">T(x,y) = mean(N) − C</text>
+  <text x="392" y="80" fill="#74b9ff" font-size="9" text-anchor="middle">N = local neighbourhood</text>
+  <text x="392" y="95" fill="#74b9ff" font-size="9" text-anchor="middle">C = constant offset</text>
+  <text x="392" y="115" fill="#a29bfe" font-size="8" text-anchor="middle">Variants: Mean, Gaussian, Median</text>
+  <text x="392" y="132" fill="#e17055" font-size="8" text-anchor="middle">Window: 3×3 (fine) to 31×31 (coarse)</text>
+</svg>
+<div class="caption">Adaptive thresholding computes a different T for each pixel based on its local neighbourhood, handling shadows and non-uniform lighting</div>
+</div>
 <h2>Adaptive (Local) Thresholding</h2>
 <p>Computes a <strong>different threshold \(T\)</strong> for each pixel based on its local neighbourhood.</p>
 <div class="math-box highlight">
@@ -228,6 +295,31 @@ $$
 
 <div class="tab-content" id="thresh-otsu">
 <div class="section">
+<div class="hand-drawn">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+  <text x="250" y="16" fill="#a29bfe" font-size="13" text-anchor="middle" font-weight="bold">Otsu's Method: Finding Optimal Threshold from Bimodal Histogram</text>
+  <rect x="10" y="28" width="220" height="110" rx="8" fill="none" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="120" y="44" fill="#a29bfe" font-size="10" text-anchor="middle" font-weight="bold">Bimodal Histogram</text>
+  <line x1="25" y1="130" x2="25" y2="55" stroke="#a0a0b0" stroke-width="1"/>
+  <line x1="25" y1="130" x2="215" y2="130" stroke="#a0a0b0" stroke-width="1"/>
+  <path d="M30 128 Q40 125,50 110 Q60 90,70 60 Q80 45,85 42 Q90 45,95 55 Q100 70,110 110 Q115 120,120 128" fill="none" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+  <path d="M120 128 Q125 120,130 110 Q135 90,140 60 Q145 40,150 38 Q155 42,160 55 Q165 70,175 100 Q180 115,185 125 Q190 128,200 130" fill="none" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+  <line x1="125" y1="55" x2="125" y2="130" stroke="#e17055" stroke-width="2.5" stroke-dasharray="4,2"/>
+  <text x="125" y="143" fill="#e17055" font-size="9" text-anchor="middle" font-weight="bold">T* = optimal</text>
+  <text x="65" y="70" fill="#a29bfe" font-size="8" text-anchor="middle">ω₀, μ₀</text>
+  <text x="170" y="55" fill="#a29bfe" font-size="8" text-anchor="middle">ω₁, μ₁</text>
+  <text x="120" y="118" fill="#e17055" font-size="8" text-anchor="middle">Valley = best T</text>
+  <text x="270" y="65" fill="#fdcb6e" font-size="22" text-anchor="middle">→</text>
+  <rect x="295" y="28" width="195" height="110" rx="8" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="392" y="44" fill="#00b894" font-size="10" text-anchor="middle" font-weight="bold">Maximize σ²_B</text>
+  <text x="392" y="62" fill="#e0e0e0" font-size="9" text-anchor="middle">σ²_B = ω₀·ω₁·(μ₀−μ₁)²</text>
+  <text x="392" y="80" fill="#74b9ff" font-size="9" text-anchor="middle">ω₀ = P(class 0)</text>
+  <text x="392" y="95" fill="#74b9ff" font-size="9" text-anchor="middle">ω₁ = P(class 1)</text>
+  <text x="392" y="115" fill="#a29bfe" font-size="8" text-anchor="middle">T* = argmax σ²_B(k)</text>
+  <text x="392" y="132" fill="#e17055" font-size="8" text-anchor="middle">Automatic — no manual T needed!</text>
+</svg>
+<div class="caption">Otsu's method finds the threshold that maximizes between-class variance in a bimodal histogram</div>
+</div>
 <h2>Otsu's Method (Automatic Global)</h2>
 <p>Fully automatic global thresholding. Finds optimal \(T\) that <strong>maximizes between-class variance</strong> and <strong>minimizes within-class variance</strong>.</p>
 <span class="tag exam">Exam Important</span>
@@ -303,9 +395,63 @@ $$
 <h2>Structuring Element (SE)</h2>
 <p>A small template/mask (e.g., 3&times;3 square, disk, cross) that slides over the binary image performing logical operations.</p>
 <p>Common SEs: <code>BOX(3,3)</code>, <code>DISK(5)</code>, <code>RING(5)</code>, <code>CROSS(3)</code>, <code>LINE(r,angle)</code></p>
-<div style="text-align:center;margin-top:16px">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Dilation.png/400px-Dilation.png" alt="Morphological Dilation" style="max-width:100%;border-radius:8px;border:1px solid var(--border)">
-<p style="color:var(--text2);font-size:.85em;margin-top:8px;font-style:italic">Morphological Dilation: Expands foreground objects (Wikimedia Commons CC)</p>
+<div class="hand-drawn">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+  <text x="250" y="16" fill="#a29bfe" font-size="13" text-anchor="middle" font-weight="bold">Dilation Kernel: Expands Foreground Pixels</text>
+  <rect x="10" y="28" width="120" height="110" rx="8" fill="none" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="70" y="44" fill="#a29bfe" font-size="10" text-anchor="middle" font-weight="bold">Input Image</text>
+  <rect x="25" y="55" width="14" height="14" rx="1" fill="#222" stroke="#444" stroke-width="1"/>
+  <rect x="41" y="55" width="14" height="14" rx="1" fill="#6c5ce7" stroke="#a29bfe" stroke-width="1.5"/>
+  <rect x="57" y="55" width="14" height="14" rx="1" fill="#6c5ce7" stroke="#a29bfe" stroke-width="1.5"/>
+  <rect x="73" y="55" width="14" height="14" rx="1" fill="#222" stroke="#444" stroke-width="1"/>
+  <rect x="25" y="71" width="14" height="14" rx="1" fill="#222" stroke="#444" stroke-width="1"/>
+  <rect x="41" y="71" width="14" height="14" rx="1" fill="#6c5ce7" stroke="#a29bfe" stroke-width="1.5"/>
+  <rect x="57" y="71" width="14" height="14" rx="1" fill="#6c5ce7" stroke="#a29bfe" stroke-width="1.5"/>
+  <rect x="73" y="71" width="14" height="14" rx="1" fill="#222" stroke="#444" stroke-width="1"/>
+  <rect x="25" y="87" width="14" height="14" rx="1" fill="#222" stroke="#444" stroke-width="1"/>
+  <rect x="41" y="87" width="14" height="14" rx="1" fill="#222" stroke="#444" stroke-width="1"/>
+  <rect x="57" y="87" width="14" height="14" rx="1" fill="#222" stroke="#444" stroke-width="1"/>
+  <rect x="73" y="87" width="14" height="14" rx="1" fill="#222" stroke="#444" stroke-width="1"/>
+  <text x="70" y="120" fill="#74b9ff" font-size="8" text-anchor="middle">2×2 object</text>
+  <text x="160" y="80" fill="#fdcb6e" font-size="28" text-anchor="middle">⊕</text>
+  <text x="160" y="110" fill="#fdcb6e" font-size="9" text-anchor="middle">3×3 SE</text>
+  <rect x="195" y="28" width="145" height="110" rx="8" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="267" y="44" fill="#00b894" font-size="10" text-anchor="middle" font-weight="bold">Dilated Output</text>
+  <rect x="210" y="55" width="14" height="14" rx="1" fill="#00b894" stroke="#00b894" stroke-width="1.5"/>
+  <rect x="226" y="55" width="14" height="14" rx="1" fill="#00b894" stroke="#00b894" stroke-width="1.5"/>
+  <rect x="242" y="55" width="14" height="14" rx="1" fill="#00b894" stroke="#00b894" stroke-width="1.5"/>
+  <rect x="258" y="55" width="14" height="14" rx="1" fill="#00b894" stroke="#00b894" stroke-width="1.5"/>
+  <rect x="274" y="55" width="14" height="14" rx="1" fill="#00b894" stroke="#00b894" stroke-width="1.5"/>
+  <rect x="210" y="71" width="14" height="14" rx="1" fill="#00b894" stroke="#00b894" stroke-width="1.5"/>
+  <rect x="226" y="71" width="14" height="14" rx="1" fill="#00b894" stroke="#00b894" stroke-width="1.5"/>
+  <rect x="242" y="71" width="14" height="14" rx="1" fill="#00b894" stroke="#00b894" stroke-width="1.5"/>
+  <rect x="258" y="71" width="14" height="14" rx="1" fill="#00b894" stroke="#00b894" stroke-width="1.5"/>
+  <rect x="274" y="71" width="14" height="14" rx="1" fill="#00b894" stroke="#00b894" stroke-width="1.5"/>
+  <rect x="210" y="87" width="14" height="14" rx="1" fill="#00b894" stroke="#00b894" stroke-width="1.5"/>
+  <rect x="226" y="87" width="14" height="14" rx="1" fill="#00b894" stroke="#00b894" stroke-width="1.5"/>
+  <rect x="242" y="87" width="14" height="14" rx="1" fill="#00b894" stroke="#00b894" stroke-width="1.5"/>
+  <rect x="258" y="87" width="14" height="14" rx="1" fill="#00b894" stroke="#00b894" stroke-width="1.5"/>
+  <rect x="274" y="87" width="14" height="14" rx="1" fill="#00b894" stroke="#00b894" stroke-width="1.5"/>
+  <rect x="210" y="103" width="14" height="14" rx="1" fill="#222" stroke="#444" stroke-width="1"/>
+  <rect x="226" y="103" width="14" height="14" rx="1" fill="#00b894" stroke="#00b894" stroke-width="1.5"/>
+  <rect x="242" y="103" width="14" height="14" rx="1" fill="#00b894" stroke="#00b894" stroke-width="1.5"/>
+  <rect x="258" y="103" width="14" height="14" rx="1" fill="#00b894" stroke="#00b894" stroke-width="1.5"/>
+  <rect x="274" y="103" width="14" height="14" rx="1" fill="#222" stroke="#444" stroke-width="1"/>
+  <text x="267" y="132" fill="#00b894" font-size="8" text-anchor="middle">3×3 object (expanded)</text>
+  <rect x="365" y="28" width="125" height="110" rx="8" fill="none" stroke="#e17055" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="427" y="44" fill="#e17055" font-size="10" text-anchor="middle" font-weight="bold">3×3 SE (Kernel)</text>
+  <rect x="390" y="60" width="18" height="18" rx="1" fill="none" stroke="#e17055" stroke-width="1.5"/>
+  <rect x="410" y="60" width="18" height="18" rx="1" fill="none" stroke="#e17055" stroke-width="1.5"/>
+  <rect x="430" y="60" width="18" height="18" rx="1" fill="none" stroke="#e17055" stroke-width="1.5"/>
+  <rect x="390" y="80" width="18" height="18" rx="1" fill="none" stroke="#e17055" stroke-width="1.5"/>
+  <rect x="410" y="80" width="18" height="18" rx="1" fill="#e17055" fill-opacity="0.3" stroke="#e17055" stroke-width="2"/>
+  <rect x="430" y="80" width="18" height="18" rx="1" fill="none" stroke="#e17055" stroke-width="1.5"/>
+  <rect x="390" y="100" width="18" height="18" rx="1" fill="none" stroke="#e17055" stroke-width="1.5"/>
+  <rect x="410" y="100" width="18" height="18" rx="1" fill="none" stroke="#e17055" stroke-width="1.5"/>
+  <rect x="430" y="100" width="18" height="18" rx="1" fill="none" stroke="#e17055" stroke-width="1.5"/>
+  <text x="427" y="132" fill="#e17055" font-size="8" text-anchor="middle">All 1s = expand by 1px</text>
+</svg>
+<div class="caption">Dilation with a 3×3 all-ones kernel expands each foreground pixel to a 3×3 block</div>
 </div>
 <div class="hand-drawn">
 <svg viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg">
@@ -461,6 +607,35 @@ $$
 
 <div class="tab-content" id="morph-composite">
 <div class="section">
+<div class="hand-drawn">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+  <text x="250" y="16" fill="#a29bfe" font-size="13" text-anchor="middle" font-weight="bold">Opening &amp; Closing: Composite Morphological Operations</text>
+  <rect x="10" y="28" width="230" height="110" rx="8" fill="none" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="125" y="44" fill="#6c5ce7" font-size="10" text-anchor="middle" font-weight="bold">Opening = Erosion → Dilation</text>
+  <rect x="22" y="55" width="40" height="40" rx="3" fill="#6c5ce7" fill-opacity="0.3" stroke="#6c5ce7" stroke-width="1.5"/>
+  <text x="42" y="78" fill="#6c5ce7" font-size="8" text-anchor="middle">Object</text>
+  <circle cx="72" cy="60" r="5" fill="#6c5ce7" fill-opacity="0.5" stroke="#6c5ce7" stroke-width="1"/>
+  <text x="72" y="82" fill="#e17055" font-size="7" text-anchor="middle">noise</text>
+  <text x="105" y="78" fill="#fdcb6e" font-size="18" text-anchor="middle">⊖→⊕</text>
+  <rect x="125" y="55" width="40" height="40" rx="3" fill="#00b894" fill-opacity="0.3" stroke="#00b894" stroke-width="1.5"/>
+  <text x="145" y="78" fill="#00b894" font-size="8" text-anchor="middle">Object</text>
+  <text x="185" y="78" fill="#00b894" font-size="12" text-anchor="middle">✓</text>
+  <text x="125" y="118" fill="#6c5ce7" font-size="8" text-anchor="middle">Removes small bright noise</text>
+  <text x="125" y="132" fill="#6c5ce7" font-size="8" text-anchor="middle">Preserves large objects</text>
+  <rect x="260" y="28" width="230" height="110" rx="8" fill="none" stroke="#e17055" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="375" y="44" fill="#e17055" font-size="10" text-anchor="middle" font-weight="bold">Closing = Dilation → Erosion</text>
+  <rect x="272" y="55" width="40" height="40" rx="3" fill="#e17055" fill-opacity="0.3" stroke="#e17055" stroke-width="1.5"/>
+  <circle cx="292" cy="75" r="5" fill="#333" stroke="#444" stroke-width="1"/>
+  <text x="312" y="78" fill="#e17055" font-size="7" text-anchor="middle">hole</text>
+  <text x="350" y="78" fill="#fdcb6e" font-size="18" text-anchor="middle">⊕→⊖</text>
+  <rect x="370" y="55" width="40" height="40" rx="3" fill="#00b894" fill-opacity="0.3" stroke="#00b894" stroke-width="1.5"/>
+  <text x="390" y="78" fill="#00b894" font-size="8" text-anchor="middle">Solid</text>
+  <text x="430" y="78" fill="#00b894" font-size="12" text-anchor="middle">✓</text>
+  <text x="375" y="118" fill="#e17055" font-size="8" text-anchor="middle">Fills small dark holes</text>
+  <text x="375" y="132" fill="#e17055" font-size="8" text-anchor="middle">Smooths outer contours</text>
+</svg>
+<div class="caption">Opening removes small bright noise (E then D); Closing fills small dark holes (D then E)</div>
+</div>
 <h2>Opening: \(I \circ SE = (I \ominus SE) \oplus SE\)</h2>
 <p><strong>Erosion first, then Dilation.</strong></p>
 <div class="math-box highlight">
@@ -509,11 +684,52 @@ $$
 <p>Result = difference between dilated and eroded = <strong>thickened boundary/edge</strong> of objects.</p>
 <p>This is a simple edge detector for binary/grayscale images.</p>
 <div class="exam-tip"><strong>Exam:</strong> Opening = E then D (removes noise). Closing = D then E (fills holes). Gradient = dilate minus erode (edges).</div>
+<h3>What Dilation Does (Ch-9)</h3>
+<p><strong>Dilation EXPANDS white/foreground:</strong> every white pixel grows into its neighbours. Effects: objects get fatter, small gaps close, thin breaks join, tiny dark holes fill.</p>
+<h3>5 Morphology Maths (Ch-9)</h3>
+<div class="math-box highlight">
+<p><strong>1. Dilation:</strong> \((I \oplus SE)(x,y) = \max_{(s,t)\in SE} f(x{+}s, y{+}t)\) — OR logic, expands</p>
+<p><strong>2. Erosion:</strong> \((I \ominus SE)(x,y) = \min_{(s,t)\in SE} f(x{-}s, y{-}t)\) — AND logic, shrinks</p>
+<p><strong>3. Opening:</strong> \(I \circ SE = (I \ominus SE) \oplus SE\) — E then D, removes small bright dots</p>
+<p><strong>4. Closing:</strong> \(I \bullet SE = (I \oplus SE) \ominus SE\) — D then E, fills small dark holes</p>
+<p><strong>5. Gradient:</strong> \(G = (I \oplus SE) - (I \ominus SE)\) — dilated minus eroded = boundary outline</p>
+</div>
 </div>
 </div>
 
 <div class="tab-content" id="morph-tophat">
 <div class="section">
+<div class="hand-drawn">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+  <text x="250" y="16" fill="#a29bfe" font-size="13" text-anchor="middle" font-weight="bold">Top-Hat Transform: Extracting Bright Features from Uneven Lighting</text>
+  <rect x="10" y="28" width="100" height="110" rx="8" fill="none" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="60" y="44" fill="#a29bfe" font-size="10" text-anchor="middle" font-weight="bold">Original (I)</text>
+  <rect x="22" y="55" width="76" height="60" rx="3" fill="#888" stroke="#aaa" stroke-width="1"/>
+  <rect x="35" y="60" width="12" height="12" rx="1" fill="#fff" stroke="#ddd" stroke-width="1"/>
+  <rect x="55" y="60" width="12" height="12" rx="1" fill="#fff" stroke="#ddd" stroke-width="1"/>
+  <rect x="45" y="80" width="12" height="12" rx="1" fill="#fff" stroke="#ddd" stroke-width="1"/>
+  <text x="60" y="110" fill="#a29bfe" font-size="7" text-anchor="middle">Illumination gradient</text>
+  <text x="60" y="130" fill="#a29bfe" font-size="7" text-anchor="middle">+ bright spots</text>
+  <text x="140" y="80" fill="#fdcb6e" font-size="18" text-anchor="middle">⊖</text>
+  <rect x="165" y="28" width="100" height="110" rx="8" fill="none" stroke="#fdcb6e" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="215" y="44" fill="#fdcb6e" font-size="10" text-anchor="middle" font-weight="bold">Opened (I∘SE)</text>
+  <rect x="177" y="55" width="76" height="60" rx="3" fill="#888" stroke="#aaa" stroke-width="1"/>
+  <text x="215" y="90" fill="#888" font-size="8" text-anchor="middle">Bright spots gone!</text>
+  <text x="215" y="110" fill="#fdcb6e" font-size="7" text-anchor="middle">Illumination preserved</text>
+  <text x="215" y="130" fill="#fdcb6e" font-size="7" text-anchor="middle">(smoothed background)</text>
+  <text x="300" y="80" fill="#fdcb6e" font-size="18" text-anchor="middle">=</text>
+  <rect x="325" y="28" width="165" height="110" rx="8" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="407" y="44" fill="#00b894" font-size="10" text-anchor="middle" font-weight="bold">White Top-Hat = I − (I∘SE)</text>
+  <rect x="337" y="55" width="76" height="60" rx="3" fill="#333" stroke="#444" stroke-width="1"/>
+  <rect x="350" y="60" width="12" height="12" rx="1" fill="#00b894" stroke="#00b894" stroke-width="1.5"/>
+  <rect x="370" y="60" width="12" height="12" rx="1" fill="#00b894" stroke="#00b894" stroke-width="1.5"/>
+  <rect x="360" y="80" width="12" height="12" rx="1" fill="#00b894" stroke="#00b894" stroke-width="1.5"/>
+  <text x="375" y="110" fill="#00b894" font-size="8" text-anchor="middle">Only bright features</text>
+  <text x="462" y="78" fill="#00b894" font-size="12" text-anchor="middle">✓</text>
+  <text x="407" y="130" fill="#00b894" font-size="8" text-anchor="middle">Uneven illumination removed</text>
+</svg>
+<div class="caption">White Top-Hat = Original minus Opening — extracts small bright details while correcting uneven illumination</div>
+</div>
 <h2>Top-Hat Transform</h2>
 <h3>White Top-Hat</h3>
 <div class="math-box highlight">
@@ -561,10 +777,62 @@ $$
 <div class="section">
 <h2>Image Smoothing (Noise Reduction)</h2>
 <p>Removes high-frequency noise by averaging/filtering. Smoothing = blurring the image.</p>
-<div style="text-align:center;margin:16px 0">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Bikesgray.jpg/400px-Bikesgray.jpg" alt="Original Image" style="max-width:45%;border-radius:8px;border:1px solid var(--border)">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Bikesgray_sobel.JPG/400px-Bikesgray_sobel.JPG" alt="Sobel Edge Detection" style="max-width:45%;border-radius:8px;border:1px solid var(--border);margin-left:10px">
-<p style="color:var(--text2);font-size:.85em;margin-top:8px;font-style:italic">Left: Original | Right: Sobel edge detection (Wikimedia Commons CC)</p>
+<div class="hand-drawn">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+  <text x="250" y="16" fill="#a29bfe" font-size="13" text-anchor="middle" font-weight="bold">Sobel Gx and Gy Kernels — Gradient Computation</text>
+  <rect x="10" y="28" width="120" height="110" rx="8" fill="none" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="70" y="44" fill="#a29bfe" font-size="10" text-anchor="middle" font-weight="bold">Gx Kernel</text>
+  <text x="70" y="56" fill="#74b9ff" font-size="8" text-anchor="middle">Vertical edges</text>
+  <rect x="25" y="62" width="28" height="20" rx="3" fill="none" stroke="#e17055" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="39" y="76" fill="#e17055" font-size="12" text-anchor="middle" font-weight="bold">-1</text>
+  <rect x="57" y="62" width="28" height="20" rx="3" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="71" y="76" fill="#74b9ff" font-size="12" text-anchor="middle" font-weight="bold">0</text>
+  <rect x="89" y="62" width="28" height="20" rx="3" fill="none" stroke="#00b894" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="103" y="76" fill="#00b894" font-size="12" text-anchor="middle" font-weight="bold">+1</text>
+  <rect x="25" y="84" width="28" height="20" rx="3" fill="none" stroke="#e17055" stroke-width="2" stroke-dasharray="3,2"/>
+  <text x="39" y="98" fill="#e17055" font-size="12" text-anchor="middle" font-weight="bold">-2</text>
+  <rect x="57" y="84" width="28" height="20" rx="3" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="71" y="98" fill="#74b9ff" font-size="12" text-anchor="middle" font-weight="bold">0</text>
+  <rect x="89" y="84" width="28" height="20" rx="3" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="3,2"/>
+  <text x="103" y="98" fill="#00b894" font-size="12" text-anchor="middle" font-weight="bold">+2</text>
+  <rect x="25" y="106" width="28" height="20" rx="3" fill="none" stroke="#e17055" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="39" y="120" fill="#e17055" font-size="12" text-anchor="middle" font-weight="bold">-1</text>
+  <rect x="57" y="106" width="28" height="20" rx="3" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="71" y="120" fill="#74b9ff" font-size="12" text-anchor="middle" font-weight="bold">0</text>
+  <rect x="89" y="106" width="28" height="20" rx="3" fill="none" stroke="#00b894" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="103" y="120" fill="#00b894" font-size="12" text-anchor="middle" font-weight="bold">+1</text>
+  <text x="170" y="85" fill="#fdcb6e" font-size="30" text-anchor="middle">+</text>
+  <rect x="195" y="28" width="120" height="110" rx="8" fill="none" stroke="#fdcb6e" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="255" y="44" fill="#fdcb6e" font-size="10" text-anchor="middle" font-weight="bold">Gy Kernel</text>
+  <text x="255" y="56" fill="#e17055" font-size="8" text-anchor="middle">Horizontal edges</text>
+  <rect x="210" y="62" width="28" height="20" rx="3" fill="none" stroke="#e17055" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="224" y="76" fill="#e17055" font-size="12" text-anchor="middle" font-weight="bold">-1</text>
+  <rect x="242" y="62" width="28" height="20" rx="3" fill="none" stroke="#e17055" stroke-width="2" stroke-dasharray="3,2"/>
+  <text x="256" y="76" fill="#e17055" font-size="12" text-anchor="middle" font-weight="bold">-2</text>
+  <rect x="274" y="62" width="28" height="20" rx="3" fill="none" stroke="#e17055" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="288" y="76" fill="#e17055" font-size="12" text-anchor="middle" font-weight="bold">-1</text>
+  <rect x="210" y="84" width="28" height="20" rx="3" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="224" y="98" fill="#74b9ff" font-size="12" text-anchor="middle" font-weight="bold">0</text>
+  <rect x="242" y="84" width="28" height="20" rx="3" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="256" y="98" fill="#74b9ff" font-size="12" text-anchor="middle" font-weight="bold">0</text>
+  <rect x="274" y="84" width="28" height="20" rx="3" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="288" y="98" fill="#74b9ff" font-size="12" text-anchor="middle" font-weight="bold">0</text>
+  <rect x="210" y="106" width="28" height="20" rx="3" fill="none" stroke="#00b894" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="224" y="120" fill="#00b894" font-size="12" text-anchor="middle" font-weight="bold">+1</text>
+  <rect x="242" y="106" width="28" height="20" rx="3" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="3,2"/>
+  <text x="256" y="120" fill="#00b894" font-size="12" text-anchor="middle" font-weight="bold">+2</text>
+  <rect x="274" y="106" width="28" height="20" rx="3" fill="none" stroke="#00b894" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="288" y="120" fill="#00b894" font-size="12" text-anchor="middle" font-weight="bold">+1</text>
+  <text x="355" y="85" fill="#fdcb6e" font-size="30" text-anchor="middle">=</text>
+  <rect x="380" y="28" width="110" height="110" rx="8" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="435" y="44" fill="#00b894" font-size="10" text-anchor="middle" font-weight="bold">Gradient</text>
+  <text x="435" y="60" fill="#00b894" font-size="9" text-anchor="middle">G = √(Gx² + Gy²)</text>
+  <text x="435" y="78" fill="#a29bfe" font-size="9" text-anchor="middle">θ = atan(Gy/Gx)</text>
+  <line x1="395" y1="90" x2="475" y2="90" stroke="#00b894" stroke-width="3" stroke-dasharray="4,2"/>
+  <text x="435" y="108" fill="#74b9ff" font-size="8" text-anchor="middle">High G = strong edge</text>
+  <text x="435" y="122" fill="#e17055" font-size="8" text-anchor="middle">Edge ⊥ gradient direction</text>
+</svg>
+<div class="caption">Sobel Gx (vertical edges) + Gy (horizontal edges) → gradient magnitude G and direction θ</div>
 </div>
 <div class="hand-drawn">
 <svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
@@ -661,11 +929,83 @@ $$
 <li>3&times;3 neighbourhood: take median of 9 values</li>
 </ul>
 <div class="exam-tip"><strong>Exam:</strong> Median filter is the best choice for salt & pepper noise. It preserves edges while removing impulse noise.</div>
+<h3>4. Bilateral Filter</h3>
+<div class="math-box">
+$$
+g(x,y) = \frac{\sum_{(s,t)} f(s,t) \cdot w_s \cdot w_r}{\sum w_s \cdot w_r}, \quad w_s = e^{-\frac{d^2}{2\sigma_s^2}}, \; w_r = e^{-\frac{\Delta I^2}{2\sigma_r^2}}
+$$
+</div>
+<p>Smooths flat areas but <strong>preserves edges</strong>: weights fall when intensity differs a lot.</p>
+<h3>First 4 Smoothing Filters (Ch-10)</h3>
+<table>
+<tr><th>#</th><th>Filter</th><th>Math idea</th><th>Best for</th></tr>
+<tr><td>1</td><td>Mean (Box)</td><td>Average of neighbourhood</td><td>Uniform/Gaussian noise, simple</td></tr>
+<tr><td>2</td><td>Gaussian</td><td>Weighted average, centre matters most</td><td>Gaussian noise, pre-Sobel smoothing</td></tr>
+<tr><td>3</td><td>Median</td><td>Middle value after sorting</td><td>Salt &amp; pepper (impulse) noise</td></tr>
+<tr><td>4</td><td>Bilateral</td><td>Spatial + intensity weighting</td><td>Denoise while keeping edges sharp</td></tr>
+</table>
+<div class="exam-tip"><strong>Exam (Ch-10):</strong> "First 4" = Mean, Gaussian, Median, Bilateral. Median = only non-linear one. Always smooth BEFORE Sobel/Laplacian.</div>
 </div>
 </div>
 
 <div class="tab-content" id="sobel-op">
 <div class="section">
+<div class="hand-drawn">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+  <text x="250" y="16" fill="#a29bfe" font-size="13" text-anchor="middle" font-weight="bold">Sobel Gx and Gy Kernels: Computing Image Gradient</text>
+  <rect x="10" y="28" width="115" height="110" rx="8" fill="none" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="67" y="44" fill="#a29bfe" font-size="10" text-anchor="middle" font-weight="bold">Gx — Horizontal Gradient</text>
+  <text x="67" y="56" fill="#74b9ff" font-size="8" text-anchor="middle">Detects VERTICAL edges</text>
+  <rect x="22" y="62" width="24" height="18" rx="2" fill="none" stroke="#e17055" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="34" y="75" fill="#e17055" font-size="11" text-anchor="middle" font-weight="bold">-1</text>
+  <rect x="48" y="62" width="24" height="18" rx="2" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="60" y="75" fill="#74b9ff" font-size="11" text-anchor="middle" font-weight="bold">0</text>
+  <rect x="74" y="62" width="24" height="18" rx="2" fill="none" stroke="#00b894" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="86" y="75" fill="#00b894" font-size="11" text-anchor="middle" font-weight="bold">+1</text>
+  <rect x="22" y="82" width="24" height="18" rx="2" fill="none" stroke="#e17055" stroke-width="2" stroke-dasharray="3,2"/>
+  <text x="34" y="95" fill="#e17055" font-size="11" text-anchor="middle" font-weight="bold">-2</text>
+  <rect x="48" y="82" width="24" height="18" rx="2" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="60" y="95" fill="#74b9ff" font-size="11" text-anchor="middle" font-weight="bold">0</text>
+  <rect x="74" y="82" width="24" height="18" rx="2" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="3,2"/>
+  <text x="86" y="95" fill="#00b894" font-size="11" text-anchor="middle" font-weight="bold">+2</text>
+  <rect x="22" y="102" width="24" height="18" rx="2" fill="none" stroke="#e17055" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="34" y="115" fill="#e17055" font-size="11" text-anchor="middle" font-weight="bold">-1</text>
+  <rect x="48" y="102" width="24" height="18" rx="2" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="60" y="115" fill="#74b9ff" font-size="11" text-anchor="middle" font-weight="bold">0</text>
+  <rect x="74" y="102" width="24" height="18" rx="2" fill="none" stroke="#00b894" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="86" y="115" fill="#00b894" font-size="11" text-anchor="middle" font-weight="bold">+1</text>
+  <text x="160" y="85" fill="#fdcb6e" font-size="28" text-anchor="middle">+</text>
+  <rect x="190" y="28" width="115" height="110" rx="8" fill="none" stroke="#fdcb6e" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="247" y="44" fill="#fdcb6e" font-size="10" text-anchor="middle" font-weight="bold">Gy — Vertical Gradient</text>
+  <text x="247" y="56" fill="#e17055" font-size="8" text-anchor="middle">Detects HORIZONTAL edges</text>
+  <rect x="202" y="62" width="24" height="18" rx="2" fill="none" stroke="#e17055" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="214" y="75" fill="#e17055" font-size="11" text-anchor="middle" font-weight="bold">-1</text>
+  <rect x="228" y="62" width="24" height="18" rx="2" fill="none" stroke="#e17055" stroke-width="2" stroke-dasharray="3,2"/>
+  <text x="240" y="75" fill="#e17055" font-size="11" text-anchor="middle" font-weight="bold">-2</text>
+  <rect x="254" y="62" width="24" height="18" rx="2" fill="none" stroke="#e17055" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="266" y="75" fill="#e17055" font-size="11" text-anchor="middle" font-weight="bold">-1</text>
+  <rect x="202" y="82" width="24" height="18" rx="2" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="214" y="95" fill="#74b9ff" font-size="11" text-anchor="middle" font-weight="bold">0</text>
+  <rect x="228" y="82" width="24" height="18" rx="2" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="240" y="95" fill="#74b9ff" font-size="11" text-anchor="middle" font-weight="bold">0</text>
+  <rect x="254" y="82" width="24" height="18" rx="2" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="266" y="95" fill="#74b9ff" font-size="11" text-anchor="middle" font-weight="bold">0</text>
+  <rect x="202" y="102" width="24" height="18" rx="2" fill="none" stroke="#00b894" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="214" y="115" fill="#00b894" font-size="11" text-anchor="middle" font-weight="bold">+1</text>
+  <rect x="228" y="102" width="24" height="18" rx="2" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="3,2"/>
+  <text x="240" y="115" fill="#00b894" font-size="11" text-anchor="middle" font-weight="bold">+2</text>
+  <rect x="254" y="102" width="24" height="18" rx="2" fill="none" stroke="#00b894" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="266" y="115" fill="#00b894" font-size="11" text-anchor="middle" font-weight="bold">+1</text>
+  <rect x="325" y="28" width="165" height="110" rx="8" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="407" y="44" fill="#00b894" font-size="10" text-anchor="middle" font-weight="bold">Gradient Computation</text>
+  <text x="407" y="62" fill="#e0e0e0" font-size="9" text-anchor="middle">G = √(Gx² + Gy²)</text>
+  <text x="407" y="80" fill="#a29bfe" font-size="9" text-anchor="middle">θ = arctan(Gy / Gx)</text>
+  <text x="407" y="100" fill="#fdcb6e" font-size="9" text-anchor="middle">Edge dir ⊥ gradient</text>
+  <text x="407" y="118" fill="#e17055" font-size="8" text-anchor="middle">Strong: G > T</text>
+  <text x="407" y="132" fill="#e17055" font-size="8" text-anchor="middle">Weak: T/2 < G ≤ T</text>
+</svg>
+<div class="caption">Sobel kernels: Gx detects vertical edges (horizontal gradient), Gy detects horizontal edges (vertical gradient). Center weight=2 adds Gaussian smoothing.</div>
+</div>
 <h2>Sobel Operator (1st Order Derivative)</h2>
 <p>Detects edges by computing <strong>gradient magnitude and direction</strong> using two 3&times;3 kernels.</p>
 <span class="tag exam">Exam Important</span>
@@ -723,6 +1063,64 @@ $$
 
 <div class="tab-content" id="laplacian-op">
 <div class="section">
+<div class="hand-drawn">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+  <text x="250" y="16" fill="#a29bfe" font-size="13" text-anchor="middle" font-weight="bold">Laplacian Kernels: 4-Connected vs 8-Connected</text>
+  <rect x="10" y="28" width="130" height="110" rx="8" fill="none" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="75" y="44" fill="#a29bfe" font-size="10" text-anchor="middle" font-weight="bold">4-Connected Kernel</text>
+  <text x="75" y="56" fill="#74b9ff" font-size="8" text-anchor="middle">Uses orthogonal neighbours</text>
+  <rect x="30" y="62" width="24" height="18" rx="2" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="42" y="75" fill="#74b9ff" font-size="11" text-anchor="middle" font-weight="bold">0</text>
+  <rect x="56" y="62" width="24" height="18" rx="2" fill="none" stroke="#e17055" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="68" y="75" fill="#e17055" font-size="11" text-anchor="middle" font-weight="bold">-1</text>
+  <rect x="82" y="62" width="24" height="18" rx="2" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="94" y="75" fill="#74b9ff" font-size="11" text-anchor="middle" font-weight="bold">0</text>
+  <rect x="30" y="82" width="24" height="18" rx="2" fill="none" stroke="#e17055" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="42" y="95" fill="#e17055" font-size="11" text-anchor="middle" font-weight="bold">-1</text>
+  <rect x="56" y="82" width="24" height="18" rx="2" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="3,2"/>
+  <text x="68" y="95" fill="#00b894" font-size="11" text-anchor="middle" font-weight="bold">+4</text>
+  <rect x="82" y="82" width="24" height="18" rx="2" fill="none" stroke="#e17055" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="94" y="95" fill="#e17055" font-size="11" text-anchor="middle" font-weight="bold">-1</text>
+  <rect x="30" y="102" width="24" height="18" rx="2" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="42" y="115" fill="#74b9ff" font-size="11" text-anchor="middle" font-weight="bold">0</text>
+  <rect x="56" y="102" width="24" height="18" rx="2" fill="none" stroke="#e17055" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="68" y="115" fill="#e17055" font-size="11" text-anchor="middle" font-weight="bold">-1</text>
+  <rect x="82" y="102" width="24" height="18" rx="2" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="94" y="115" fill="#74b9ff" font-size="11" text-anchor="middle" font-weight="bold">0</text>
+  <text x="75" y="135" fill="#a29bfe" font-size="8" text-anchor="middle">Sum = 0, center = +4</text>
+  <rect x="160" y="28" width="130" height="110" rx="8" fill="none" stroke="#fdcb6e" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="225" y="44" fill="#fdcb6e" font-size="10" text-anchor="middle" font-weight="bold">8-Connected Kernel</text>
+  <text x="225" y="56" fill="#e17055" font-size="8" text-anchor="middle">Uses all 8 neighbours</text>
+  <rect x="180" y="62" width="20" height="16" rx="2" fill="none" stroke="#e17055" stroke-width="1.2" stroke-dasharray="3,2"/>
+  <text x="190" y="74" fill="#e17055" font-size="10" text-anchor="middle" font-weight="bold">-1</text>
+  <rect x="202" y="62" width="20" height="16" rx="2" fill="none" stroke="#e17055" stroke-width="1.2" stroke-dasharray="3,2"/>
+  <text x="212" y="74" fill="#e17055" font-size="10" text-anchor="middle" font-weight="bold">-1</text>
+  <rect x="224" y="62" width="20" height="16" rx="2" fill="none" stroke="#e17055" stroke-width="1.2" stroke-dasharray="3,2"/>
+  <text x="234" y="74" fill="#e17055" font-size="10" text-anchor="middle" font-weight="bold">-1</text>
+  <rect x="180" y="80" width="20" height="16" rx="2" fill="none" stroke="#e17055" stroke-width="1.2" stroke-dasharray="3,2"/>
+  <text x="190" y="92" fill="#e17055" font-size="10" text-anchor="middle" font-weight="bold">-1</text>
+  <rect x="202" y="80" width="20" height="16" rx="2" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="3,2"/>
+  <text x="212" y="92" fill="#00b894" font-size="10" text-anchor="middle" font-weight="bold">+8</text>
+  <rect x="224" y="80" width="20" height="16" rx="2" fill="none" stroke="#e17055" stroke-width="1.2" stroke-dasharray="3,2"/>
+  <text x="234" y="92" fill="#e17055" font-size="10" text-anchor="middle" font-weight="bold">-1</text>
+  <rect x="180" y="98" width="20" height="16" rx="2" fill="none" stroke="#e17055" stroke-width="1.2" stroke-dasharray="3,2"/>
+  <text x="190" y="110" fill="#e17055" font-size="10" text-anchor="middle" font-weight="bold">-1</text>
+  <rect x="202" y="98" width="20" height="16" rx="2" fill="none" stroke="#e17055" stroke-width="1.2" stroke-dasharray="3,2"/>
+  <text x="212" y="110" fill="#e17055" font-size="10" text-anchor="middle" font-weight="bold">-1</text>
+  <rect x="224" y="98" width="20" height="16" rx="2" fill="none" stroke="#e17055" stroke-width="1.2" stroke-dasharray="3,2"/>
+  <text x="234" y="110" fill="#e17055" font-size="10" text-anchor="middle" font-weight="bold">-1</text>
+  <text x="225" y="135" fill="#fdcb6e" font-size="8" text-anchor="middle">Sum = 0, center = +8</text>
+  <rect x="310" y="28" width="180" height="110" rx="8" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="400" y="44" fill="#00b894" font-size="10" text-anchor="middle" font-weight="bold">Zero-Crossing = Edge</text>
+  <path d="M330 100 Q350 95,365 75 Q380 55,395 60 Q410 65,425 95 Q440 110,460 105" fill="none" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+  <line x1="330" y1="95" x2="465" y2="95" stroke="#555" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="393" y1="50" x2="393" y2="120" stroke="#e17055" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="393" y="135" fill="#e17055" font-size="8" text-anchor="middle">Edge at zero crossing</text>
+  <text x="400" y="72" fill="#00b894" font-size="8" text-anchor="middle">+ (peak)</text>
+  <text x="400" y="118" fill="#00b894" font-size="8" text-anchor="middle">− (valley)</text>
+</svg>
+<div class="caption">Laplacian kernels: 4-connected uses 4 orthogonal neighbours, 8-connected uses all 8. Zero-crossings in output = edges.</div>
+</div>
 <h2>Laplacian Operator (2nd Order Derivative)</h2>
 <p>Edge = <strong>zero-crossing</strong> of the Laplacian. Positive &rarr; peak, Negative &rarr; valley, sign change = edge.</p>
 
@@ -779,10 +1177,63 @@ $$
 <div class="section">
 <h2>Gaussian Noise</h2>
 <p>Additive noise. Each pixel value has random noise added from a Gaussian distribution. Caused by electronic circuit noise, sensor heat.</p>
-<div style="text-align:center;margin:16px 0">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Noise_salt_and_pepper.png/320px-Noise_salt_and_pepper.png" alt="Salt and Pepper Noise" style="max-width:45%;border-radius:8px;border:1px solid var(--border)">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Gaussian_noise_application.png/320px-Gaussian_noise_application.png" alt="Gaussian Noise" style="max-width:45%;border-radius:8px;border:1px solid var(--border);margin-left:10px">
-<p style="color:var(--text2);font-size:.85em;margin-top:8px;font-style:italic">Left: Salt & Pepper noise | Right: Gaussian noise (Wikimedia Commons CC)</p>
+<div class="hand-drawn">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+  <text x="250" y="16" fill="#a29bfe" font-size="13" text-anchor="middle" font-weight="bold">Noise Types: Salt &amp; Pepper vs Gaussian</text>
+  <rect x="10" y="28" width="150" height="110" rx="8" fill="none" stroke="#e17055" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="85" y="44" fill="#e17055" font-size="10" text-anchor="middle" font-weight="bold">Salt &amp; Pepper Noise</text>
+  <rect x="22" y="52" width="126" height="72" rx="3" fill="#555" stroke="#666" stroke-width="1"/>
+  <circle cx="35" cy="62" r="3" fill="#fff"/><circle cx="55" cy="58" r="3" fill="#000"/><circle cx="78" cy="65" r="3" fill="#fff"/>
+  <circle cx="100" cy="60" r="3" fill="#000"/><circle cx="120" cy="72" r="3" fill="#fff"/><circle cx="140" cy="68" r="3" fill="#000"/>
+  <circle cx="42" cy="80" r="3" fill="#000"/><circle cx="65" cy="85" r="3" fill="#fff"/><circle cx="90" cy="78" r="3" fill="#000"/>
+  <circle cx="110" cy="82" r="3" fill="#fff"/><circle cx="130" cy="90" r="3" fill="#000"/><circle cx="48" cy="100" r="3" fill="#fff"/>
+  <circle cx="72" cy="95" r="3" fill="#000"/><circle cx="95" cy="105" r="3" fill="#fff"/><circle cx="118" cy="98" r="3" fill="#000"/>
+  <circle cx="135" cy="110" r="3" fill="#fff"/><circle cx="30" cy="110" r="3" fill="#fff"/><circle cx="58" cy="115" r="3" fill="#000"/>
+  <text x="85" y="138" fill="#e17055" font-size="8" text-anchor="middle">Impulse: white(255) or black(0)</text>
+  <rect x="175" y="28" width="150" height="110" rx="8" fill="none" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="250" y="44" fill="#6c5ce7" font-size="10" text-anchor="middle" font-weight="bold">Gaussian Noise</text>
+  <rect x="187" y="52" width="126" height="72" rx="3" fill="#555" stroke="#666" stroke-width="1"/>
+  <rect x="189" y="54" width="10" height="10" fill="#4e4e4e"/><rect x="201" y="54" width="10" height="10" fill="#5c5c5c"/>
+  <rect x="213" y="54" width="10" height="10" fill="#4a4a4a"/><rect x="225" y="54" width="10" height="10" fill="#606060"/>
+  <rect x="237" y="54" width="10" height="10" fill="#525252"/><rect x="249" y="54" width="10" height="10" fill="#5a5a5a"/>
+  <rect x="261" y="54" width="10" height="10" fill="#484848"/><rect x="273" y="54" width="10" height="10" fill="#5e5e5e"/>
+  <rect x="285" y="54" width="10" height="10" fill="#545454"/><rect x="297" y="54" width="10" height="10" fill="#585858"/>
+  <rect x="189" y="66" width="10" height="10" fill="#585858"/><rect x="201" y="66" width="10" height="10" fill="#4c4c4c"/>
+  <rect x="213" y="66" width="10" height="10" fill="#626262"/><rect x="225" y="66" width="10" height="10" fill="#505050"/>
+  <rect x="237" y="66" width="10" height="10" fill="#5c5c5c"/><rect x="249" y="66" width="10" height="10" fill="#545454"/>
+  <rect x="261" y="66" width="10" height="10" fill="#484848"/><rect x="273" y="66" width="10" height="10" fill="#5a5a5a"/>
+  <rect x="285" y="66" width="10" height="10" fill="#565656"/><rect x="297" y="66" width="10" height="10" fill="#5e5e5e"/></text>
+  <rect x="189" y="78" width="10" height="10" fill="#4e4e4e"/><rect x="201" y="78" width="10" height="10" fill="#5a5a5a"/>
+  <rect x="213" y="78" width="10" height="10" fill="#525252"/><rect x="225" y="78" width="10" height="10" fill="#4a4a4a"/>
+  <rect x="237" y="78" width="10" height="10" fill="#5e5e5e"/><rect x="249" y="78" width="10" height="10" fill="#545454"/>
+  <rect x="261" y="78" width="10" height="10" fill="#606060"/><rect x="273" y="78" width="10" height="10" fill="#4c4c4c"/>
+  <rect x="285" y="78" width="10" height="10" fill="#585858"/><rect x="297" y="78" width="10" height="10" fill="#565656"/>
+  <rect x="189" y="90" width="10" height="10" fill="#545454"/><rect x="201" y="90" width="10" height="10" fill="#5c5c5c"/>
+  <rect x="213" y="90" width="10" height="10" fill="#484848"/><rect x="225" y="90" width="10" height="10" fill="#5a5a5a"/>
+  <rect x="237" y="90" width="10" height="10" fill="#505050"/><rect x="249" y="90" width="10" height="10" fill="#626262"/>
+  <rect x="261" y="90" width="10" height="10" fill="#525252"/><rect x="273" y="90" width="10" height="10" fill="#4e4e4e"/>
+  <rect x="285" y="90" width="10" height="10" fill="#5e5e5e"/><rect x="297" y="90" width="10" height="10" fill="#545454"/>
+  <rect x="189" y="102" width="10" height="10" fill="#505050"/><rect x="201" y="102" width="10" height="10" fill="#585858"/>
+  <rect x="213" y="102" width="10" height="10" fill="#545454"/><rect x="225" y="102" width="10" height="10" fill="#5e5e5e"/>
+  <rect x="237" y="102" width="10" height="10" fill="#4a4a4a"/><rect x="249" y="102" width="10" height="10" fill="#606060"/>
+  <rect x="261" y="102" width="10" height="10" fill="#4c4c4c"/><rect x="273" y="102" width="10" height="10" fill="#5a5a5a"/>
+  <rect x="285" y="102" width="10" height="10" fill="#484848"/><rect x="297" y="102" width="10" height="10" fill="#565656"/>
+  <rect x="189" y="114" width="10" height="10" fill="#5a5a5a"/><rect x="201" y="114" width="10" height="10" fill="#4e4e4e"/>
+  <rect x="213" y="114" width="10" height="10" fill="#565656"/><rect x="225" y="114" width="10" height="10" fill="#525252"/>
+  <rect x="237" y="114" width="10" height="10" fill="#5c5c5c"/><rect x="249" y="114" width="10" height="10" fill="#505050"/>
+  <rect x="261" y="114" width="10" height="10" fill="#585858"/><rect x="273" y="114" width="10" height="10" fill="#4a4a4a"/>
+  <rect x="285" y="114" width="10" height="10" fill="#545454"/><rect x="297" y="114" width="10" height="10" fill="#5e5e5e"/>
+  <text x="250" y="138" fill="#6c5ce7" font-size="8" text-anchor="middle">Additive: η ~ N(μ, σ²)</text>
+  <rect x="340" y="28" width="150" height="110" rx="8" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="415" y="44" fill="#00b894" font-size="10" text-anchor="middle" font-weight="bold">Key Difference</text>
+  <text x="415" y="62" fill="#e17055" font-size="9" text-anchor="middle">S&P: random pixels →</text>
+  <text x="415" y="74" fill="#e17055" font-size="9" text-anchor="middle"> 0 or 255 (outliers)</text>
+  <text x="415" y="92" fill="#6c5ce7" font-size="9" text-anchor="middle">Gaussian: ALL pixels</text>
+  <text x="415" y="104" fill="#6c5ce7" font-size="9" text-anchor="middle"> slightly shifted</text>
+  <text x="415" y="122" fill="#fdcb6e" font-size="9" text-anchor="middle">Best filter for S&amp;P:</text>
+  <text x="415" y="134" fill="#fdcb6e" font-size="9" text-anchor="middle">Median (not Mean!)</text>
+</svg>
+<div class="caption">Salt & Pepper = impulse noise (random black/white dots); Gaussian = additive grainy noise (every pixel shifted)</div>
 </div>
 <div class="hand-drawn">
 <svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
@@ -902,6 +1353,64 @@ $$
 
 <div class="tab-content" id="noise-poisson">
 <div class="section">
+<div class="hand-drawn">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+  <text x="250" y="16" fill="#a29bfe" font-size="13" text-anchor="middle" font-weight="bold">Poisson &amp; Speckle Noise: Photon Counting &amp; Multiplicative</text>
+  <rect x="10" y="28" width="145" height="110" rx="8" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="82" y="44" fill="#00b894" font-size="10" text-anchor="middle" font-weight="bold">Poisson (Shot) Noise</text>
+  <text x="82" y="56" fill="#74b9ff" font-size="8" text-anchor="middle">P(k) = λ^k e^−λ / k!</text>
+  <rect x="25" y="62" width="10" height="0" rx="1" fill="#00b894" fill-opacity="0.6" stroke="#00b894" stroke-width="1"/>
+  <rect x="25" y="120" width="10" height="2" rx="1" fill="#00b894" fill-opacity="0.6" stroke="#00b894" stroke-width="1"/>
+  <rect x="37" y="116" width="10" height="6" rx="1" fill="#00b894" fill-opacity="0.6" stroke="#00b894" stroke-width="1"/>
+  <rect x="49" y="110" width="10" height="12" rx="1" fill="#00b894" fill-opacity="0.6" stroke="#00b894" stroke-width="1"/>
+  <rect x="61" y="98" width="10" height="24" rx="1" fill="#00b894" fill-opacity="0.6" stroke="#00b894" stroke-width="1"/>
+  <rect x="73" y="80" width="10" height="42" rx="1" fill="#00b894" fill-opacity="0.6" stroke="#00b894" stroke-width="1"/>
+  <rect x="85" y="68" width="10" height="54" rx="1" fill="#00b894" fill-opacity="0.6" stroke="#00b894" stroke-width="1"/>
+  <rect x="97" y="82" width="10" height="40" rx="1" fill="#00b894" fill-opacity="0.6" stroke="#00b894" stroke-width="1"/>
+  <rect x="109" y="100" width="10" height="22" rx="1" fill="#00b894" fill-opacity="0.6" stroke="#00b894" stroke-width="1"/>
+  <rect x="121" y="114" width="10" height="8" rx="1" fill="#00b894" fill-opacity="0.6" stroke="#00b894" stroke-width="1"/>
+  <line x1="22" y1="122" x2="135" y2="122" stroke="#555" stroke-width="1" stroke-dasharray="2,2"/>
+  <text x="82" y="136" fill="#00b894" font-size="8" text-anchor="middle">Variance = Mean = λ</text>
+  <rect x="170" y="28" width="145" height="110" rx="8" fill="none" stroke="#fdcb6e" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="242" y="44" fill="#fdcb6e" font-size="10" text-anchor="middle" font-weight="bold">Speckle Noise</text>
+  <text x="242" y="56" fill="#e17055" font-size="8" text-anchor="middle">g = f + f·η (multiplicative)</text>
+  <rect x="185" y="62" width="112" height="55" rx="3" fill="#444" stroke="#555" stroke-width="1"/>
+  <rect x="188" y="65" width="8" height="8" fill="#555"/><rect x="198" y="65" width="8" height="8" fill="#3a3a3a"/>
+  <rect x="208" y="65" width="8" height="8" fill="#666"/><rect x="218" y="65" width="8" height="8" fill="#4a4a4a"/>
+  <rect x="228" y="65" width="8" height="8" fill="#555"/><rect x="238" y="65" width="8" height="8" fill="#777"/>
+  <rect x="248" y="65" width="8" height="8" fill="#3a3a3a"/><rect x="258" y="65" width="8" height="8" fill="#666"/>
+  <rect x="268" y="65" width="8" height="8" fill="#555"/><rect x="278" y="65" width="8" height="8" fill="#4a4a4a"/>
+  <rect x="188" y="75" width="8" height="8" fill="#777"/><rect x="198" y="75" width="8" height="8" fill="#444"/>
+  <rect x="208" y="75" width="8" height="8" fill="#555"/><rect x="218" y="75" width="8" height="8" fill="#888"/>
+  <rect x="228" y="75" width="8" height="8" fill="#3a3a3a"/><rect x="238" y="75" width="8" height="8" fill="#666"/>
+  <rect x="248" y="75" width="8" height="8" fill="#555"/><rect x="258" y="75" width="8" height="8" fill="#777"/>
+  <rect x="268" y="75" width="8" height="8" fill="#3a3a3a"/><rect x="278" y="75" width="8" height="8" fill="#666"/>
+  <rect x="188" y="85" width="8" height="8" fill="#555"/><rect x="198" y="85" width="8" height="8" fill="#666"/>
+  <rect x="208" y="85" width="8" height="8" fill="#444"/><rect x="218" y="85" width="8" height="8" fill="#777"/>
+  <rect x="228" y="85" width="8" height="8" fill="#555"/><rect x="238" y="85" width="8" height="8" fill="#3a3a3a"/>
+  <rect x="248" y="85" width="8" height="8" fill="#888"/><rect x="258" y="85" width="8" height="8" fill="#555"/>
+  <rect x="268" y="85" width="8" height="8" fill="#666"/><rect x="278" y="85" width="8" height="8" fill="#444"/>
+  <rect x="188" y="95" width="8" height="8" fill="#444"/><rect x="198" y="95" width="8" height="8" fill="#888"/>
+  <rect x="208" y="95" width="8" height="8" fill="#555"/><rect x="218" y="95" width="8" height="8" fill="#666"/>
+  <rect x="228" y="95" width="8" height="8" fill="#555"/><rect x="238" y="95" width="8" height="8" fill="#555"/>
+  <rect x="248" y="95" width="8" height="8" fill="#777"/><rect x="258" y="95" width="8" height="8" fill="#3a3a3a"/>
+  <rect x="268" y="95" width="8" height="8" fill="#666"/><rect x="278" y="95" width="8" height="8" fill="#555"/>
+  <rect x="188" y="105" width="8" height="8" fill="#666"/><rect x="198" y="105" width="8" height="8" fill="#555"/>
+  <rect x="208" y="105" width="8" height="8" fill="#444"/><rect x="218" y="105" width="8" height="8" fill="#888"/>
+  <rect x="228" y="105" width="8" height="8" fill="#3a3a3a"/><rect x="238" y="105" width="8" height="8" fill="#555"/>
+  <rect x="248" y="105" width="8" height="8" fill="#555"/><rect x="258" y="105" width="8" height="8" fill="#444"/>
+  <rect x="268" y="105" width="8" height="8" fill="#777"/><rect x="278" y="105" width="8" height="8" fill="#555"/>
+  <text x="242" y="136" fill="#fdcb6e" font-size="8" text-anchor="middle">Brighter areas = more noise</text>
+  <rect x="335" y="28" width="155" height="110" rx="8" fill="none" stroke="#e17055" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="412" y="44" fill="#e17055" font-size="10" text-anchor="middle" font-weight="bold">Key Properties</text>
+  <text x="412" y="62" fill="#00b894" font-size="9" text-anchor="middle">Poisson: Low-light grain</text>
+  <text x="412" y="76" fill="#00b894" font-size="9" text-anchor="middle">  Var = Mean = λ</text>
+  <text x="412" y="96" fill="#fdcb6e" font-size="9" text-anchor="middle">Speckle: Radar/ultrasound</text>
+  <text x="412" y="110" fill="#fdcb6e" font-size="9" text-anchor="middle">  g = f(1 + η)</text>
+  <text x="412" y="130" fill="#a29bfe" font-size="8" text-anchor="middle">Both signal-dependent noise</text>
+</svg>
+<div class="caption">Poisson noise follows photon counting statistics (Var=Mean); Speckle is multiplicative (brighter = noisier)</div>
+</div>
 <h2>Poisson (Shot) Noise</h2>
 <p>Noise inherent to <strong>photon counting</strong>. Follows Poisson distribution. Common in low-light photography.</p>
 <div class="math-box highlight">
@@ -1027,6 +1536,46 @@ $$
 
 <div class="tab-content" id="filt-gauss">
 <div class="section">
+<div class="hand-drawn">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="10" width="180" height="130" rx="8" fill="none" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="100" y="28" fill="#a29bfe" font-size="12" text-anchor="middle" font-weight="bold">Gaussian Kernel (3×3)</text>
+<rect x="30" y="40" width="32" height="28" rx="3" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="46" y="58" fill="#74b9ff" font-size="9" text-anchor="middle">0.01</text>
+<rect x="66" y="40" width="32" height="28" rx="3" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="82" y="58" fill="#74b9ff" font-size="9" text-anchor="middle">0.08</text>
+<rect x="102" y="40" width="32" height="28" rx="3" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="118" y="58" fill="#74b9ff" font-size="9" text-anchor="middle">0.01</text>
+<rect x="30" y="72" width="32" height="28" rx="3" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="46" y="90" fill="#74b9ff" font-size="9" text-anchor="middle">0.08</text>
+<rect x="66" y="72" width="32" height="28" rx="3" fill="rgba(108,92,231,0.25)" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="82" y="90" fill="#fdcb6e" font-size="11" text-anchor="middle" font-weight="bold">0.44</text>
+<rect x="102" y="72" width="32" height="28" rx="3" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="118" y="90" fill="#74b9ff" font-size="9" text-anchor="middle">0.08</text>
+<rect x="30" y="104" width="32" height="28" rx="3" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="46" y="122" fill="#74b9ff" font-size="9" text-anchor="middle">0.01</text>
+<rect x="66" y="104" width="32" height="28" rx="3" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="82" y="122" fill="#74b9ff" font-size="9" text-anchor="middle">0.08</text>
+<rect x="102" y="104" width="32" height="28" rx="3" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="118" y="122" fill="#74b9ff" font-size="9" text-anchor="middle">0.01</text>
+<text x="100" y="146" fill="#a29bfe" font-size="9" text-anchor="middle">Σ = 1.0</text>
+<text x="310" y="60" fill="#fdcb6e" font-size="22" text-anchor="middle">→</text>
+<rect x="340" y="10" width="150" height="130" rx="8" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="415" y="28" fill="#00b894" font-size="12" text-anchor="middle" font-weight="bold">Effect on Image</text>
+<rect x="355" y="40" width="45" height="40" rx="3" fill="none" stroke="#e17055" stroke-width="1.5" stroke-dasharray="4,2"/>
+<text x="377" y="65" fill="#e17055" font-size="9" text-anchor="middle">Sharp</text>
+<text x="377" y="75" fill="#e17055" font-size="8" text-anchor="middle">edges</text>
+<text x="420" y="60" fill="#fdcb6e" font-size="16" text-anchor="middle">→</text>
+<rect x="430" y="40" width="45" height="40" rx="3" fill="none" stroke="#00b894" stroke-width="1.5" stroke-dasharray="4,2"/>
+<text x="452" y="65" fill="#00b894" font-size="9" text-anchor="middle">Smooth</text>
+<text x="452" y="75" fill="#00b894" font-size="8" text-anchor="middle">result</text>
+<path d="M350 95 Q390 120, 430 95" fill="none" stroke="#e17055" stroke-width="2" stroke-dasharray="5,3" stroke-linecap="round"/>
+<path d="M350 95 Q390 105, 430 95" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3" stroke-linecap="round"/>
+<text x="340" y="135" fill="#e17055" font-size="8" text-anchor="middle">Original</text>
+<text x="430" y="135" fill="#00b894" font-size="8" text-anchor="middle">Blurred</text>
+</svg>
+<div class="caption">Gaussian kernel: center pixel has highest weight (0.44), weights decrease with distance from center</div>
+</div>
 <h2>Gaussian Smoothing Filter</h2>
 <div class="math-box highlight">
 $$
@@ -1043,6 +1592,47 @@ $$
 
 <div class="tab-content" id="filt-adaptive">
 <div class="section">
+<div class="hand-drawn">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="10" width="140" height="130" rx="8" fill="none" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="80" y="28" fill="#a29bfe" font-size="11" text-anchor="middle" font-weight="bold">Flat Region</text>
+<rect x="25" y="38" width="20" height="20" rx="2" fill="#555" stroke="#666" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="48" y="38" width="20" height="20" rx="2" fill="#575" stroke="#676" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="71" y="38" width="20" height="20" rx="2" fill="#545" stroke="#656" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="94" y="38" width="20" height="20" rx="2" fill="#565" stroke="#676" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="25" y="61" width="20" height="20" rx="2" fill="#565" stroke="#676" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="48" y="61" width="20" height="20" rx="2" fill="#525" stroke="#636" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="71" y="61" width="20" height="20" rx="2" fill="#555" stroke="#666" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="94" y="61" width="20" height="20" rx="2" fill="#545" stroke="#656" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="25" y="84" width="20" height="20" rx="2" fill="#535" stroke="#646" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="48" y="84" width="20" height="20" rx="2" fill="#555" stroke="#666" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="71" y="84" width="20" height="20" rx="2" fill="#565" stroke="#676" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="94" y="84" width="20" height="20" rx="2" fill="#545" stroke="#656" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="80" y="124" fill="#00b894" font-size="10" text-anchor="middle">σ²_L ≈ σ²_η</text>
+<text x="80" y="137" fill="#00b894" font-size="9" text-anchor="middle">→ Average heavily</text>
+<text x="220" y="75" fill="#fdcb6e" font-size="24" text-anchor="middle">vs</text>
+<rect x="260" y="10" width="140" height="130" rx="8" fill="none" stroke="#e17055" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="330" y="28" fill="#e17055" font-size="11" text-anchor="middle" font-weight="bold">Edge Region</text>
+<rect x="275" y="38" width="20" height="20" rx="2" fill="#555" stroke="#666" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="298" y="38" width="20" height="20" rx="2" fill="#575" stroke="#676" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="321" y="38" width="20" height="20" rx="2" fill="#999" stroke="#aaa" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="344" y="38" width="20" height="20" rx="2" fill="#ccc" stroke="#ddd" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="275" y="61" width="20" height="20" rx="2" fill="#565" stroke="#676" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="298" y="61" width="20" height="20" rx="2" fill="#545" stroke="#656" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="321" y="61" width="20" height="20" rx="2" fill="#aaa" stroke="#bbb" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="344" y="61" width="20" height="20" rx="2" fill="#ddd" stroke="#eee" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="275" y="84" width="20" height="20" rx="2" fill="#535" stroke="#646" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="298" y="84" width="20" height="20" rx="2" fill="#555" stroke="#666" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="321" y="84" width="20" height="20" rx="2" fill="#888" stroke="#999" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="344" y="84" width="20" height="20" rx="2" fill="#bbb" stroke="#ccc" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="318" y1="36" x2="318" y2="106" stroke="#e17055" stroke-width="2" stroke-dasharray="4,3"/>
+<text x="330" y="124" fill="#e17055" font-size="10" text-anchor="middle">σ²_L ≫ σ²_η</text>
+<text x="330" y="137" fill="#e17055" font-size="9" text-anchor="middle">→ Keep original</text>
+<path d="M420 50 Q460 75, 420 100" fill="none" stroke="#fdcb6e" stroke-width="2" stroke-dasharray="5,3" stroke-linecap="round"/>
+<text x="470" y="78" fill="#fdcb6e" font-size="10" text-anchor="start">σ²_L</text>
+</svg>
+<div class="caption">Adaptive filter: in flat regions local variance ≈ noise variance → average; at edges local variance ≫ noise variance → preserve</div>
+</div>
 <h2>Adaptive (Local) Filter</h2>
 <p>Adjusts behaviour based on <strong>local statistics</strong>. Preserves edges while removing noise.</p>
 <h3>Adaptive Mean Filter:</h3>
@@ -1166,6 +1756,37 @@ $$
 
 <div class="tab-content" id="seg-scenario">
 <div class="section">
+<div class="hand-drawn">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+<rect x="170" y="5" width="160" height="30" rx="6" fill="rgba(108,92,231,0.15)" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="250" y="25" fill="#a29bfe" font-size="11" text-anchor="middle" font-weight="bold">New Image</text>
+<line x1="250" y1="35" x2="250" y2="48" stroke="#6c5ce7" stroke-width="1.5" stroke-dasharray="5,3"/>
+<polygon points="225,48 275,48 265,60 235,60" fill="rgba(108,92,231,0.15)" stroke="#6c5ce7" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="250" y="56" fill="#a29bfe" font-size="8" text-anchor="middle">Uniform light?</text>
+<line x1="200" y1="60" x2="80" y2="80" stroke="#00b894" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="130" y="68" fill="#00b894" font-size="8" text-anchor="middle">Yes</text>
+<line x1="300" y1="60" x2="420" y2="80" stroke="#e17055" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="370" y="68" fill="#e17055" font-size="8" text-anchor="middle">No</text>
+<rect x="20" y="80" width="120" height="24" rx="5" fill="rgba(0,184,148,0.15)" stroke="#00b894" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="80" y="96" fill="#00b894" font-size="9" text-anchor="middle">Otsu / Global</text>
+<rect x="360" y="80" width="120" height="24" rx="5" fill="rgba(225,112,85,0.15)" stroke="#e17055" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="420" y="96" fill="#e17055" font-size="9" text-anchor="middle">Adaptive Thresh</text>
+<line x1="250" y1="60" x2="250" y2="80" stroke="#fdcb6e" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="258" y="72" fill="#fdcb6e" font-size="8" text-anchor="start">Edges?</text>
+<rect x="190" y="80" width="120" height="24" rx="5" fill="rgba(253,203,110,0.15)" stroke="#fdcb6e" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="250" y="96" fill="#fdcb6e" font-size="9" text-anchor="middle">Canny Edge</text>
+<line x1="80" y1="104" x2="80" y2="120" stroke="#00b894" stroke-width="1.5" stroke-dasharray="5,3"/>
+<line x1="420" y1="104" x2="420" y2="120" stroke="#e17055" stroke-width="1.5" stroke-dasharray="5,3"/>
+<line x1="250" y1="104" x2="250" y2="120" stroke="#fdcb6e" stroke-width="1.5" stroke-dasharray="5,3"/>
+<rect x="25" y="120" width="110" height="22" rx="4" fill="rgba(116,185,255,0.1)" stroke="#74b9ff" stroke-width="1" stroke-dasharray="4,2"/>
+<text x="80" y="135" fill="#74b9ff" font-size="8" text-anchor="middle">Binary mask</text>
+<rect x="365" y="120" width="110" height="22" rx="4" fill="rgba(116,185,255,0.1)" stroke="#74b9ff" stroke-width="1" stroke-dasharray="4,2"/>
+<text x="420" y="135" fill="#74b9ff" font-size="8" text-anchor="middle">Shadows removed</text>
+<rect x="195" y="120" width="110" height="22" rx="4" fill="rgba(116,185,255,0.1)" stroke="#74b9ff" stroke-width="1" stroke-dasharray="4,2"/>
+<text x="250" y="135" fill="#74b9ff" font-size="8" text-anchor="middle">Boundaries map</text>
+</svg>
+<div class="caption">Decision flowchart: choose segmentation method based on lighting, edges, and region properties</div>
+</div>
 <h2>Which Segmentation to Apply?</h2>
 <table>
 <tr><th>Scenario</th><th>Best Method</th><th>Why</th></tr>
@@ -1176,6 +1797,21 @@ $$
 <tr><td>Object boundaries needed</td><td>Edge-based (Canny)</td><td>Sharp intensity changes at boundaries</td></tr>
 <tr><td>Texture-based regions</td><td>Texture analysis + clustering</td><td>Intensity alone insufficient</td></tr>
 </table>
+<h2>Colour Segmentation (Ch-12)</h2>
+<p>Segment in colour space (RGB / HSV) instead of grayscale when objects differ by <strong>colour</strong>, not intensity. HSV is preferred: Hue separates colour from lighting.</p>
+<div class="math-box">
+$$
+\text{mask}(x,y) = \begin{cases} 1 & \text{if } H_{low} \le H(x,y) \le H_{high} \text{ and } S(x,y) > S_{min} \\ 0 & \text{otherwise} \end{cases}
+$$
+</div>
+<h2>Edge-Based Segmentation — 3 Types + Math (Ch-12)</h2>
+<table>
+<tr><th>Type</th><th>Operator</th><th>Math</th></tr>
+<tr><td>1. Roberts (2&times;2, fastest)</td><td>\(G_x = \begin{bmatrix}1&0\\0&-1\end{bmatrix}\), \(G_y = \begin{bmatrix}0&1\\-1&0\end{bmatrix}\)</td><td>\(G = \sqrt{G_x^2+G_y^2}\)</td></tr>
+<tr><td>2. Prewitt (3&times;3, uniform weights)</td><td>\(G_x = \begin{bmatrix}-1&0&1\\-1&0&1\\-1&0&1\end{bmatrix}\)</td><td>Same magnitude formula; less noise-sensitive than Roberts</td></tr>
+<tr><td>3. Sobel (3&times;3, centre &times;2)</td><td>\(G_x = \begin{bmatrix}-1&0&1\\-2&0&2\\-1&0&1\end{bmatrix}\)</td><td>\(G = \sqrt{G_x^2+G_y^2}\), \(\theta = \tan^{-1}(G_y/G_x)\)</td></tr>
+</table>
+<div class="exam-tip"><strong>Exam (Ch-12):</strong> Roberts = 2&times;2 (noise-sensitive). Prewitt = Sobel with all 1s (no centre emphasis). Sobel = best of the three for noisy images.</div>
 <div class="exam-tip"><strong>Exam:</strong> Given a scenario, identify: (1) lighting condition, (2) number of classes, (3) noise level, (4) need for boundaries vs regions. Then pick the method.</div>
 </div>
 </div>
@@ -1286,6 +1922,49 @@ $$
 
 <div class="tab-content" id="harris-theory">
 <div class="section">
+<div class="hand-drawn">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+<rect x="5" y="5" width="145" height="140" rx="8" fill="none" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="77" y="22" fill="#a29bfe" font-size="10" text-anchor="middle" font-weight="bold">M = [ ΣIx²  ΣIxIy ]</text>
+<text x="77" y="35" fill="#a29bfe" font-size="10" text-anchor="middle" font-weight="bold">    [ ΣIxIy  ΣIy² ]</text>
+<text x="77" y="55" fill="#fdcb6e" font-size="10" text-anchor="middle">Eigenvalues: λ₁, λ₂</text>
+<line x1="25" y1="65" x2="130" y2="65" stroke="#2a2d3a" stroke-width="1"/>
+<text x="77" y="82" fill="#74b9ff" font-size="9" text-anchor="middle">λ₁ ≈ λ₂ ≈ 0</text>
+<text x="77" y="94" fill="#74b9ff" font-size="9" text-anchor="middle">→ Flat region</text>
+<circle cx="77" cy="108" r="10" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="4,2"/>
+<circle cx="77" cy="108" r="2" fill="#74b9ff"/>
+<text x="180" y="50" fill="#00b894" font-size="9" text-anchor="middle">λ₁ ≫ λ₂</text>
+<text x="180" y="62" fill="#00b894" font-size="9" text-anchor="middle">→ Edge</text>
+<line x1="170" y1="30" x2="170" y2="75" stroke="#2a2d3a" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="150" y1="55" x2="210" y2="55" stroke="#2a2d3a" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="160" y="75" width="40" height="30" rx="2" fill="none" stroke="#00b894" stroke-width="1.5" stroke-dasharray="5,3"/>
+<line x1="160" y1="75" x2="200" y2="105" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="180" y="118" fill="#00b894" font-size="8" text-anchor="middle">Elongated</text>
+<rect x="250" y="5" width="145" height="140" rx="8" fill="none" stroke="#e17055" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="322" y="22" fill="#e17055" font-size="10" text-anchor="middle" font-weight="bold">λ₁, λ₂ both large</text>
+<text x="322" y="38" fill="#e17055" font-size="10" text-anchor="middle">→ Corner detected!</text>
+<line x1="270" y1="48" x2="375" y2="48" stroke="#2a2d3a" stroke-width="1"/>
+<polygon points="275,58 370,58 365,68 280,68" fill="rgba(225,112,85,0.15)" stroke="#e17055" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="322" y="65" fill="#e17055" font-size="8" text-anchor="middle">R &gt; T → corner</text>
+<rect x="275" y="80" width="35" height="35" rx="3" fill="none" stroke="#e17055" stroke-width="1.5" stroke-dasharray="5,3"/>
+<line x1="275" y1="80" x2="310" y2="115" stroke="#e17055" stroke-width="1.5" stroke-dasharray="4,2"/>
+<line x1="310" y1="80" x2="275" y2="115" stroke="#e17055" stroke-width="1.5" stroke-dasharray="4,2"/>
+<circle cx="292" cy="97" r="4" fill="#e17055" stroke="#e17055" stroke-width="1"/>
+<text x="292" y="130" fill="#e17055" font-size="8" text-anchor="middle">Corner = strong</text>
+<text x="292" y="140" fill="#e17055" font-size="8" text-anchor="middle">response in both</text>
+<text x="440" y="48" fill="#fdcb6e" font-size="12" text-anchor="middle">λ₁</text>
+<text x="480" y="140" fill="#fdcb6e" font-size="12" text-anchor="middle">λ₂</text>
+<line x1="420" y1="135" x2="495" y2="135" stroke="#2a2d3a" stroke-width="1"/>
+<line x1="420" y1="20" x2="420" y2="140" stroke="#2a2d3a" stroke-width="1"/>
+<circle cx="435" cy="120" r="3" fill="#74b9ff"/>
+<text x="450" y="123" fill="#74b9ff" font-size="7">Flat</text>
+<circle cx="470" cy="80" r="3" fill="#00b894"/>
+<text x="483" y="83" fill="#00b894" font-size="7">Edge</text>
+<circle cx="475" cy="45" r="3" fill="#e17055"/>
+<text x="488" y="48" fill="#e17055" font-size="7">Corner</text>
+</svg>
+<div class="caption">Harris detector: classify pixels by eigenvalues of M — flat (both small), edge (one large), corner (both large)</div>
+</div>
 <h2>Theory &amp; Algorithm</h2>
 <h3>Complete Algorithm:</h3>
 <ol>
@@ -1303,6 +1982,14 @@ $$
 <li><strong>Fast to compute</strong> (uses only derivatives and Gaussian)</li>
 <li>Produces <strong>many responses</strong> per corner &rarr; need non-max suppression</li>
 </ul>
+<h3>Bisection of Response Space (Ch-13)</h3>
+<p>The corner response \(R\) <strong>bisects</strong> every pixel into 3 regions by threshold \(T\):</p>
+<div class="math-box highlight">
+$$
+\text{Pixel} = \begin{cases} \text{Corner} & R > T \quad (R \text{ large positive}) \\ \text{Edge} & R < 0 \quad (R \text{ large negative}) \\ \text{Flat} & |R| \text{ small} \end{cases}
+$$
+</div>
+<div class="note"><strong>Memory trick (Bisection):</strong> Positive-split = corner, Negative-split = edge, Near-zero = flat. Then non-max suppression keeps only local maxima.</div>
 <div class="note"><strong>Improvement:</strong> Scale-invariant detection can be achieved by combining with scale-space (e.g., SIFT).</div>
 </div>
 </div>
@@ -1388,6 +2075,33 @@ $$
 
 <div class="tab-content" id="trans-ts">
 <div class="section">
+<div class="hand-drawn">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="5" width="140" height="140" rx="8" fill="none" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="80" y="22" fill="#a29bfe" font-size="11" text-anchor="middle" font-weight="bold">Translation</text>
+<rect x="30" y="35" width="30" height="30" rx="2" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="45" y="55" fill="#74b9ff" font-size="8" text-anchor="middle">Original</text>
+<path d="M68 50 L102 50" fill="none" stroke="#fdcb6e" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#fdcb6e"/></marker></defs>
+<rect x="105" y="35" width="30" height="30" rx="2" fill="none" stroke="#00b894" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="120" y="55" fill="#00b894" font-size="8" text-anchor="middle">Shifted</text>
+<text x="80" y="82" fill="#fdcb6e" font-size="9" text-anchor="middle">x' = x + tₓ</text>
+<text x="80" y="95" fill="#fdcb6e" font-size="9" text-anchor="middle">y' = y + tᵧ</text>
+<text x="80" y="112" fill="#e17055" font-size="8" text-anchor="middle">⚠ No 2×2 matrix!</text>
+<text x="80" y="125" fill="#a29bfe" font-size="8" text-anchor="middle">Needs 3×3 (homo)</text>
+<text x="250" y="75" fill="#fdcb6e" font-size="20" text-anchor="middle">+</text>
+<rect x="300" y="5" width="190" height="140" rx="8" fill="none" stroke="#e17055" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="395" y="22" fill="#e17055" font-size="11" text-anchor="middle" font-weight="bold">Shearing</text>
+<rect x="320" y="35" width="30" height="30" rx="2" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="5,3"/>
+<polygon points="355,35 430,50 400,65 325,50" fill="none" stroke="#00b894" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="325" y="80" fill="#74b9ff" font-size="8" text-anchor="start">Before</text>
+<text x="395" y="80" fill="#00b894" font-size="8" text-anchor="middle">After X-shear</text>
+<text x="395" y="100" fill="#fdcb6e" font-size="9" text-anchor="middle">x' = x + shₓ·y</text>
+<text x="395" y="113" fill="#fdcb6e" font-size="9" text-anchor="middle">y' = y</text>
+<text x="395" y="132" fill="#a29bfe" font-size="9" text-anchor="middle">Square → Parallelogram</text>
+</svg>
+<div class="caption">Translation shifts points (not a 2×2 matrix); Shearing slants the image turning squares into parallelograms</div>
+</div>
 <h2>Translation</h2>
 <div class="math-box highlight">
 $$
@@ -1418,6 +2132,39 @@ $$
 
 <div class="tab-content" id="trans-homo">
 <div class="section">
+<div class="hand-drawn">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="5" width="120" height="140" rx="8" fill="none" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="70" y="22" fill="#a29bfe" font-size="11" text-anchor="middle" font-weight="bold">2D Point</text>
+<text x="70" y="48" fill="#74b9ff" font-size="18" text-anchor="middle">(x, y)</text>
+<text x="70" y="72" fill="#a29bfe" font-size="9" text-anchor="middle">2 coordinates</text>
+<rect x="25" y="85" width="90" height="50" rx="5" fill="rgba(108,92,231,0.1)" stroke="#6c5ce7" stroke-width="1" stroke-dasharray="4,2"/>
+<text x="70" y="103" fill="#a29bfe" font-size="9" text-anchor="middle">Transforms need</text>
+<text x="70" y="115" fill="#e17055" font-size="9" text-anchor="middle">separate cases</text>
+<text x="70" y="127" fill="#e17055" font-size="9" text-anchor="middle">for translation</text>
+<path d="M140 75 L190 75" fill="none" stroke="#fdcb6e" stroke-width="2.5" stroke-dasharray="5,3" marker-end="url(#arrow2)"/>
+<defs><marker id="arrow2" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#fdcb6e"/></marker></defs>
+<text x="165" y="65" fill="#fdcb6e" font-size="10" text-anchor="middle" font-weight="bold">→ 3D</text>
+<rect x="195" y="5" width="130" height="140" rx="8" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="260" y="22" fill="#00b894" font-size="11" text-anchor="middle" font-weight="bold">Homogeneous</text>
+<text x="260" y="48" fill="#00b894" font-size="18" text-anchor="middle">(x, y, 1)</text>
+<text x="260" y="72" fill="#00b894" font-size="9" text-anchor="middle">3 coordinates</text>
+<rect x="210" y="85" width="100" height="50" rx="5" fill="rgba(0,184,148,0.1)" stroke="#00b894" stroke-width="1" stroke-dasharray="4,2"/>
+<text x="260" y="103" fill="#00b894" font-size="9" text-anchor="middle">All transforms</text>
+<text x="260" y="115" fill="#00b894" font-size="9" text-anchor="middle">become single</text>
+<text x="260" y="127" fill="#00b894" font-size="9" text-anchor="middle">3×3 matrix mult!</text>
+<rect x="340" y="5" width="155" height="140" rx="8" fill="none" stroke="#fdcb6e" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="417" y="22" fill="#fdcb6e" font-size="11" text-anchor="middle" font-weight="bold">3×3 Matrix Form</text>
+<text x="417" y="44" fill="#74b9ff" font-size="9" text-anchor="middle">[ 1  0  tₓ ]</text>
+<text x="417" y="58" fill="#74b9ff" font-size="9" text-anchor="middle">[ 0  1  tᵧ ]</text>
+<text x="417" y="72" fill="#74b9ff" font-size="9" text-anchor="middle">[ 0  0   1 ]</text>
+<text x="417" y="90" fill="#a29bfe" font-size="8" text-anchor="middle">Translation = T</text>
+<text x="417" y="108" fill="#fdcb6e" font-size="9" text-anchor="middle">[ sₓ  0  0 ]</text>
+<text x="417" y="122" fill="#fdcb6e" font-size="9" text-anchor="middle">[  0 sᵧ 0 ]</text>
+<text x="417" y="136" fill="#a29bfe" font-size="8" text-anchor="middle">Scaling = S</text>
+</svg>
+<div class="caption">Homogeneous coordinates: promote 2D to 3D so all transforms (including translation) become 3×3 matrix multiplications</div>
+</div>
 <h2>Homogeneous Coordinates</h2>
 <p>Represent 2D point \((x,y)\) as 3D: \((x, y, 1)\). This allows translation to be expressed as matrix multiplication.</p>
 <div class="math-box highlight">
@@ -1438,7 +2185,23 @@ $$
 $$
 Sh_x = \begin{bmatrix} 1 & sh_x & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}
 $$
+<p><strong>5th type — Reflection / Mirroring (Ch-14):</strong></p>
+$$
+F_x = \begin{bmatrix} -1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}, \quad
+F_y = \begin{bmatrix} 1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 1 \end{bmatrix}
+$$
+<p>Flips the image across an axis. \(\det(F) = -1\) (orientation reversing) — unlike rotation with \(\det = +1\).</p>
 </div>
+<h2>5 Types at a Glance (Ch-14, 2D)</h2>
+<table>
+<tr><th>#</th><th>Type</th><th>What it does</th><th>2D matrix</th></tr>
+<tr><td>1</td><td>Translation</td><td>Shift by \((t_x,t_y)\)</td><td>Needs homogeneous 3&times;3 \(T\)</td></tr>
+<tr><td>2</td><td>Rotation</td><td>Rotate by \(\theta\) about origin</td><td>\(\begin{bmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{bmatrix}\)</td></tr>
+<tr><td>3</td><td>Scaling</td><td>Resize by \((s_x,s_y)\)</td><td>\(\begin{bmatrix}s_x&0\\0&s_y\end{bmatrix}\)</td></tr>
+<tr><td>4</td><td>Shearing</td><td>Slant; square &rarr; parallelogram</td><td>\(\begin{bmatrix}1&sh_x\\sh_y&1\end{bmatrix}\)</td></tr>
+<tr><td>5</td><td>Reflection</td><td>Mirror across axis</td><td>\(\begin{bmatrix}-1&0\\0&1\end{bmatrix}\) or \(\begin{bmatrix}1&0\\0&-1\end{bmatrix}\)</td></tr>
+</table>
+<div class="exam-tip"><strong>Exam (Ch-14):</strong> Only Translation CANNOT be written as 2&times;2 — that is why homogeneous 3&times;3 exists. Reflection = only type with determinant −1.</div>
 <h2>Composite Transformations</h2>
 <p>Multiply matrices in order of application (right to left):</p>
 <div class="math-box highlight">
@@ -1575,6 +2338,38 @@ $$
 <div class="tab-content" id="nn-activation">
 <div class="section">
 <h2>Activation Functions</h2>
+<div class="hand-drawn">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+  <text x="250" y="13" fill="#a29bfe" font-size="11" text-anchor="middle" font-weight="bold">Activation Functions: Sigmoid, Tanh, ReLU</text>
+
+  <!-- Sigmoid graph -->
+  <line x1="20" y1="120" x2="155" y2="120" stroke="#a0a0b0" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="88" y1="22" x2="88" y2="135" stroke="#a0a0b0" stroke-width="1" stroke-dasharray="3,2"/>
+  <path d="M22 118 C40 118, 55 115, 68 108 C78 98, 84 82, 88 65 C92 48, 98 32, 108 25 C118 22, 135 21, 152 21" fill="none" stroke="#6c5ce7" stroke-width="2.5" stroke-dasharray="5,3"/>
+  <text x="88" y="140" fill="#6c5ce7" font-size="9" text-anchor="middle" font-weight="bold">Sigmoid</text>
+  <text x="12" y="24" fill="#a0a0b0" font-size="6">1</text>
+  <text x="8" y="67" fill="#a0a0b0" font-size="6">½</text>
+  <text x="12" y="120" fill="#a0a0b0" font-size="6">0</text>
+
+  <!-- Tanh graph -->
+  <line x1="178" y1="120" x2="313" y2="120" stroke="#a0a0b0" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="246" y1="22" x2="246" y2="135" stroke="#a0a0b0" stroke-width="1" stroke-dasharray="3,2"/>
+  <path d="M180 118 C195 118, 210 115, 222 108 C232 95, 238 78, 246 65 C254 52, 260 35, 270 28 C280 22, 295 21, 310 21" fill="none" stroke="#e17055" stroke-width="2.5" stroke-dasharray="5,3"/>
+  <text x="246" y="140" fill="#e17055" font-size="9" text-anchor="middle" font-weight="bold">Tanh</text>
+  <text x="168" y="24" fill="#a0a0b0" font-size="6">+1</text>
+  <text x="168" y="67" fill="#a0a0b0" font-size="6">0</text>
+  <text x="168" y="120" fill="#a0a0b0" font-size="6">-1</text>
+
+  <!-- ReLU graph -->
+  <line x1="336" y1="120" x2="471" y2="120" stroke="#a0a0b0" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="380" y1="22" x2="380" y2="135" stroke="#a0a0b0" stroke-width="1" stroke-dasharray="3,2"/>
+  <path d="M338 120 L380 120 L466 30" fill="none" stroke="#00b894" stroke-width="2.5" stroke-dasharray="5,3"/>
+  <text x="400" y="140" fill="#00b894" font-size="9" text-anchor="middle" font-weight="bold">ReLU</text>
+  <text x="328" y="120" fill="#a0a0b0" font-size="6">0</text>
+  <text x="472" y="28" fill="#a0a0b0" font-size="6">+∞</text>
+</svg>
+<div class="caption">Sigmoid: (0,1) centered at ½ &nbsp;|&nbsp; Tanh: (-1,+1) zero-centered &nbsp;|&nbsp; ReLU: max(0,z) most common</div>
+</div>
 <p>Introduce <strong>non-linearity</strong>. Without them, stacked linear layers = single linear layer.</p>
 <table>
 <tr><th>Function</th><th>Formula</th><th>Range</th><th>Use</th></tr>
@@ -1664,6 +2459,63 @@ $$
 <div class="tab-content" id="bp-network">
 <div class="section">
 <h2>Backpropagation with Network</h2>
+<div class="hand-drawn">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+  <text x="250" y="13" fill="#a29bfe" font-size="11" text-anchor="middle" font-weight="bold">Network Flow: Forward → Loss → Backward (chain rule)</text>
+
+  <!-- Input nodes -->
+  <rect x="15" y="38" width="55" height="40" rx="8" fill="none" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="42" y="55" fill="#6c5ce7" font-size="9" text-anchor="middle" font-weight="bold">Input</text>
+  <text x="42" y="68" fill="#a29bfe" font-size="8" text-anchor="middle">x₁, x₂</text>
+
+  <!-- Hidden nodes -->
+  <rect x="130" y="38" width="55" height="40" rx="8" fill="none" stroke="#fdcb6e" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="157" y="55" fill="#fdcb6e" font-size="9" text-anchor="middle" font-weight="bold">Hidden</text>
+  <text x="157" y="68" fill="#fdcb6e" font-size="8" text-anchor="middle">h₁, h₂</text>
+
+  <!-- Output node -->
+  <rect x="245" y="38" width="55" height="40" rx="8" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="272" y="55" fill="#00b894" font-size="9" text-anchor="middle" font-weight="bold">Output</text>
+  <text x="272" y="68" fill="#00b894" font-size="8" text-anchor="middle">ŷ</text>
+
+  <!-- Loss node -->
+  <rect x="360" y="38" width="55" height="40" rx="8" fill="none" stroke="#e17055" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="387" y="55" fill="#e17055" font-size="9" text-anchor="middle" font-weight="bold">Loss</text>
+  <text x="387" y="68" fill="#e17055" font-size="8" text-anchor="middle">L(ŷ,y)</text>
+
+  <!-- True label -->
+  <rect x="440" y="95" width="50" height="30" rx="6" fill="none" stroke="#a29bfe" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="465" y="114" fill="#a29bfe" font-size="8" text-anchor="middle">y (true)</text>
+
+  <!-- Forward arrows (green solid) -->
+  <path d="M70 58 L130 58" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#bpnG)"/>
+  <path d="M185 58 L245 58" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#bpnG)"/>
+  <path d="M300 58 L360 58" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#bpnG)"/>
+  <path d="M465 95 L415 78" fill="none" stroke="#a29bfe" stroke-width="1.5" stroke-dasharray="3,2" marker-end="url(#bpnA)"/>
+  <text x="100" y="50" fill="#00b894" font-size="7" text-anchor="middle">forward →</text>
+  <text x="215" y="50" fill="#00b894" font-size="7" text-anchor="middle">forward →</text>
+  <text x="330" y="50" fill="#00b894" font-size="7" text-anchor="middle">→</text>
+
+  <!-- Backward arrows (red dashed) -->
+  <path d="M360 78 L300 78" fill="none" stroke="#e17055" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#bpnR)"/>
+  <path d="M245 78 L185 78" fill="none" stroke="#e17055" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#bpnR)"/>
+  <path d="M130 78 L70 78" fill="none" stroke="#e17055" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#bpnR)"/>
+  <text x="330" y="90" fill="#e17055" font-size="7" text-anchor="middle">← ∂L/∂ŷ</text>
+  <text x="215" y="90" fill="#e17055" font-size="7" text-anchor="middle">← ∂L/∂h (chain rule)</text>
+  <text x="100" y="90" fill="#e17055" font-size="7" text-anchor="middle">← ∂L/∂w</text>
+
+  <!-- Weight labels on forward lines -->
+  <text x="100" y="65" fill="#6c5ce7" font-size="7" text-anchor="middle">w₁₁, w₂₁</text>
+  <text x="215" y="65" fill="#fdcb6e" font-size="7" text-anchor="middle">v₁, v₂</text>
+
+  <defs>
+    <marker id="bpnG" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#00b894"/></marker>
+    <marker id="bpnR" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#e17055"/></marker>
+    <marker id="bpnA" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a29bfe"/></marker>
+  </defs>
+</svg>
+<div class="caption">Forward pass (green) computes loss; backward pass (red dashed) propagates gradients via chain rule to update weights</div>
+</div>
 <div class="diagram">
 <svg width="650" height="300" viewBox="0 0 650 300">
 <text x="325" y="20" fill="#a29bfe" font-size="14" text-anchor="middle" font-weight="bold">Forward Pass (&#8594;) and Backward Pass (&#8592;)</text>
@@ -1716,6 +2568,18 @@ $$
 w_{new} = w_{old} - \eta \cdot \frac{\partial L}{\partial w}
 $$
 </div>
+<h3>Gradient Problems (Ch-18): Vanishing &amp; Exploding Gradients</h3>
+<div class="math-box highlight">
+$$
+\frac{\partial L}{\partial w_1} = \frac{\partial L}{\partial \hat{y}} \cdot \prod_{l} f'_l(\cdot) \cdot w_l \quad \text{(product over layers)}
+$$
+</div>
+<table>
+<tr><th>Problem</th><th>Cause</th><th>Symptom</th><th>Fix</th></tr>
+<tr><td><strong>Vanishing gradient</strong></td><td>Many small derivatives multiplied (sigmoid/tanh saturate, \(f' \le 0.25\))</td><td>Early layers stop learning</td><td>ReLU, BatchNorm, residual links, careful init</td></tr>
+<tr><td><strong>Exploding gradient</strong></td><td>Large weights \(\times\) large derivatives compound</td><td>Loss = NaN, weights blow up</td><td>Gradient clipping, smaller LR, BatchNorm</td></tr>
+</table>
+<div class="exam-tip"><strong>Exam (Ch-18):</strong> Vanishing = gradients &rarr; 0 in deep nets with sigmoid. Exploding = gradients &rarr; &infin;. ReLU + BatchNorm + clipping are the standard answers.</div>
 <div class="exam-tip"><strong>Exam:</strong> Backprop = applying chain rule from output back to input. Compute error at output, propagate backwards, update each weight.</div>
 </div>
 </div>
@@ -1817,6 +2681,71 @@ $$
 <div class="tab-content" id="opt-adam">
 <div class="section">
 <h2>Adam (Adaptive Moment Estimation)</h2>
+<div class="hand-drawn">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+  <text x="250" y="13" fill="#a29bfe" font-size="11" text-anchor="middle" font-weight="bold">Adam = Momentum (1st moment) + Adaptive LR (2nd moment)</text>
+
+  <!-- Left box: Momentum -->
+  <rect x="12" y="28" width="220" height="90" rx="8" fill="none" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="122" y="44" fill="#6c5ce7" font-size="10" text-anchor="middle" font-weight="bold">Momentum (1st Moment mₜ)</text>
+  <!-- Momentum arrows converging -->
+  <path d="M30 80 L90 68" fill="none" stroke="#6c5ce7" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#admA)"/>
+  <path d="M30 90 L90 78" fill="none" stroke="#a29bfe" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#admA)"/>
+  <path d="M30 100 L90 88" fill="none" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#admA)"/>
+  <text x="20" y="78" fill="#a0a0b0" font-size="7">∇L₁</text>
+  <text x="20" y="90" fill="#a0a0b0" font-size="7">∇L₂</text>
+  <text x="20" y="102" fill="#a0a0b0" font-size="7">∇L₃</text>
+
+  <!-- Averaging circle -->
+  <circle cx="110" cy="78" r="16" fill="none" stroke="#6c5ce7" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="110" y="74" fill="#6c5ce7" font-size="7" text-anchor="middle">EMA</text>
+  <text x="110" y="84" fill="#a29bfe" font-size="6" text-anchor="middle">β₁=0.9</text>
+
+  <!-- Arrow out to smooth direction -->
+  <path d="M126 78 L170 78" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#admG)"/>
+  <rect x="173" y="62" width="50" height="32" rx="6" fill="none" stroke="#00b894" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="198" y="76" fill="#00b894" font-size="8" text-anchor="middle" font-weight="bold">Smooth</text>
+  <text x="198" y="88" fill="#00b894" font-size="7" text-anchor="middle">direction →</text>
+
+  <!-- Right box: Adaptive LR -->
+  <rect x="268" y="28" width="220" height="90" rx="8" fill="none" stroke="#fdcb6e" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="378" y="44" fill="#fdcb6e" font-size="10" text-anchor="middle" font-weight="bold">Adaptive LR (2nd Moment vₜ)</text>
+
+  <!-- Gradient magnitudes varying -->
+  <rect x="285" y="58" width="25" height="14" rx="3" fill="#fdcb6e" fill-opacity="0.3" stroke="#fdcb6e" stroke-width="1"/>
+  <rect x="285" y="74" width="45" height="14" rx="3" fill="#fdcb6e" fill-opacity="0.5" stroke="#fdcb6e" stroke-width="1"/>
+  <rect x="285" y="90" width="15" height="14" rx="3" fill="#fdcb6e" fill-opacity="0.2" stroke="#fdcb6e" stroke-width="1"/>
+  <text x="278" y="68" fill="#a0a0b0" font-size="6" text-anchor="end">∇L²</text>
+  <text x="278" y="83" fill="#a0a0b0" font-size="6" text-anchor="end">∇L²</text>
+  <text x="278" y="98" fill="#a0a0b0" font-size="6" text-anchor="end">∇L²</text>
+
+  <!-- Arrow to EMA -->
+  <path d="M335 78 L360 78" fill="none" stroke="#fdcb6e" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#admO)"/>
+
+  <!-- EMA for variance -->
+  <circle cx="385" cy="78" r="16" fill="none" stroke="#fdcb6e" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="385" y="74" fill="#fdcb6e" font-size="7" text-anchor="middle">EMA</text>
+  <text x="385" y="84" fill="#fdcb6e" font-size="6" text-anchor="middle">β₂=0.999</text>
+
+  <!-- Arrow out to per-param LR -->
+  <path d="M401 78 L430 78" fill="none" stroke="#e17055" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#admR)"/>
+  <rect x="433" y="62" width="50" height="32" rx="6" fill="none" stroke="#e17055" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="458" y="76" fill="#e17055" font-size="8" text-anchor="middle" font-weight="bold">Scale</text>
+  <text x="458" y="88" fill="#e17055" font-size="7" text-anchor="middle">η/√vₜ</text>
+
+  <!-- Bottom: Combined formula -->
+  <rect x="80" y="125" width="340" height="22" rx="6" fill="rgba(108,92,231,0.15)" stroke="#a29bfe" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="250" y="140" fill="#a29bfe" font-size="9" text-anchor="middle" font-weight="bold">wₜ₊₁ = wₜ − η · m̂ₜ / (√v̂ₜ + ε)</text>
+
+  <defs>
+    <marker id="admA" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#6c5ce7"/></marker>
+    <marker id="admG" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#00b894"/></marker>
+    <marker id="admO" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#fdcb6e"/></marker>
+    <marker id="admR" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#e17055"/></marker>
+  </defs>
+</svg>
+<div class="caption">Adam combines momentum smoothing (left) with per-parameter adaptive learning rate scaling (right)</div>
+</div>
 <p>Combines Momentum + RMSProp. Maintains both <strong>first moment</strong> (mean) and <strong>second moment</strong> (variance) of gradients.</p>
 <div class="math-box highlight">
 $$
@@ -1843,6 +2772,16 @@ $$
 <tr><td><strong>Adam</strong></td><td>Fast prototyping, sparse gradients (NLP), non-stationary objectives. Default choice for most problems.</td></tr>
 <tr><td><strong>RMSProp</strong></td><td>RNNs, non-stationary targets. Adapts learning rate per parameter.</td></tr>
 </table>
+<h2>Learning Rate (Ch-19)</h2>
+<p>\(\eta\) = step size in \(w \leftarrow w - \eta \nabla L\). Too large = overshoot/diverge; too small = slow crawl or stuck. Schedules: step decay, exponential decay, cosine annealing.</p>
+<h2>Overfitting vs Underfitting (Ch-19)</h2>
+<table>
+<tr><th></th><th>Overfitting</th><th>Underfitting</th></tr>
+<tr><td>Meaning</td><td>Memorises training noise; train loss low, val loss high</td><td>Too simple; both train and val loss high</td></tr>
+<tr><td>Looks like</td><td>Huge gap between train/val curves</td><td>Both curves flat and high</td></tr>
+<tr><td>Fix</td><td>More data, augmentation, dropout, weight decay, early stopping</td><td>Bigger model, more epochs, higher LR, better features</td></tr>
+</table>
+<div class="exam-tip"><strong>Exam (Ch-19):</strong> SGD = fine control, may generalise better. Adam = fast default. Fix overfitting with dropout/early-stopping; fix underfitting with bigger model + train longer.</div>
 <div class="exam-tip"><strong>Exam:</strong> Adam = momentum + adaptive learning rate. Best general-purpose optimizer. SGD may generalize better but needs more tuning.</div>
 </div>
 </div>
@@ -2027,6 +2966,86 @@ $$
 <div class="tab-content" id="vit-terms">
 <div class="section">
 <h2>Key Terms</h2>
+<div class="hand-drawn">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+  <text x="250" y="13" fill="#a29bfe" font-size="11" text-anchor="middle" font-weight="bold">Self-Attention: Q × Kᵀ → softmax → × V</text>
+
+  <!-- Input tokens -->
+  <rect x="10" y="35" width="55" height="80" rx="6" fill="none" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="37" y="50" fill="#6c5ce7" font-size="8" text-anchor="middle" font-weight="bold">Input</text>
+  <rect x="17" y="58" width="40" height="12" rx="2" fill="#6c5ce7" fill-opacity="0.2" stroke="#6c5ce7" stroke-width="0.8"/>
+  <text x="37" y="67" fill="#6c5ce7" font-size="6" text-anchor="middle">x₁</text>
+  <rect x="17" y="72" width="40" height="12" rx="2" fill="#a29bfe" fill-opacity="0.2" stroke="#a29bfe" stroke-width="0.8"/>
+  <text x="37" y="81" fill="#a29bfe" font-size="6" text-anchor="middle">x₂</text>
+  <rect x="17" y="86" width="40" height="12" rx="2" fill="#74b9ff" fill-opacity="0.2" stroke="#74b9ff" stroke-width="0.8"/>
+  <text x="37" y="95" fill="#74b9ff" font-size="6" text-anchor="middle">x₃</text>
+  <text x="37" y="112" fill="#a0a0b0" font-size="7" text-anchor="middle">N×D</text>
+
+  <!-- Arrow to QKV -->
+  <path d="M68 75 L88 75" fill="none" stroke="#a0a0b0" stroke-width="1.5" marker-end="url(#vitTArr)"/>
+  <text x="78" y="68" fill="#a0a0b0" font-size="6" text-anchor="middle">×W</text>
+
+  <!-- Q, K, V matrices -->
+  <rect x="92" y="25" width="50" height="35" rx="5" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="117" y="40" fill="#00b894" font-size="9" text-anchor="middle" font-weight="bold">Q</text>
+  <text x="117" y="52" fill="#00b894" font-size="7" text-anchor="middle">query</text>
+
+  <rect x="92" y="65" width="50" height="35" rx="5" fill="none" stroke="#fdcb6e" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="117" y="80" fill="#fdcb6e" font-size="9" text-anchor="middle" font-weight="bold">K</text>
+  <text x="117" y="92" fill="#fdcb6e" font-size="7" text-anchor="middle">key</text>
+
+  <rect x="92" y="105" width="50" height="35" rx="5" fill="none" stroke="#e17055" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="117" y="120" fill="#e17055" font-size="9" text-anchor="middle" font-weight="bold">V</text>
+  <text x="117" y="132" fill="#e17055" font-size="7" text-anchor="middle">value</text>
+
+  <!-- Arrow Q × Kᵀ -->
+  <path d="M145 42 L170 42" fill="none" stroke="#a0a0b0" stroke-width="1.5" marker-end="url(#vitTArr)"/>
+  <text x="157" y="37" fill="#a0a0b0" font-size="6" text-anchor="middle">×</text>
+
+  <!-- Kᵀ symbol -->
+  <rect x="173" y="28" width="55" height="30" rx="5" fill="none" stroke="#fdcb6e" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="200" y="40" fill="#fdcb6e" font-size="8" text-anchor="middle" font-weight="bold">Kᵀ</text>
+  <text x="200" y="52" fill="#fdcb6e" font-size="6" text-anchor="middle">D×N</text>
+
+  <!-- Arrow to scores -->
+  <path d="M231 43 L253 43" fill="none" stroke="#a0a0b0" stroke-width="1.5" marker-end="url(#vitTArr)"/>
+  <text x="242" y="37" fill="#a0a0b0" font-size="6" text-anchor="middle">÷√d</text>
+
+  <!-- Attention scores matrix -->
+  <rect x="256" y="22" width="60" height="42" rx="5" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="286" y="38" fill="#00b894" font-size="8" text-anchor="middle" font-weight="bold">Scores</text>
+  <text x="286" y="48" fill="#00b894" font-size="6" text-anchor="middle">QKᵀ/√d</text>
+  <text x="286" y="58" fill="#a0a0b0" font-size="6" text-anchor="middle">N×N</text>
+
+  <!-- Arrow to softmax -->
+  <path d="M319 43 L338 43" fill="none" stroke="#a0a0b0" stroke-width="1.5" marker-end="url(#vitTArr)"/>
+
+  <!-- Softmax -->
+  <rect x="341" y="28" width="55" height="30" rx="5" fill="none" stroke="#a29bfe" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="368" y="40" fill="#a29bfe" font-size="8" text-anchor="middle" font-weight="bold">softmax</text>
+  <text x="368" y="52" fill="#a29bfe" font-size="6" text-anchor="middle">weights</text>
+
+  <!-- Arrow to × V -->
+  <path d="M399 43 L418 43" fill="none" stroke="#a0a0b0" stroke-width="1.5" marker-end="url(#vitTArr)"/>
+
+  <!-- × V -->
+  <path d="M341 62 L341 105 L418 105" fill="none" stroke="#e17055" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="430" y="37" fill="#a0a0b0" font-size="7" text-anchor="middle">×</text>
+
+  <!-- Output -->
+  <rect x="422" y="28" width="65" height="30" rx="5" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="455" y="40" fill="#00b894" font-size="8" text-anchor="middle" font-weight="bold">Output</text>
+  <text x="455" y="52" fill="#00b894" font-size="6" text-anchor="middle">N×D</text>
+
+  <!-- Weighted sum indicator -->
+  <text x="368" y="130" fill="#74b9ff" font-size="7" text-anchor="middle">Each token attends to all others proportionally</text>
+
+  <defs>
+    <marker id="vitTArr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a0a0b0"/></marker>
+  </defs>
+</svg>
+<div class="caption">Self-attention: Input → Q,K,V projections → scaled dot-product QKᵀ → softmax weights → weighted sum with V</div>
+</div>
 <table>
 <tr><th>Term</th><th>Definition</th></tr>
 <tr><td><strong>Patch Embedding</strong></td><td>Convert image patches to vectors. Each \(P \times P \times 3\) patch &rarr; \(D\)-dim vector via linear projection.</td></tr>
@@ -2193,6 +3212,106 @@ $$
 <div class="tab-content" id="cnn-components">
 <div class="section">
 <h2>Component Explanation</h2>
+<div class="hand-drawn">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+  <text x="250" y="13" fill="#a29bfe" font-size="11" text-anchor="middle" font-weight="bold">Convolution: 3×3 Kernel Slides Over Input</text>
+
+  <!-- Input grid (7×7) -->
+  <text x="60" y="30" fill="#6c5ce7" font-size="9" text-anchor="middle" font-weight="bold">Input</text>
+  <g transform="translate(20, 35)">
+    <rect x="0" y="0" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.15" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="15" y="0" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.25" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="30" y="0" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.1" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="45" y="0" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.3" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="60" y="0" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.15" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="75" y="0" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.2" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="90" y="0" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.1" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="0" y="15" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.2" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="15" y="15" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.35" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="30" y="15" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.15" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="45" y="15" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.4" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="60" y="15" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.25" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="75" y="15" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.3" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="90" y="15" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.15" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="0" y="30" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.1" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="15" y="30" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.2" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="30" y="30" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.3" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="45" y="30" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.15" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="60" y="30" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.2" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="75" y="30" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.35" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="90" y="30" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.1" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="0" y="45" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.25" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="15" y="45" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.1" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="30" y="45" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.2" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="45" y="45" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.35" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="60" y="45" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.15" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="75" y="45" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.2" stroke="#6c5ce7" stroke-width="0.8"/>
+    <rect x="90" y="45" width="14" height="14" rx="1" fill="#6c5ce7" fill-opacity="0.3" stroke="#6c5ce7" stroke-width="0.8"/>
+    <!-- Kernel highlight position (3×3 at top-left) -->
+    <rect x="0" y="0" width="44" height="44" rx="2" fill="none" stroke="#e17055" stroke-width="2" stroke-dasharray="4,2"/>
+    <text x="22" y="60" fill="#e17055" font-size="6" text-anchor="middle">3×3</text>
+  </g>
+
+  <!-- Arrow with sliding animation hint -->
+  <path d="M140 60 L170 60" fill="none" stroke="#a0a0b0" stroke-width="1.5" marker-end="url(#cnnCArr)"/>
+  <text x="155" y="52" fill="#a0a0b0" font-size="6" text-anchor="middle">slide</text>
+  <text x="155" y="72" fill="#a0a0b0" font-size="6" text-anchor="middle">stride=1</text>
+
+  <!-- Kernel weights (hand-drawn style) -->
+  <rect x="175" y="30" width="75" height="55" rx="6" fill="none" stroke="#e17055" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="212" y="25" fill="#e17055" font-size="9" text-anchor="middle" font-weight="bold">Kernel 3×3</text>
+  <rect x="182" y="38" width="16" height="14" rx="2" fill="#e17055" fill-opacity="0.3" stroke="#e17055" stroke-width="0.8"/>
+  <text x="190" y="48" fill="#e17055" font-size="7" text-anchor="middle">+1</text>
+  <rect x="200" y="38" width="16" height="14" rx="2" fill="#e17055" fill-opacity="0.5" stroke="#e17055" stroke-width="0.8"/>
+  <text x="208" y="48" fill="#e17055" font-size="7" text-anchor="middle">0</text>
+  <rect x="218" y="38" width="16" height="14" rx="2" fill="#e17055" fill-opacity="0.3" stroke="#e17055" stroke-width="0.8"/>
+  <text x="226" y="48" fill="#e17055" font-size="7" text-anchor="middle">-1</text>
+  <rect x="182" y="54" width="16" height="14" rx="2" fill="#e17055" fill-opacity="0.5" stroke="#e17055" stroke-width="0.8"/>
+  <text x="190" y="64" fill="#e17055" font-size="7" text-anchor="middle">+1</text>
+  <rect x="200" y="54" width="16" height="14" rx="2" fill="#e17055" fill-opacity="0.8" stroke="#e17055" stroke-width="0.8"/>
+  <text x="208" y="64" fill="#e17055" font-size="7" text-anchor="middle">+2</text>
+  <rect x="218" y="54" width="16" height="14" rx="2" fill="#e17055" fill-opacity="0.5" stroke="#e17055" stroke-width="0.8"/>
+  <text x="226" y="64" fill="#e17055" font-size="7" text-anchor="middle">+1</text>
+  <text x="212" y="82" fill="#a0a0b0" font-size="6" text-anchor="middle">detects vertical edge</text>
+
+  <!-- Arrow to output -->
+  <path d="M255 60 L280 60" fill="none" stroke="#a0a0b0" stroke-width="1.5" marker-end="url(#cnnCArr)"/>
+  <text x="267" y="52" fill="#a0a0b0" font-size="6" text-anchor="middle">Σ</text>
+
+  <!-- Output feature map -->
+  <rect x="284" y="30" width="65" height="55" rx="6" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="316" y="25" fill="#00b894" font-size="9" text-anchor="middle" font-weight="bold">Output</text>
+  <rect x="291" y="38" width="14" height="14" rx="2" fill="#00b894" fill-opacity="0.3" stroke="#00b894" stroke-width="0.8"/>
+  <rect x="307" y="38" width="14" height="14" rx="2" fill="#00b894" fill-opacity="0.6" stroke="#00b894" stroke-width="0.8"/>
+  <rect x="323" y="38" width="14" height="14" rx="2" fill="#00b894" fill-opacity="0.4" stroke="#00b894" stroke-width="0.8"/>
+  <rect x="339" y="38" width="14" height="14" rx="2" fill="#00b894" fill-opacity="0.5" stroke="#00b894" stroke-width="0.8"/>
+  <rect x="291" y="54" width="14" height="14" rx="2" fill="#00b894" fill-opacity="0.5" stroke="#00b894" stroke-width="0.8"/>
+  <rect x="307" y="54" width="14" height="14" rx="2" fill="#00b894" fill-opacity="0.8" stroke="#00b894" stroke-width="0.8"/>
+  <rect x="323" y="54" width="14" height="14" rx="2" fill="#00b894" fill-opacity="0.3" stroke="#00b894" stroke-width="0.8"/>
+  <rect x="339" y="54" width="14" height="14" rx="2" fill="#00b894" fill-opacity="0.6" stroke="#00b894" stroke-width="0.8"/>
+  <text x="316" y="82" fill="#00b894" font-size="6" text-anchor="middle">5×5 feature map</text>
+
+  <!-- Sliding positions indicator -->
+  <g transform="translate(20, 35)">
+    <rect x="15" y="15" width="44" height="44" rx="2" fill="none" stroke="#fdcb6e" stroke-width="1.2" stroke-dasharray="3,2"/>
+  </g>
+  <g transform="translate(20, 35)">
+    <rect x="30" y="0" width="44" height="44" rx="2" fill="none" stroke="#74b9ff" stroke-width="1" stroke-dasharray="2,2" opacity="0.5"/>
+  </g>
+  <g transform="translate(20, 35)">
+    <rect x="0" y="15" width="44" height="44" rx="2" fill="none" stroke="#fdcb6e" stroke-width="1" stroke-dasharray="2,2" opacity="0.5"/>
+  </g>
+
+  <!-- Step indicator -->
+  <text x="250" y="110" fill="#a0a0b0" font-size="7" text-anchor="middle">Step 1 → Step 2 → Step 3 ... each position computes dot product</text>
+  <text x="250" y="125" fill="#a0a0b0" font-size="7" text-anchor="middle">Output size = (W−K+2P)/S + 1 = (7−3+0)/1+1 = 5</text>
+
+  <defs>
+    <marker id="cnnCArr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a0a0b0"/></marker>
+  </defs>
+</svg>
+<div class="caption">Convolution: A 3×3 kernel slides over the input (red outline = current position), computing dot products to produce the output feature map</div>
+</div>
 <h3>1. Convolutional Layer</h3>
 <p>Slides kernels/filters over input. Each kernel detects specific features.</p>
 <div class="math-box">
@@ -2235,6 +3354,14 @@ $$
 <tr><td>Middle layers</td><td>Mid-level features</td><td>Textures, patterns, shapes</td></tr>
 <tr><td>Deep layers</td><td>High-level features</td><td>Objects, faces, scenes</td></tr>
 </table>
+<h3>Dilated (Atrous) Convolution (Ch-16/17)</h3>
+<p>Spreads kernel taps by dilation rate \(r\): a 3&times;3 kernel with \(r=2\) sees a 5&times;5 area with only 9 weights. Grows <strong>receptive field</strong> without extra parameters or downsampling.</p>
+<div class="math-box">
+$$
+\text{Effective size} = K + (K-1)(r-1), \quad \text{e.g. } K=3, r=2 \Rightarrow 5\times5
+$$
+</div>
+<div class="exam-tip"><strong>Exam (Ch-16/17):</strong> Dilation \(r=1\) = normal conv. Higher \(r\) = wider view, same weights. Used in segmentation (DeepLab) to keep resolution.</div>
 <div class="exam-tip"><strong>Exam:</strong> CNN = weight sharing (same kernel across image) + local connectivity + pooling = translation invariant, parameter efficient.</div>
 </div>
 </div>
@@ -2402,6 +3529,119 @@ $$
 <div class="tab-content" id="vitl-page2">
 <div class="section">
 <h2>How It Works (End to End)</h2>
+<div class="hand-drawn">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+  <text x="250" y="13" fill="#a29bfe" font-size="11" text-anchor="middle" font-weight="bold">End-to-End ViT: Image → Patches → Transformer → Class</text>
+
+  <!-- Image -->
+  <rect x="10" y="30" width="50" height="50" rx="4" fill="none" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,3"/>
+  <line x1="10" y1="43" x2="60" y2="43" stroke="#6c5ce7" stroke-width="0.5" stroke-dasharray="2,2"/>
+  <line x1="10" y1="55" x2="60" y2="55" stroke="#6c5ce7" stroke-width="0.5" stroke-dasharray="2,2"/>
+  <line x1="10" y1="67" x2="60" y2="67" stroke="#6c5ce7" stroke-width="0.5" stroke-dasharray="2,2"/>
+  <line x1="22" y1="30" x2="22" y2="80" stroke="#6c5ce7" stroke-width="0.5" stroke-dasharray="2,2"/>
+  <line x1="35" y1="30" x2="35" y2="80" stroke="#6c5ce7" stroke-width="0.5" stroke-dasharray="2,2"/>
+  <line x1="48" y1="30" x2="48" y2="80" stroke="#6c5ce7" stroke-width="0.5" stroke-dasharray="2,2"/>
+  <text x="35" y="95" fill="#6c5ce7" font-size="8" text-anchor="middle" font-weight="bold">Image</text>
+  <text x="35" y="105" fill="#a29bfe" font-size="7" text-anchor="middle">224×224</text>
+
+  <!-- Arrow: split -->
+  <path d="M63 55 L83 55" fill="none" stroke="#a0a0b0" stroke-width="1.5" marker-end="url(#vitlEArr)"/>
+  <text x="73" y="48" fill="#a0a0b0" font-size="6" text-anchor="middle">split</text>
+
+  <!-- Patches -->
+  <g transform="translate(88, 30)">
+    <rect x="0" y="0" width="8" height="8" rx="1" fill="#6c5ce7" fill-opacity="0.3" stroke="#6c5ce7" stroke-width="0.6"/>
+    <rect x="9" y="0" width="8" height="8" rx="1" fill="#a29bfe" fill-opacity="0.3" stroke="#a29bfe" stroke-width="0.6"/>
+    <rect x="18" y="0" width="8" height="8" rx="1" fill="#74b9ff" fill-opacity="0.3" stroke="#74b9ff" stroke-width="0.6"/>
+    <rect x="27" y="0" width="8" height="8" rx="1" fill="#00b894" fill-opacity="0.3" stroke="#00b894" stroke-width="0.6"/>
+    <rect x="0" y="9" width="8" height="8" rx="1" fill="#a29bfe" fill-opacity="0.3" stroke="#a29bfe" stroke-width="0.6"/>
+    <rect x="9" y="9" width="8" height="8" rx="1" fill="#74b9ff" fill-opacity="0.3" stroke="#74b9ff" stroke-width="0.6"/>
+    <rect x="18" y="9" width="8" height="8" rx="1" fill="#00b894" fill-opacity="0.3" stroke="#00b894" stroke-width="0.6"/>
+    <rect x="27" y="9" width="8" height="8" rx="1" fill="#fdcb6e" fill-opacity="0.3" stroke="#fdcb6e" stroke-width="0.6"/>
+    <rect x="0" y="18" width="8" height="8" rx="1" fill="#74b9ff" fill-opacity="0.3" stroke="#74b9ff" stroke-width="0.6"/>
+    <rect x="9" y="18" width="8" height="8" rx="1" fill="#00b894" fill-opacity="0.3" stroke="#00b894" stroke-width="0.6"/>
+    <rect x="18" y="18" width="8" height="8" rx="1" fill="#fdcb6e" fill-opacity="0.3" stroke="#fdcb6e" stroke-width="0.6"/>
+    <rect x="27" y="18" width="8" height="8" rx="1" fill="#e17055" fill-opacity="0.3" stroke="#e17055" stroke-width="0.6"/>
+    <rect x="0" y="27" width="8" height="8" rx="1" fill="#00b894" fill-opacity="0.3" stroke="#00b894" stroke-width="0.6"/>
+    <rect x="9" y="27" width="8" height="8" rx="1" fill="#fdcb6e" fill-opacity="0.3" stroke="#fdcb6e" stroke-width="0.6"/>
+    <rect x="18" y="27" width="8" height="8" rx="1" fill="#e17055" fill-opacity="0.3" stroke="#e17055" stroke-width="0.6"/>
+    <rect x="27" y="27" width="8" height="8" rx="1" fill="#a29bfe" fill-opacity="0.3" stroke="#a29bfe" stroke-width="0.6"/>
+  </g>
+  <text x="110" y="95" fill="#a29bfe" font-size="8" text-anchor="middle">16×16</text>
+  <text x="110" y="105" fill="#74b9ff" font-size="7" text-anchor="middle">196 patches</text>
+
+  <!-- Arrow: embed + CLS -->
+  <path d="M130 55 L150 55" fill="none" stroke="#a0a0b0" stroke-width="1.5" marker-end="url(#vitlEArr)"/>
+  <text x="140" y="48" fill="#a0a0b0" font-size="5" text-anchor="middle">+pos</text>
+  <text x="140" y="68" fill="#a0a0b0" font-size="5" text-anchor="middle">+CLS</text>
+
+  <!-- Embedding + Position -->
+  <rect x="154" y="30" width="55" height="50" rx="5" fill="none" stroke="#fdcb6e" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="181" y="44" fill="#fdcb6e" font-size="8" text-anchor="middle" font-weight="bold">Linear</text>
+  <text x="181" y="55" fill="#fdcb6e" font-size="8" text-anchor="middle" font-weight="bold">Proj +</text>
+  <text x="181" y="66" fill="#fdcb6e" font-size="8" text-anchor="middle" font-weight="bold">Pos Emb</text>
+  <text x="181" y="95" fill="#fdcb6e" font-size="7" text-anchor="middle">197×768</text>
+
+  <!-- Arrow -->
+  <path d="M212 55 L232 55" fill="none" stroke="#a0a0b0" stroke-width="1.5" marker-end="url(#vitlEArr)"/>
+
+  <!-- Transformer Encoder -->
+  <rect x="236" y="22" width="85" height="65" rx="6" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="278" y="38" fill="#00b894" font-size="9" text-anchor="middle" font-weight="bold">Transformer</text>
+  <text x="278" y="50" fill="#00b894" font-size="9" text-anchor="middle" font-weight="bold">Encoder</text>
+  <text x="278" y="64" fill="#00b894" font-size="7" text-anchor="middle">L × (MSA+MLP)</text>
+  <text x="278" y="78" fill="#00b894" font-size="7" text-anchor="middle">+ residual</text>
+  <text x="278" y="102" fill="#00b894" font-size="7" text-anchor="middle">L layers</text>
+
+  <!-- Arrow -->
+  <path d="M324 55 L344 55" fill="none" stroke="#a0a0b0" stroke-width="1.5" marker-end="url(#vitlEArr)"/>
+  <text x="334" y="48" fill="#a0a0b0" font-size="5" text-anchor="middle">extract</text>
+  <text x="334" y="68" fill="#a0a0b0" font-size="5" text-anchor="middle">[CLS]</text>
+
+  <!-- CLS token extraction -->
+  <rect x="348" y="30" width="45" height="50" rx="5" fill="none" stroke="#e17055" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="370" y="44" fill="#e17055" font-size="8" text-anchor="middle" font-weight="bold">[CLS]</text>
+  <text x="370" y="56" fill="#e17055" font-size="7" text-anchor="middle">token</text>
+  <text x="370" y="68" fill="#e17055" font-size="7" text-anchor="middle">output</text>
+  <text x="370" y="95" fill="#e17055" font-size="7" text-anchor="middle">768-d</text>
+
+  <!-- Arrow -->
+  <path d="M396 55 L416 55" fill="none" stroke="#a0a0b0" stroke-width="1.5" marker-end="url(#vitlEArr)"/>
+
+  <!-- MLP Head -->
+  <rect x="420" y="30" width="60" height="50" rx="5" fill="none" stroke="#74b9ff" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="450" y="44" fill="#74b9ff" font-size="8" text-anchor="middle" font-weight="bold">MLP Head</text>
+  <text x="450" y="56" fill="#74b9ff" font-size="7" text-anchor="middle">Linear →</text>
+  <text x="450" y="68" fill="#74b9ff" font-size="7" text-anchor="middle">softmax</text>
+  <text x="450" y="95" fill="#74b9ff" font-size="7" text-anchor="middle">classes</text>
+
+  <!-- Final output -->
+  <path d="M450 82 L450 100" fill="none" stroke="#00b894" stroke-width="2" stroke-dasharray="4,2"/>
+  <rect x="428" y="102" width="44" height="20" rx="4" fill="rgba(0,184,148,0.15)" stroke="#00b894" stroke-width="1.5"/>
+  <text x="450" y="116" fill="#00b894" font-size="8" text-anchor="middle" font-weight="bold">class</text>
+
+  <!-- Stage labels -->
+  <text x="35" y="120" fill="#a0a0b0" font-size="6" text-anchor="middle">① Input</text>
+  <text x="110" y="120" fill="#a0a0b0" font-size="6" text-anchor="middle">② Patches</text>
+  <text x="181" y="120" fill="#a0a0b0" font-size="6" text-anchor="middle">③ Embed</text>
+  <text x="278" y="120" fill="#a0a0b0" font-size="6" text-anchor="middle">④ Encoder×L</text>
+  <text x="370" y="120" fill="#a0a0b0" font-size="6" text-anchor="middle">⑤ CLS out</text>
+  <text x="450" y="120" fill="#a0a0b0" font-size="6" text-anchor="middle">⑥ Predict</text>
+
+  <!-- Data flow dimensions -->
+  <text x="35" y="135" fill="#a29bfe" font-size="6" text-anchor="middle">224²×3</text>
+  <text x="110" y="135" fill="#a29bfe" font-size="6" text-anchor="middle">196×768</text>
+  <text x="181" y="135" fill="#a29bfe" font-size="6" text-anchor="middle">197×768</text>
+  <text x="278" y="135" fill="#a29bfe" font-size="6" text-anchor="middle">197×768</text>
+  <text x="370" y="135" fill="#a29bfe" font-size="6" text-anchor="middle">768</text>
+  <text x="450" y="135" fill="#a29bfe" font-size="6" text-anchor="middle">N classes</text>
+
+  <defs>
+    <marker id="vitlEArr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a0a0b0"/></marker>
+  </defs>
+</svg>
+<div class="caption">End-to-end ViT pipeline: Image split into patches, linearly projected with positional embeddings, processed by L Transformer encoder layers, then [CLS] token is classified</div>
+</div>
 <ol>
 <li><strong>Input Image</strong> (e.g., 224&times;224&times;3)</li>
 <li><strong>Patch Splitting:</strong> Divide into 16&times;16 patches &rarr; 196 patches, each 16&times;16&times;3 = 768 dims</li>

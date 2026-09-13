@@ -106,6 +106,14 @@ tr:nth-child(even){background:rgba(255,255,255,.03)}
 <a href="#vit" class="topic-card" style="text-decoration:none;color:inherit"><div class="num">12</div><h3>Vision Transformer (ViT)</h3><p>Patch Embedding, Self-Attention, Key Terms</p></a>
 <a href="#cnn" class="topic-card" style="text-decoration:none;color:inherit"><div class="num">13</div><h3>CNN</h3><p>Convolution, Pooling, FC Layers | Architecture Diagram</p></a>
 <a href="#vitlayer" class="topic-card" style="text-decoration:none;color:inherit"><div class="num">14</div><h3>Vision Transformer Architecture</h3><p>Layer-by-Layer Walkthrough | How It Works</p></a>
+<a href="#q1" class="topic-card" style="text-decoration:none;color:inherit"><div class="num">15</div><h3>Q&A 1: Thresholding + Morphology</h3><p>Ch-8, Ch-9 | Top exam questions + answers</p></a>
+<a href="#q2" class="topic-card" style="text-decoration:none;color:inherit"><div class="num">16</div><h3>Q&A 2: Sobel, Laplacian + Smoothing</h3><p>Ch-10 | Top exam questions + answers</p></a>
+<a href="#q3" class="topic-card" style="text-decoration:none;color:inherit"><div class="num">17</div><h3>Q&A 3: Noise + Filters</h3><p>Ch-11 | Top exam questions + answers</p></a>
+<a href="#q4" class="topic-card" style="text-decoration:none;color:inherit"><div class="num">18</div><h3>Q&A 4: Segmentation + Harris</h3><p>Ch-12, Ch-13 | Top exam questions + answers</p></a>
+<a href="#q5" class="topic-card" style="text-decoration:none;color:inherit"><div class="num">19</div><h3>Q&A 5: Geometric Transformations</h3><p>Ch-14 | Top exam questions + answers</p></a>
+<a href="#q6" class="topic-card" style="text-decoration:none;color:inherit"><div class="num">20</div><h3>Q&A 6: Neural Network + Backprop</h3><p>Ch-15–18 | Top exam questions + answers</p></a>
+<a href="#q7" class="topic-card" style="text-decoration:none;color:inherit"><div class="num">21</div><h3>Q&A 7: Optimizers + CNN</h3><p>Ch-19, Ch-20 | Top exam questions + answers</p></a>
+<a href="#q8" class="topic-card" style="text-decoration:none;color:inherit"><div class="num">22</div><h3>Q&A 8: ViT + ViT Layer</h3><p>Ch-21 | Top exam questions + answers</p></a>
 </div>
 </div>
 
@@ -3672,12 +3680,428 @@ $$
 </div>
 <div class="topic-nav">
 <a href="#cnn">&#8592; Prev: CNN</a>
+<a href="#q1">Next: Q&A 1 &#8594;</a>
+</div>
+</div>
+
+<!-- ============ Q&A 1: THRESHOLDING + MORPHOLOGY (Ch-8, Ch-9) ============ -->
+<div class="topic-page" id="topic-q1">
+<a href="#" class="back-btn" style="text-decoration:none">&#8592; Back to Topics</a>
+<h1 class="topic-title">Most Important Q&A 1: Thresholding + Morphology (Ch-8, Ch-9)</h1>
+<div class="section">
+<h2>Q1. Define thresholding. When does global thresholding fail?</h2>
+<p><strong>Answer:</strong> Thresholding converts grayscale to binary by comparing each pixel to \(T\):</p>
+<div class="math-box highlight">
+$$
+g(x,y) = \begin{cases} 1 & f(x,y) > T \\ 0 & f(x,y) \le T \end{cases}
+$$
+</div>
+<p>Global thresholding (single \(T\) for whole image) <strong>fails</strong> under uneven illumination or non-bimodal histograms. Fix: <strong>adaptive thresholding</strong> (local \(T\) per neighbourhood) or <strong>Otsu's method</strong> (automatic optimal \(T\)).</p>
+</div>
+<div class="section">
+<h2>Q2. What is Otsu's method? Write its objective.</h2>
+<p><strong>Answer:</strong> Automatic threshold selection for bimodal histograms. It picks \(T^*\) that <strong>maximises between-class variance</strong> (equivalently minimises within-class variance):</p>
+<div class="math-box highlight">
+$$
+T^* = \arg\max_T \; \sigma_B^2(T), \quad \sigma_B^2(T) = w_0(T)\,w_1(T)\,\big[\mu_0(T)-\mu_1(T)\big]^2
+$$
+</div>
+<p>where \(w_0,w_1\) = class probabilities, \(\mu_0,\mu_1\) = class means. <strong>Fails</strong> when histogram is not bimodal or lighting is uneven.</p>
+</div>
+<div class="section">
+<h2>Q3. Define dilation and erosion with math. What does dilation do?</h2>
+<p><strong>Answer:</strong></p>
+<div class="math-box highlight">
+<p><strong>Dilation (expands white):</strong> \((I \oplus SE)(x,y) = \max_{(s,t)\in SE} f(x{+}s,y{+}t)\) — OR logic</p>
+<p><strong>Erosion (shrinks white):</strong> \((I \ominus SE)(x,y) = \min_{(s,t)\in SE} f(x{-}s,y{-}t)\) — AND logic</p>
+</div>
+<p><strong>What dilation does:</strong> every foreground pixel grows into neighbours — objects get fatter, small gaps close, thin breaks join, tiny dark holes fill. A 3&times;3 all-1 SE expands a 3&times;3 block to 5&times;5.</p>
+</div>
+<div class="section">
+<h2>Q4. Opening vs Closing — math and use?</h2>
+<p><strong>Answer:</strong></p>
+<div class="math-box highlight">
+<p><strong>Opening:</strong> \(I \circ SE = (I \ominus SE) \oplus SE\) — Erosion then Dilation. Removes small bright dots/noise, keeps object size.</p>
+<p><strong>Closing:</strong> \(I \bullet SE = (I \oplus SE) \ominus SE\) — Dilation then Erosion. Fills small dark holes/gaps, keeps object size.</p>
+</div>
+<div class="exam-tip"><strong>Exam:</strong> Opening = "open up gaps, drop noise". Closing = "close holes". Order is everything.</div>
+</div>
+<div class="section">
+<h2>Q5. Top-Hat transforms and Morphological Gradient?</h2>
+<p><strong>Answer:</strong></p>
+<div class="math-box highlight">
+<p><strong>White Top-Hat:</strong> \(WTH = I - (I \circ SE)\) — extracts small bright details, corrects uneven illumination.</p>
+<p><strong>Black Top-Hat:</strong> \(BTH = (I \bullet SE) - I\) — extracts small dark details/defects.</p>
+<p><strong>Gradient:</strong> \(G = (I \oplus SE) - (I \ominus SE)\) — dilated minus eroded = boundary outline.</p>
+</div>
+</div>
+<div class="topic-nav">
+<a href="#vitlayer">&#8592; Prev: ViT Layer Architecture</a>
+<a href="#q2">Next: Q&A 2 &#8594;</a>
+</div>
+</div>
+
+<!-- ============ Q&A 2: SOBEL, LAPLACIAN + SMOOTHING (Ch-10) ============ -->
+<div class="topic-page" id="topic-q2">
+<a href="#" class="back-btn" style="text-decoration:none">&#8592; Back to Topics</a>
+<h1 class="topic-title">Most Important Q&A 2: Sobel, Laplacian + Smoothing (Ch-10)</h1>
+<div class="section">
+<h2>Q1. Name the first 4 smoothing filters with math.</h2>
+<p><strong>Answer:</strong></p>
+<div class="math-box highlight">
+<p><strong>1. Mean:</strong> \(g = \frac{1}{mn}\sum f(s,t)\) — plain average, blurs edges.</p>
+<p><strong>2. Gaussian:</strong> \(G(x,y)=\frac{1}{2\pi\sigma^2}e^{-(x^2+y^2)/2\sigma^2}\) — centre-weighted, e.g. \(\frac{1}{16}\begin{bmatrix}1&2&1\\2&4&2\\1&2&1\end{bmatrix}\).</p>
+<p><strong>3. Median:</strong> \(g = \text{median}\{f(s,t)\}\) — non-linear, best for salt &amp; pepper.</p>
+<p><strong>4. Bilateral:</strong> spatial &times; intensity weights — denoises flat areas, preserves edges.</p>
+</div>
+</div>
+<div class="section">
+<h2>Q2. Write Sobel kernels. How is edge strength and direction computed?</h2>
+<p><strong>Answer:</strong></p>
+<div class="math-box highlight">
+$$
+G_x = \begin{bmatrix}-1&0&1\\-2&0&2\\-1&0&1\end{bmatrix}, \quad
+G_y = \begin{bmatrix}-1&-2&-1\\0&0&0\\1&2&1\end{bmatrix}
+$$
+$$
+G = \sqrt{G_x^2+G_y^2}, \qquad \theta = \tan^{-1}\!\left(\frac{G_y}{G_x}\right)
+$$
+</div>
+<p>\(G_x\) detects vertical edges, \(G_y\) horizontal edges. High \(G\) = strong edge; edge runs <strong>perpendicular</strong> to gradient direction \(\theta\).</p>
+</div>
+<div class="section">
+<h2>Q3. Laplacian kernel? Why is it noise-sensitive?</h2>
+<p><strong>Answer:</strong> Second-order derivative, responds to zero-crossings:</p>
+<div class="math-box highlight">
+$$
+\nabla^2 f = \frac{\partial^2 f}{\partial x^2}+\frac{\partial^2 f}{\partial y^2}, \quad
+\text{4-connect: }\begin{bmatrix}0&1&0\\1&-4&1\\0&1&0\end{bmatrix}, \;
+\text{8-connect: }\begin{bmatrix}1&1&1\\1&-8&1\\1&1&1\end{bmatrix}
+$$
+</div>
+<p>Differentiation <strong>amplifies high-frequency noise</strong> (2nd order worse than 1st) — so always smooth with Gaussian first: <strong>LoG</strong> (Laplacian of Gaussian).</p>
+</div>
+<div class="section">
+<h2>Q4. Why must we smooth before Sobel/Laplacian?</h2>
+<p><strong>Answer:</strong> Derivatives amplify noise — a noisy spike gives a huge false gradient. Smoothing (Gaussian) suppresses high-frequency noise while keeping true step edges, so detectors fire only on real boundaries. Pipeline: <strong>Smooth &rarr; Differentiate &rarr; Threshold magnitude</strong>.</p>
+</div>
+<div class="section">
+<h2>Q5. First-order vs second-order derivatives for edges?</h2>
+<p><strong>Answer:</strong> 1st order (Sobel, Prewitt, Roberts) gives <strong>gradient magnitude</strong> — maxima mark edges, plus direction. 2nd order (Laplacian) gives <strong>zero-crossings</strong> — precise localisation, no direction, but very noise-sensitive. Exam rule: Sobel for noisy images, Laplacian/LoG for exact edge position after smoothing.</p>
+</div>
+<div class="topic-nav">
+<a href="#q1">&#8592; Prev: Q&A 1</a>
+<a href="#q3">Next: Q&A 3 &#8594;</a>
+</div>
+</div>
+
+<!-- ============ Q&A 3: NOISE + FILTERS (Ch-11) ============ -->
+<div class="topic-page" id="topic-q3">
+<a href="#" class="back-btn" style="text-decoration:none">&#8592; Back to Topics</a>
+<h1 class="topic-title">Most Important Q&A 3: Noise Models + Filters (Ch-11)</h1>
+<div class="section">
+<h2>Q1. Gaussian noise — definition and math application?</h2>
+<p><strong>Answer:</strong> <strong>Additive</strong> noise; every pixel shifted by a normally distributed value:</p>
+<div class="math-box highlight">
+$$
+g(x,y) = f(x,y) + \eta(x,y), \quad \eta \sim \mathcal{N}(0,\sigma^2), \quad
+p(z)=\frac{1}{\sqrt{2\pi}\sigma}e^{-(z-\mu)^2/2\sigma^2}
+$$
+</div>
+<p>Looks like uniform grain. Best removed by <strong>Gaussian/mean smoothing</strong>.</p>
+</div>
+<div class="section">
+<h2>Q2. Salt &amp; Pepper noise — definition? Best filter and why?</h2>
+<p><strong>Answer:</strong> <strong>Impulse</strong> noise — random pixels forced to 0 (pepper) or max (salt):</p>
+<div class="math-box highlight">
+$$
+g(x,y) = \begin{cases} 0 & \text{with prob. } p/2 \\ L_{max} & \text{with prob. } p/2 \\ f(x,y) & \text{otherwise} \end{cases}
+$$
+</div>
+<p>Best filter = <strong>Median</strong>: sorting discards extreme 0/max outliers while keeping true edges. Mean would smear the dots into gray blur.</p>
+</div>
+<div class="section">
+<h2>Q3. Poisson vs Speckle noise?</h2>
+<p><strong>Answer:</strong> <strong>Poisson</strong> (photon-counting): variance = mean, \(\text{Var} = \lambda\); brighter pixels noisier in absolute terms; common in X-ray/low-light. <strong>Speckle</strong> (multiplicative): \(g = f \cdot \eta\); grain scales with intensity; common in SAR/ultrasound. Exam: Gaussian = additive, Speckle = multiplicative, S&amp;P = impulse, Poisson = photon.</p>
+</div>
+<div class="section">
+<h2>Q4. Mean vs Median vs Gaussian — math and when to use?</h2>
+<p><strong>Answer:</strong> <strong>Mean:</strong> \(g=\frac{1}{mn}\sum f\) — uniform noise, but blurs edges. <strong>Gaussian:</strong> centre-weighted average — Gaussian noise + edge-preserving pre-smoothing. <strong>Median:</strong> middle of sorted values — salt &amp; pepper, preserves edges. Rule: impulse &rarr; median; additive Gaussian &rarr; Gaussian/mean.</p>
+</div>
+<div class="section">
+<h2>Q5. Adaptive filter — math and idea?</h2>
+<p><strong>Answer:</strong> Filter strength follows <strong>local variance</strong> \(\sigma_L^2\) vs noise variance \(\sigma_\eta^2\):</p>
+<div class="math-box highlight">
+$$
+\hat{f}(x,y) = g(x,y) - \frac{\sigma_\eta^2}{\sigma_L^2}\,\big[g(x,y)-\bar{z}\big]
+$$
+</div>
+<p>Flat area (\(\sigma_L^2 \approx \sigma_\eta^2\)) &rarr; heavy averaging. Edge (\(\sigma_L^2 \gg \sigma_\eta^2\)) &rarr; keep pixel. Adaptive median additionally grows the window until non-impulse median found — kills dense salt &amp; pepper.</p>
+</div>
+<div class="topic-nav">
+<a href="#q2">&#8592; Prev: Q&A 2</a>
+<a href="#q4">Next: Q&A 4 &#8594;</a>
+</div>
+</div>
+
+<!-- ============ Q&A 4: SEGMENTATION + HARRIS (Ch-12, Ch-13) ============ -->
+<div class="topic-page" id="topic-q4">
+<a href="#" class="back-btn" style="text-decoration:none">&#8592; Back to Topics</a>
+<h1 class="topic-title">Most Important Q&A 4: Segmentation + Harris (Ch-12, Ch-13)</h1>
+<div class="section">
+<h2>Q1. Which segmentation for which scenario?</h2>
+<p><strong>Answer:</strong> Document black-on-white &rarr; <strong>Otsu/global</strong> (bimodal). Shadows &rarr; <strong>adaptive threshold</strong>. Tumor on uniform tissue &rarr; <strong>region growing</strong>. Multiple coloured objects &rarr; <strong>K-means/colour</strong>. Boundaries needed &rarr; <strong>edge-based (Canny)</strong>. Check: lighting, #classes, noise, region-vs-boundary.</p>
+</div>
+<div class="section">
+<h2>Q2. Colour segmentation math?</h2>
+<p><strong>Answer:</strong> Segment in HSV (hue immune to lighting):</p>
+<div class="math-box highlight">
+$$
+\text{mask}(x,y) = \begin{cases} 1 & H_{low} \le H(x,y) \le H_{high} \text{ and } S(x,y) > S_{min} \\ 0 & \text{otherwise} \end{cases}
+$$
+</div>
+</div>
+<div class="section">
+<h2>Q3. Three edge-based operators with math?</h2>
+<p><strong>Answer:</strong></p>
+<div class="math-box highlight">
+<p><strong>Roberts (2&times;2):</strong> \(G_x=\begin{bmatrix}1&0\\0&-1\end{bmatrix}\), fast but noise-sensitive.</p>
+<p><strong>Prewitt (3&times;3):</strong> \(G_x=\begin{bmatrix}-1&0&1\\-1&0&1\\-1&0&1\end{bmatrix}\), uniform weights.</p>
+<p><strong>Sobel (3&times;3):</strong> centre row &times;2 — best of the three under noise.</p>
+<p>All: \(G=\sqrt{G_x^2+G_y^2}\).</p>
+</div>
+</div>
+<div class="section">
+<h2>Q4. Harris: M matrix, R formula, bisection?</h2>
+<p><strong>Answer:</strong></p>
+<div class="math-box highlight">
+$$
+M = \begin{bmatrix} \sum I_x^2 & \sum I_x I_y \\ \sum I_x I_y & \sum I_y^2 \end{bmatrix}, \qquad
+R = \det(M) - k \cdot \text{trace}^2(M), \; k \approx 0.04\text{–}0.06
+$$
+$$
+\text{Corner: } R > T \quad | \quad \text{Edge: } R < 0 \quad | \quad \text{Flat: } |R| \text{ small}
+$$
+</div>
+<p>Eigenvalue view: both \(\lambda\) large = corner; one large = edge; both small = flat.</p>
+</div>
+<div class="section">
+<h2>Q5. Harris algorithm steps + properties?</h2>
+<p><strong>Answer:</strong> (1) Sobel \(I_x,I_y\); (2) products \(I_x^2,I_y^2,I_xI_y\); (3) Gaussian sum over window; (4) compute \(R\); (5) threshold \(R>T\); (6) <strong>non-max suppression</strong> (keep local max only). <strong>Rotation invariant</strong> (eigenvalues unchanged), <strong>NOT scale invariant</strong> (fix: SIFT/scale-space), fast, many responses per corner.</p>
+</div>
+<div class="topic-nav">
+<a href="#q3">&#8592; Prev: Q&A 3</a>
+<a href="#q5">Next: Q&A 5 &#8594;</a>
+</div>
+</div>
+
+<!-- ============ Q&A 5: GEOMETRIC TRANSFORMATIONS (Ch-14) ============ -->
+<div class="topic-page" id="topic-q5">
+<a href="#" class="back-btn" style="text-decoration:none">&#8592; Back to Topics</a>
+<h1 class="topic-title">Most Important Q&A 5: Geometric Transformations (Ch-14)</h1>
+<div class="section">
+<h2>Q1. Name the 5 types with 2D math.</h2>
+<p><strong>Answer:</strong></p>
+<div class="math-box highlight">
+<p><strong>Translation:</strong> \(\begin{bmatrix}x'\\y'\end{bmatrix}=\begin{bmatrix}x\\y\end{bmatrix}+\begin{bmatrix}t_x\\t_y\end{bmatrix}\) (no 2&times;2 form!)</p>
+<p><strong>Rotation:</strong> \(\begin{bmatrix}x'\\y'\end{bmatrix}=\begin{bmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{bmatrix}\begin{bmatrix}x\\y\end{bmatrix}\)</p>
+<p><strong>Scaling:</strong> \(\begin{bmatrix}x'\\y'\end{bmatrix}=\begin{bmatrix}s_x&0\\0&s_y\end{bmatrix}\begin{bmatrix}x\\y\end{bmatrix}\)</p>
+<p><strong>Shearing:</strong> \(\begin{bmatrix}1&sh_x\\sh_y&1\end{bmatrix}\) — square &rarr; parallelogram</p>
+<p><strong>Reflection:</strong> \(\begin{bmatrix}-1&0\\0&1\end{bmatrix}\) — mirror, \(\det=-1\)</p>
+</div>
+</div>
+<div class="section">
+<h2>Q2. Why homogeneous coordinates?</h2>
+<p><strong>Answer:</strong> Translation is an <strong>addition</strong>, not a 2&times;2 multiplication. Promoting \((x,y) \to (x,y,1)\) turns ALL transforms into uniform 3&times;3 multiplications, so composites become single matrix products:</p>
+<div class="math-box highlight">
+$$
+T = \begin{bmatrix}1&0&t_x\\0&1&t_y\\0&0&1\end{bmatrix}, \quad
+\begin{bmatrix}x'\\y'\\1\end{bmatrix} = M \begin{bmatrix}x\\y\\1\end{bmatrix}
+$$
+</div>
+</div>
+<div class="section">
+<h2>Q3. Composite order? Example?</h2>
+<p><strong>Answer:</strong> Matrices apply <strong>right to left</strong>: \(\mathbf{x'} = T \cdot R \cdot S \cdot \mathbf{x}\) means Scale first, then Rotate, then Translate. Order matters: \(T\cdot R \neq R\cdot T\) in general. Exam trap: translating then rotating ≠ rotating then translating.</p>
+</div>
+<div class="section">
+<h2>Q4. Rotate point (1,0) by 90° CCW. Show work.</h2>
+<p><strong>Answer:</strong></p>
+<div class="math-box highlight">
+$$
+\begin{bmatrix}x'\\y'\end{bmatrix} =
+\begin{bmatrix}\cos90°&-\sin90°\\\sin90°&\cos90°\end{bmatrix}
+\begin{bmatrix}1\\0\end{bmatrix} =
+\begin{bmatrix}0&-1\\1&0\end{bmatrix}\begin{bmatrix}1\\0\end{bmatrix} =
+\begin{bmatrix}0\\1\end{bmatrix}
+$$
+</div>
+<p>(1,0) &rarr; (0,1). Memorise: 90° CCW maps \((x,y)\to(-y,x)\).</p>
+</div>
+<div class="section">
+<h2>Q5. Reflection vs Rotation?</h2>
+<p><strong>Answer:</strong> Rotation preserves orientation, \(\det(R)=+1\). Reflection flips orientation (mirror image), \(\det(F)=-1\), and cannot be achieved by any rotation. Both preserve distances (rigid), but only rotation is physically reachable by turning the image.</p>
+</div>
+<div class="topic-nav">
+<a href="#q4">&#8592; Prev: Q&A 4</a>
+<a href="#q6">Next: Q&A 6 &#8594;</a>
+</div>
+</div>
+
+<!-- ============ Q&A 6: NEURAL NETWORK + BACKPROP (Ch-15-18) ============ -->
+<div class="topic-page" id="topic-q6">
+<a href="#" class="back-btn" style="text-decoration:none">&#8592; Back to Topics</a>
+<h1 class="topic-title">Most Important Q&A 6: Neural Network + Backprop (Ch-15–18)</h1>
+<div class="section">
+<h2>Q1. NN layers? Why activation functions?</h2>
+<p><strong>Answer:</strong> <strong>Input</strong> (raw features) &rarr; <strong>Hidden</strong> (\(z=\sum w_ix_i+b\), \(a=f(z)\), feature extraction) &rarr; <strong>Output</strong> (sigmoid/binary, softmax/multi-class, linear/regression). Without <strong>non-linear</strong> activations, stacked linear layers collapse into one linear map — the net could never learn complex patterns.</p>
+</div>
+<div class="section">
+<h2>Q2. Write 5 activations with use.</h2>
+<p><strong>Answer:</strong></p>
+<div class="math-box highlight">
+<p><strong>Sigmoid:</strong> \(\sigma(z)=\frac{1}{1+e^{-z}}\), (0,1) — binary output.</p>
+<p><strong>Tanh:</strong> \(\tanh(z)=\frac{e^z-e^{-z}}{e^z+e^{-z}}\), (−1,1) — zero-centred hidden.</p>
+<p><strong>ReLU:</strong> \(\max(0,z)\) — default hidden layer.</p>
+<p><strong>Leaky ReLU:</strong> \(\max(0.01z,z)\) — kills no dead neurons.</p>
+<p><strong>Softmax:</strong> \(S(z_i)=\frac{e^{z_i}}{\sum_j e^{z_j}}\) — multi-class output (sums to 1).</p>
+</div>
+</div>
+<div class="section">
+<h2>Q3. Backpropagation — steps and chain-rule math?</h2>
+<p><strong>Answer:</strong> Forward: \(h_j=f(\sum_i w_{ji}x_i+b_j)\), \(\hat{y}=g(\sum_j v_jh_j+b_o)\), \(L=\frac{1}{2}(\hat{y}-y)^2\). Backward (chain rule):</p>
+<div class="math-box highlight">
+$$
+\frac{\partial L}{\partial v_j}=(\hat{y}-y)\,g'(\cdot)\,h_j, \quad
+\frac{\partial L}{\partial w_{ji}}=(\hat{y}-y)\,g'(\cdot)\,v_j\,f'(\cdot)\,x_i
+$$
+$$
+w_{new} = w_{old} - \eta\,\frac{\partial L}{\partial w}
+$$
+</div>
+<p>Compute error at output, propagate backwards layer by layer, update every weight.</p>
+</div>
+<div class="section">
+<h2>Q4. Vanishing vs Exploding gradients?</h2>
+<p><strong>Answer:</strong> Products of many layer-derivatives: <strong>vanishing</strong> (sigmoid \(f'\le0.25\) compounds &rarr; 0, early layers freeze) vs <strong>exploding</strong> (large weights &rarr; &infin;, NaN loss). Fixes: ReLU, BatchNorm, residual links, good init, gradient clipping, moderate LR.</p>
+</div>
+<div class="section">
+<h2>Q5. MSE vs Cross-Entropy loss?</h2>
+<p><strong>Answer:</strong></p>
+<div class="math-box highlight">
+<p><strong>MSE (regression):</strong> \(L=\frac{1}{N}\sum(\hat{y}-y)^2\).</p>
+<p><strong>Cross-Entropy (classification):</strong> \(L=-\sum y\log\hat{y}\).</p>
+</div>
+<p>CE + softmax/sigmoid gives clean gradients for class probabilities; MSE for continuous targets.</p>
+</div>
+<div class="topic-nav">
+<a href="#q5">&#8592; Prev: Q&A 5</a>
+<a href="#q7">Next: Q&A 7 &#8594;</a>
+</div>
+</div>
+
+<!-- ============ Q&A 7: OPTIMIZERS + CNN (Ch-19, Ch-20) ============ -->
+<div class="topic-page" id="topic-q7">
+<a href="#" class="back-btn" style="text-decoration:none">&#8592; Back to Topics</a>
+<h1 class="topic-title">Most Important Q&A 7: Optimizers + CNN (Ch-19, Ch-20)</h1>
+<div class="section">
+<h2>Q1. SGD and SGD + Momentum math?</h2>
+<p><strong>Answer:</strong></p>
+<div class="math-box highlight">
+$$
+\text{SGD: } w_{t+1} = w_t - \eta\,\nabla L(w_t)
+$$
+$$
+\text{Momentum: } v_t = \beta v_{t-1} + \nabla L(w_t), \quad w_{t+1} = w_t - \eta\,v_t, \; \beta \approx 0.9
+$$
+</div>
+<p>Momentum smooths zigzags and accelerates through ravines. SGD generalises well but needs LR tuning.</p>
+</div>
+<div class="section">
+<h2>Q2. Adam — full math and why default?</h2>
+<p><strong>Answer:</strong> Momentum (1st moment) + adaptive LR (2nd moment), with bias correction:</p>
+<div class="math-box highlight">
+$$
+m_t=\beta_1m_{t-1}+(1-\beta_1)\nabla L, \quad
+v_t=\beta_2v_{t-1}+(1-\beta_2)(\nabla L)^2
+$$
+$$
+\hat{m}_t=\frac{m_t}{1-\beta_1^t},\; \hat{v}_t=\frac{v_t}{1-\beta_2^t}, \quad
+w_{t+1}=w_t-\eta\frac{\hat{m}_t}{\sqrt{\hat{v}_t}+\epsilon}
+$$
+</div>
+<p>Defaults \(\beta_1{=}0.9,\beta_2{=}0.999,\epsilon{=}10^{-8}\). Default choice: fast, per-parameter LR, works on sparse/non-stationary problems.</p>
+</div>
+<div class="section">
+<h2>Q3. Learning rate effects?</h2>
+<p><strong>Answer:</strong> Too large &rarr; overshoot, oscillation, divergence. Too small &rarr; slow crawl, stuck in sharp minima. Fix with schedules: step decay, exponential decay, cosine annealing; warmup for transformers.</p>
+</div>
+<div class="section">
+<h2>Q4. Overfitting vs Underfitting + fixes?</h2>
+<p><strong>Answer:</strong> <strong>Overfit:</strong> train loss low, val loss high (memorised noise) — fix: more data, augmentation, dropout, weight decay, early stopping. <strong>Underfit:</strong> both losses high (model too weak) — fix: bigger model, more epochs, higher LR, better features.</p>
+</div>
+<div class="section">
+<h2>Q5. CNN layers, output-size formula, dilated conv?</h2>
+<p><strong>Answer:</strong> Conv (local kernels, weight sharing) &rarr; ReLU &rarr; Pooling (max/avg, downsample + invariance) &rarr; FC + softmax. Hierarchy: edges &rarr; textures &rarr; objects.</p>
+<div class="math-box highlight">
+$$
+\text{Out} = \frac{W-K+2P}{S}+1, \qquad
+\text{Dilated size} = K+(K-1)(r-1)
+$$
+</div>
+<p>Dilated (\(r>1\)) conv widens receptive field with same weights — used in segmentation to keep resolution.</p>
+</div>
+<div class="topic-nav">
+<a href="#q6">&#8592; Prev: Q&A 6</a>
+<a href="#q8">Next: Q&A 8 &#8594;</a>
+</div>
+</div>
+
+<!-- ============ Q&A 8: ViT + ViT LAYER (Ch-21) ============ -->
+<div class="topic-page" id="topic-q8">
+<a href="#" class="back-btn" style="text-decoration:none">&#8592; Back to Topics</a>
+<h1 class="topic-title">Most Important Q&A 8: ViT + ViT Layer (Ch-21)</h1>
+<div class="section">
+<h2>Q1. ViT pipeline end to end?</h2>
+<p><strong>Answer:</strong> (1) Split \(H{\times}W{\times}C\) image into \(P{\times}P\) patches: \(N=\frac{HW}{P^2}\) (e.g. 224/16 &rarr; 196). (2) Flatten + linear-project each to \(D\)-dim. (3) Prepend learnable <strong>[CLS]</strong> token. (4) Add positional embeddings. (5) \(L\) Transformer encoder layers. (6) [CLS] output &rarr; MLP head &rarr; class.</p>
+</div>
+<div class="section">
+<h2>Q2. Self-attention formula? Q, K, V?</h2>
+<p><strong>Answer:</strong></p>
+<div class="math-box highlight">
+$$
+\text{Attention}(Q,K,V) = \text{softmax}\!\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+$$
+</div>
+<p>Each patch (Query) scores all patches (Keys); scores weight the Values. \(\sqrt{d_k}\) stops softmax saturation. <strong>Multi-head</strong> = several such attentions in parallel, concatenated + projected.</p>
+</div>
+<div class="section">
+<h2>Q3. [CLS] token and positional encoding?</h2>
+<p><strong>Answer:</strong> <strong>[CLS]</strong> = learnable token with no image content; after attending to all patches its vector summarises the image for classification. <strong>Positional encoding</strong> (learnable in ViT) restores spatial order destroyed by flattening — without it, shuffling patches would not change the output.</p>
+</div>
+<div class="section">
+<h2>Q4. One encoder layer — math?</h2>
+<p><strong>Answer:</strong> Pre-norm + residuals around each sub-layer:</p>
+<div class="math-box highlight">
+$$
+x' = x + \text{MSA}(\text{LN}(x)), \qquad
+x_{out} = x' + \text{MLP}(\text{LN}(x'))
+$$
+</div>
+<p>MSA mixes information <strong>across patches</strong> (global context); MLP (GELU, hidden 4&times;\(D\)) processes each patch <strong>independently</strong>; residuals + LayerNorm stabilise deep stacks.</p>
+</div>
+<div class="section">
+<h2>Q5. ViT vs CNN?</h2>
+<p><strong>Answer:</strong> CNN: local receptive field, translation-invariance baked in, data-efficient. ViT: <strong>global</strong> attention from layer 1, almost no inductive bias, needs large data/pretraining, wins at scale. Exam line: "ViT = patches + positions + Transformer; no convolution; global context from the start."</p>
+</div>
+<div class="topic-nav">
+<a href="#q7">&#8592; Prev: Q&A 7</a>
 <a href="#" class="nav-disabled">Next &#8594;</a>
 </div>
 </div>
 
 <script>
-const topics=['thresholding','morphology','sobel','noise','filters','segmentation','harris','transform','nn','backprop','optimizer','vit','cnn','vitlayer'];
+const topics=['thresholding','morphology','sobel','noise','filters','segmentation','harris','transform','nn','backprop','optimizer','vit','cnn','vitlayer','q1','q2','q3','q4','q5','q6','q7','q8'];
 const topicNames={
   thresholding:'Thresholding',
   morphology:'Morphology',
@@ -3692,7 +4116,15 @@ const topicNames={
   optimizer:'Optimizers',
   vit:'Vision Transformer (ViT)',
   cnn:'CNN',
-  vitlayer:'ViT Layer Architecture'
+  vitlayer:'ViT Layer Architecture',
+  q1:'Q&A 1: Thresholding + Morphology',
+  q2:'Q&A 2: Sobel, Laplacian + Smoothing',
+  q3:'Q&A 3: Noise + Filters',
+  q4:'Q&A 4: Segmentation + Harris',
+  q5:'Q&A 5: Geometric Transformations',
+  q6:'Q&A 6: Neural Network + Backprop',
+  q7:'Q&A 7: Optimizers + CNN',
+  q8:'Q&A 8: ViT + ViT Layer'
 };
 
 function navigate(route){

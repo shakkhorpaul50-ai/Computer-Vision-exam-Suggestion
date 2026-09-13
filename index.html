@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Exam Prep - Last Night Study</title>
+<script>
+MathJax = {
+  tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0f1117;--card:#1a1d27;--accent:#6c5ce7;--accent2:#a29bfe;--text:#e0e0e0;--text2:#a0a0b0;--border:#2a2d3a;--green:#00b894;--red:#e17055;--orange:#fdcb6e;--blue:#74b9ff}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+.coverpage{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;text-align:center}
+.coverpage h1{font-size:3em;background:linear-gradient(135deg,var(--accent),var(--accent2),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px}
+.coverpage .subtitle{color:var(--text2);font-size:1.2em;margin-bottom:40px}
+.topic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;max-width:1200px;width:100%}
+.topic-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;cursor:pointer;transition:all .3s}
+.topic-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 8px 30px rgba(108,92,231,.2)}
+.topic-card h3{color:var(--accent2);margin-bottom:8px;font-size:1.1em}
+.topic-card p{color:var(--text2);font-size:.9em}
+.topic-card .num{display:inline-block;background:var(--accent);color:#fff;width:32px;height:32px;border-radius:50%;text-align:center;line-height:32px;font-size:.85em;margin-bottom:12px}
+
+.topic-page{display:none;padding:30px 20px;max-width:1000px;margin:0 auto;min-height:100vh}
+.topic-page.active{display:block}
+.back-btn{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);color:var(--accent2);padding:8px 20px;border-radius:8px;cursor:pointer;font-size:.95em;margin-bottom:24px;transition:all .2s}
+.back-btn:hover{border-color:var(--accent);background:var(--accent);color:#fff}
+.topic-title{font-size:2em;color:var(--accent2);margin-bottom:24px;border-bottom:2px solid var(--border);padding-bottom:12px}
+
+.tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+.tab{padding:10px 20px;background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--text2);cursor:pointer;transition:all .2s;font-size:.9em}
+.tab:hover,.tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+.section{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px;margin-bottom:20px}
+.section h2{color:var(--accent2);margin-bottom:16px;font-size:1.4em}
+.section h3{color:var(--blue);margin:16px 0 10px;font-size:1.15em}
+.section p{margin-bottom:12px;color:var(--text)}
+.section ul,.section ol{margin:10px 0 10px 20px}
+.section li{margin-bottom:6px;color:var(--text)}
+
+.math-box{background:#12141f;border:1px solid var(--accent);border-radius:8px;padding:20px;margin:16px 0;overflow-x:auto}
+.math-box.highlight{border-color:var(--orange);background:#1a1510}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:768px){.grid-2{grid-template-columns:1fr}}
+
+.diagram{background:#0a0c14;border:1px solid var(--border);border-radius:8px;padding:16px;margin:16px 0;text-align:center;overflow-x:auto}
+.diagram svg{max-width:100%;height:auto}
+.diagram .caption{color:var(--text2);font-size:.85em;margin-top:8px;font-style:italic}
+
+.tag{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.8em;margin:2px}
+.tag.exam{background:rgba(225,112,85,.2);color:var(--red)}
+.tag.key{background:rgba(108,92,231,.2);color:var(--accent2)}
+.tag.def{background:rgba(0,184,148,.2);color:var(--green)}
+
+table{width:100%;border-collapse:collapse;margin:16px 0}
+th,td{padding:10px 14px;border:1px solid var(--border);text-align:left;font-size:.9em}
+th{background:var(--accent);color:#fff}
+tr:nth-child(even){background:rgba(255,255,255,.03)}
+
+.note{background:rgba(253,203,110,.1);border-left:3px solid var(--orange);padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0;font-size:.9em}
+.note strong{color:var(--orange)}
+
+.exam-tip{background:rgba(225,112,85,.1);border-left:3px solid var(--red);padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0;font-size:.9em}
+.exam-tip strong{color:var(--red)}
+
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--blue));z-index:1000;transition:width .3s}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- ============ COVERPAGE ============ -->
+<div class="coverpage" id="coverpage">
+<h1>Computer Vision</h1>
+<p class="subtitle">Last Night Exam Preparation | All Topics at a Glance</p>
+<div class="topic-grid">
+<div class="topic-card" onclick="openTopic('thresholding')"><div class="num">1</div><h3>Thresholding</h3><p>Global, Adaptive, Otsu's Method | Bimodal Histogram | Variance</p></div>
+<div class="topic-card" onclick="openTopic('morphology')"><div class="num">2</div><h3>Morphology</h3><p>Erosion, Dilation, Opening, Closing, Top-Hat | Structuring Elements</p></div>
+<div class="topic-card" onclick="openTopic('sobel')"><div class="num">3</div><h3>Sobel & Laplacian</h3><p>Image Smoothing, Median Filter, 1st & 2nd Order Derivatives</p></div>
+<div class="topic-card" onclick="openTopic('noise')"><div class="num">4</div><h3>Noise Models</h3><p>Gaussian, Salt & Pepper, Poisson, Speckle | Mathematical Models</p></div>
+<div class="topic-card" onclick="openTopic('filters')"><div class="num">5</div><h3>Noise Removal Filters</h3><p>Mean, Median, Gaussian, Adaptive Filter | Math</p></div>
+<div class="topic-card" onclick="openTopic('segmentation')"><div class="num">6</div><h3>Segmentation</h3><p>Scenario-based | Mathematical Methods | Type Selection</p></div>
+<div class="topic-card" onclick="openTopic('harris')"><div class="num">7</div><h3>Harris Corner Detection</h3><p>M Matrix, Eigenvalues, Corner Response Function</p></div>
+<div class="topic-card" onclick="openTopic('transform')"><div class="num">8</div><h3>Geometric Transformations</h3><p>Translation, Rotation, Scaling, Shearing, Homogeneous Coordinates</p></div>
+<div class="topic-card" onclick="openTopic('nn')"><div class="num">9</div><h3>Neural Network</h3><p>Layers: Input, Hidden, Output | Activation Functions</p></div>
+<div class="topic-card" onclick="openTopic('backprop')"><div class="num">10</div><h3>Backpropagation</h3><p>Chain Rule, Loss, Gradient Descent | Network Flow</p></div>
+<div class="topic-card" onclick="openTopic('optimizer')"><div class="num">11</div><h3>Optimizers</h3><p>SGD, Momentum, Adam | When to Use</p></div>
+<div class="topic-card" onclick="openTopic('vit')"><div class="num">12</div><h3>Vision Transformer (ViT)</h3><p>Patch Embedding, Self-Attention, Key Terms</p></div>
+<div class="topic-card" onclick="openTopic('cnn')"><div class="num">13</div><h3>CNN</h3><p>Convolution, Pooling, FC Layers | Architecture Diagram</p></div>
+<div class="topic-card" onclick="openTopic('vitlayer')"><div class="num">14</div><h3>Vision Transformer Architecture</h3><p>Layer-by-Layer Walkthrough | How It Works</p></div>
+</div>
+</div>
+
+<!-- ============ TOPIC: THRESHOLDING ============ -->
+<div class="topic-page" id="topic-thresholding">
+<button class="back-btn" onclick="goHome()">&#8592; Back to Topics</button>
+<h1 class="topic-title">Thresholding</h1>
+<div class="tabs">
+<div class="tab active" onclick="switchTab(this,'thresh-global')">Global Thresholding</div>
+<div class="tab" onclick="switchTab(this,'thresh-adaptive')">Adaptive Thresholding</div>
+<div class="tab" onclick="switchTab(this,'thresh-otsu')">Otsu's Method</div>
+</div>
+
+<div class="tab-content active" id="thresh-global">
+<div class="section">
+<div style="text-align:center;margin-bottom:20px">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Thresholding_effect_on_grayscale_image.png/400px-Thresholding_effect_on_grayscale_image.png" alt="Thresholding Example" style="max-width:100%;border-radius:8px;border:1px solid var(--border)">
+<p style="color:var(--text2);font-size:.85em;margin-top:8px;font-style:italic">Thresholding converts grayscale to binary (Wikimedia Commons CC)</p>
+</div>
+<h2>Definition</h2>
+<p>Thresholding converts a <strong>grayscale image</strong> into a <strong>binary image</strong> (0 or 1) by comparing each pixel intensity to a threshold value \(T\).</p>
+<span class="tag def">Definition</span>
+<div class="math-box highlight">
+$$
+g(x,y) = \begin{cases} 1 & \text{if } f(x,y) > T \\ 0 & \text{if } f(x,y) \leq T \end{cases}
+$$
+</div>
+<p>Where \(f(x,y)\) is the input pixel intensity and \(g(x,y)\) is the output binary pixel.</p>
+<h3>How it works:</h3>
+<ol>
+<li>Convert image to grayscale (if color)</li>
+<li>Compute histogram of pixel intensities</li>
+<li>Select a threshold value \(T\)</li>
+<li>Apply the formula above to every pixel</li>
+</ol>
+<div class="note"><strong>Key:</strong> Global thresholding uses a <em>single</em> value of \(T\) for the entire image. Works only when lighting is uniform.</div>
+<h3>When to use:</h3>
+<ul>
+<li>Image has clearly separable foreground and background</li>
+<li>Histogram shows two distinct peaks (bimodal)</li>
+<li>Lighting is uniform across the image</li>
+</ul>
+<div class="exam-tip"><strong>Exam:</strong> If asked "Draw the binary output" &mdash; just apply the threshold to each pixel and draw 0/1 grid.</div>
+</div>
+</div>
+
+<div class="tab-content" id="thresh-adaptive">
+<div class="section">
+<h2>Adaptive (Local) Thresholding</h2>
+<p>Computes a <strong>different threshold \(T\)</strong> for each pixel based on its local neighbourhood.</p>
+<div class="math-box highlight">
+$$
+T(x,y) = \frac{1}{|N|}\sum_{(s,t) \in N_{xy}} f(s,t) - C
+$$
+</div>
+<p>Where:</p>
+<ul>
+<li>\(N_{xy}\) = neighbourhood of pixel \((x,y)\) (e.g., 15&times;15 window)</li>
+<li>\(|N|\) = number of pixels in neighbourhood</li>
+<li>\(C\) = constant subtracted (e.g., 5&ndash;15)</li>
+</ul>
+<h3>Variants:</h3>
+<table>
+<tr><th>Method</th><th>T Calculation</th></tr>
+<tr><td>Mean</td><td>Average of neighbourhood</td></tr>
+<tr><td>Weighted (Gaussian)</td><td>Gaussian-weighted average (center pixels weigh more)</td></tr>
+<tr><td>Median</td><td>Median of neighbourhood values</td></tr>
+</table>
+<h3>Window Size Effect:</h3>
+<ul>
+<li><strong>Small window (e.g., 3&times;3):</strong> Captures fine details, more noise sensitive</li>
+<li><strong>Large window (e.g., 31&times;31):</strong> Smoother result, may miss small objects</li>
+</ul>
+<div class="note"><strong>Advantage:</strong> Handles non-uniform illumination, shadows, and varying contrast across the image.</div>
+<div class="note"><strong>Disadvantage:</strong> Computationally expensive. Window size \(k\) is critical &mdash; too small = noisy, too large = lose detail.</div>
+</div>
+</div>
+
+<div class="tab-content" id="thresh-otsu">
+<div class="section">
+<h2>Otsu's Method (Automatic Global)</h2>
+<p>Fully automatic global thresholding. Finds optimal \(T\) that <strong>maximizes between-class variance</strong> and <strong>minimizes within-class variance</strong>.</p>
+<span class="tag exam">Exam Important</span>
+<h3>Prerequisites:</h3>
+<ul>
+<li>Histogram must be <strong>bimodal</strong> (two peaks with a valley between)</li>
+<li>Two classes: foreground (dark) and background (light)</li>
+</ul>
+<h3>Algorithm:</h3>
+<ol>
+<li>Compute histogram of image, normalize to get probabilities \(p_i\) for intensity \(i\)</li>
+<li>For each candidate threshold \(k = 0, 1, \ldots, L-1\):</li>
+</ol>
+<div class="math-box highlight">
+$$
+\omega_0(k) = \sum_{i=0}^{k} p_i \quad \text{(class 0 probability)}
+$$
+$$
+\omega_1(k) = \sum_{i=k+1}^{L-1} p_i = 1 - \omega_0(k) \quad \text{(class 1 probability)}
+$$
+$$
+\mu_0(k) = \frac{\sum_{i=0}^{k} i \cdot p_i}{\omega_0(k)} \quad \text{(class 0 mean)}
+$$
+$$
+\mu_1(k) = \frac{\sum_{i=k+1}^{L-1} i \cdot p_i}{\omega_1(k)} \quad \text{(class 1 mean)}
+$$
+$$
+\mu_T = \sum_{i=0}^{L-1} i \cdot p_i \quad \text{(global mean)}
+$$
+</div>
+
+<h3>Between-Class Variance:</h3>
+<div class="math-box highlight">
+$$
+\sigma_B^2(k) = \omega_0(k)\left[\mu_0(k) - \mu_T\right]^2 + \omega_1(k)\left[\mu_1(k) - \mu_T\right]^2
+$$
+<p style="margin-top:10px">Simplified form:</p>
+$$
+\sigma_B^2(k) = \omega_0(k) \cdot \omega_1(k) \cdot \left[\mu_0(k) - \mu_1(k)\right]^2
+$$
+</div>
+
+<h3>Within-Class Variance:</h3>
+<div class="math-box highlight">
+$$
+\sigma_W^2(k) = \omega_0(k)\sigma_0^2(k) + \omega_1(k)\sigma_1^2(k)
+$$
+</div>
+
+<p><strong>Total variance:</strong> \(\sigma_T^2 = \sigma_B^2 + \sigma_W^2\) (constant)</p>
+<p><strong>Optimal threshold \(T^*\):</strong> value of \(k\) that <strong>maximizes</strong> \(\sigma_B^2(k)\) (equivalently minimizes \(\sigma_W^2\)).</p>
+<div class="exam-tip"><strong>Exam:</strong> "What is Otsu's method?" = Automatic threshold selection for bimodal histograms by maximizing between-class variance. "When does it fail?" = Non-bimodal histograms, uneven illumination.</div>
+</div>
+</div>
+</div>
+
+<!-- ============ TOPIC: MORPHOLOGY ============ -->
+<div class="topic-page" id="topic-morphology">
+<button class="back-btn" onclick="goHome()">&#8592; Back to Topics</button>
+<h1 class="topic-title">Morphology</h1>
+<div class="tabs">
+<div class="tab active" onclick="switchTab(this,'morph-fundamental')">Erosion & Dilation</div>
+<div class="tab" onclick="switchTab(this,'morph-composite')">Opening, Closing &amp; Gradient</div>
+<div class="tab" onclick="switchTab(this,'morph-tophat')">Top-Hat Transform</div>
+</div>
+
+<div class="tab-content active" id="morph-fundamental">
+<div class="section">
+<h2>Structuring Element (SE)</h2>
+<p>A small template/mask (e.g., 3&times;3 square, disk, cross) that slides over the binary image performing logical operations.</p>
+<p>Common SEs: <code>BOX(3,3)</code>, <code>DISK(5)</code>, <code>RING(5)</code>, <code>CROSS(3)</code>, <code>LINE(r,angle)</code></p>
+<div style="text-align:center;margin-top:16px">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Dilation.png/400px-Dilation.png" alt="Morphological Dilation" style="max-width:100%;border-radius:8px;border:1px solid var(--border)">
+<p style="color:var(--text2);font-size:.85em;margin-top:8px;font-style:italic">Morphological Dilation: Expands foreground objects (Wikimedia Commons CC)</p>
+</div>
+</div>
+<div class="section">
+<h2>Dilation: \(I \oplus SE\)</h2>
+<p><strong>Expands</strong> foreground objects, fills small gaps/holes.</p>
+<div class="math-box highlight">
+$$
+(I \oplus SE)(x,y) = \max_{(s,t) \in SE} \left\{ f(x+s, y+t) \right\}
+$$
+<p style="margin-top:8px">For binary: pixel becomes 1 if <em>any</em> SE-position overlaps foreground (logical OR).</p>
+</div>
+<h3>Example:</h3>
+<p>3&times;3 all-1 SE on a 3&times;3 block of 1s &rarr; output becomes 5&times;5 block of 1s (expanded by 1 pixel on each side).</p>
+<div class="note"><strong>Effect:</strong> Enlarges bright regions, connects nearby objects, fills small holes.</div>
+</div>
+<div class="section">
+<h2>Erosion: \(I \ominus SE\)</h2>
+<p><strong>Shrinks</strong> foreground objects, removes small/thin structures.</p>
+<div class="math-box highlight">
+$$
+(I \ominus SE)(x,y) = \min_{(s,t) \in SE} \left\{ f(x-s, y-t) \right\}
+$$
+<p style="margin-top:8px">For binary: pixel becomes 1 only if <em>all</em> SE-positions fall on foreground (logical AND).</p>
+</div>
+<h3>Example:</h3>
+<p>3&times;3 all-1 SE on a 3&times;3 block of 1s &rarr; output becomes a single central pixel (shrunk by 1 pixel on each side).</p>
+<div class="note"><strong>Effect:</strong> Removes small bright noise, breaks thin connections, strips boundary pixels.</div>
+<div class="exam-tip"><strong>Exam:</strong> Dilation = expands, Erosion = shrinks. Apply given SE to a small binary matrix manually.</div>
+</div>
+</div>
+
+<div class="tab-content" id="morph-composite">
+<div class="section">
+<h2>Opening: \(I \circ SE = (I \ominus SE) \oplus SE\)</h2>
+<p><strong>Erosion first, then Dilation.</strong></p>
+<div class="math-box highlight">
+$$
+\text{Opening} = \text{Erosion} \rightarrow \text{Dilation}
+$$
+</div>
+<ul>
+<li>Removes small bright noise (small objects)</li>
+<li>Breaks thin connections between objects</li>
+<li><strong>Preserves</strong> large objects that fully contain the SE</li>
+</ul>
+<h3>Example: Open a 5&times;5 block with 3&times;3 SE</h3>
+<ol>
+<li>Erode: 5&times;5 &rarr; 3&times;3 (border removed)</li>
+<li>Dilate: 3&times;3 &rarr; 5&times;5 (restored)</li>
+</ol>
+<p>Result: large block preserved, any 1&times;1 or 2&times;2 isolated noise removed.</p>
+</div>
+<div class="section">
+<h2>Closing: \(I \bullet SE = (I \oplus SE) \ominus SE\)</h2>
+<p><strong>Dilation first, then Erosion.</strong></p>
+<div class="math-box highlight">
+$$
+\text{Closing} = \text{Dilation} \rightarrow \text{Erosion}
+$$
+</div>
+<ul>
+<li>Fills small dark holes inside objects</li>
+<li>Fuses narrow gaps between objects</li>
+<li>Smooths outer contours</li>
+</ul>
+<h3>Example: Close a ring (5&times;5 with 1-pixel hole) with 3&times;3 SE</h3>
+<ol>
+<li>Dilate: hole filled (becomes solid)</li>
+<li>Erosion: restores original size, hole stays filled</li>
+</ol>
+</div>
+<div class="section">
+<h2>Morphological Gradient</h2>
+<div class="math-box highlight">
+$$
+G(I) = (I \oplus SE) - (I \ominus SE)
+$$
+</div>
+<p>Result = difference between dilated and eroded = <strong>thickened boundary/edge</strong> of objects.</p>
+<p>This is a simple edge detector for binary/grayscale images.</p>
+<div class="exam-tip"><strong>Exam:</strong> Opening = E then D (removes noise). Closing = D then E (fills holes). Gradient = dilate minus erode (edges).</div>
+</div>
+</div>
+
+<div class="tab-content" id="morph-tophat">
+<div class="section">
+<h2>Top-Hat Transform</h2>
+<h3>White Top-Hat</h3>
+<div class="math-box highlight">
+$$
+\text{WTH}(I) = I - (I \circ SE)
+$$
+<p style="margin-top:6px">Original minus Opening</p>
+</div>
+<ul>
+<li>Extracts <strong>small bright details</strong> that were removed by opening</li>
+<li>Useful for correcting <strong>uneven illumination</strong></li>
+</ul>
+<h3>Black (Bottom) Top-Hat</h3>
+<div class="math-box highlight">
+$$
+\text{BTH}(I) = (I \bullet SE) - I
+$$
+<p style="margin-top:6px">Closing minus Original</p>
+</div>
+<ul>
+<li>Extracts <strong>small dark details</strong> (dark spots/valleys)</li>
+<li>Finds small dark regions surrounded by bright areas</li>
+</ul>
+<div class="note"><strong>Memory trick:</strong> White Top-Hat = what was lost by opening (bright stuff). Black Top-Hat = what was gained by closing (dark stuff).</div>
+<div class="exam-tip"><strong>Exam:</strong> Top-hat used for uneven illumination correction. WTH removes illumination variation; BTH finds dark defects.</div>
+</div>
+</div>
+</div>
+
+<!-- ============ TOPIC: SOBEL & LAPLACIAN ============ -->
+<div class="topic-page" id="topic-sobel">
+<button class="back-btn" onclick="goHome()">&#8592; Back to Topics</button>
+<h1 class="topic-title">Sobel &amp; Laplacian Operators</h1>
+<div class="tabs">
+<div class="tab active" onclick="switchTab(this,'smooth')">Image Smoothing</div>
+<div class="tab" onclick="switchTab(this,'sobel-op')">Sobel Operator</div>
+<div class="tab" onclick="switchTab(this,'laplacian-op')">Laplacian Operator</div>
+</div>
+
+<div class="tab-content active" id="smooth">
+<div class="section">
+<h2>Image Smoothing (Noise Reduction)</h2>
+<p>Removes high-frequency noise by averaging/filtering. Smoothing = blurring the image.</p>
+<div style="text-align:center;margin:16px 0">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Bikesgray.jpg/400px-Bikesgray.jpg" alt="Original Image" style="max-width:45%;border-radius:8px;border:1px solid var(--border)">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Bikesgray_sobel.JPG/400px-Bikesgray_sobel.JPG" alt="Sobel Edge Detection" style="max-width:45%;border-radius:8px;border:1px solid var(--border);margin-left:10px">
+<p style="color:var(--text2);font-size:.85em;margin-top:8px;font-style:italic">Left: Original | Right: Sobel edge detection (Wikimedia Commons CC)</p>
+</div>
+<h3>1. Mean (Box) Filter</h3>
+<div class="math-box">
+$$
+g(x,y) = \frac{1}{mn}\sum_{(s,t) \in S_{xy}} f(s,t)
+$$
+<p>3&times;3 mean kernel: \(\frac{1}{9}\begin{bmatrix}1&1&1\\1&1&1\\1&1&1\end{bmatrix}\)</p>
+</div>
+<p>Averages all pixels in neighbourhood. Blurs edges equally. Good for uniform noise.</p>
+
+<h3>2. Weighted (Gaussian) Filter</h3>
+<div class="math-box">
+$$
+G(x,y) = \frac{1}{2\pi\sigma^2} e^{-\frac{x^2+y^2}{2\sigma^2}}
+$$
+<p>3&times;3 Gaussian kernel (approx, \(\sigma \approx 0.85\)):</p>
+$$
+\frac{1}{16}\begin{bmatrix}1&2&1\\2&4&2\\1&2&1\end{bmatrix}
+$$
+</div>
+<p>Center pixels get more weight. Preserves edges better than mean filter.</p>
+
+<h3>3. Median Filter</h3>
+<div class="math-box highlight">
+$$
+g(x,y) = \text{median}\{f(s,t) : (s,t) \in S_{xy}\}
+$$
+</div>
+<p>Sorts all pixel values in neighbourhood and picks the <strong>middle value</strong>.</p>
+<ul>
+<li>Best for <strong>salt & pepper noise</strong> (removes outliers without blurring edges)</li>
+<li>Non-linear filter</li>
+<li>3&times;3 neighbourhood: take median of 9 values</li>
+</ul>
+<div class="exam-tip"><strong>Exam:</strong> Median filter is the best choice for salt & pepper noise. It preserves edges while removing impulse noise.</div>
+</div>
+</div>
+
+<div class="tab-content" id="sobel-op">
+<div class="section">
+<h2>Sobel Operator (1st Order Derivative)</h2>
+<p>Detects edges by computing <strong>gradient magnitude and direction</strong> using two 3&times;3 kernels.</p>
+<span class="tag exam">Exam Important</span>
+
+<div class="grid-2">
+<div>
+<h3>Horizontal Kernel \(G_x\)</h3>
+<div class="math-box">
+$$
+G_x = \begin{bmatrix}-1&0&1\\-2&0&2\\-1&0&1\end{bmatrix}
+$$
+<p>Detects <strong>vertical edges</strong></p>
+</div>
+</div>
+<div>
+<h3>Vertical Kernel \(G_y\)</h3>
+<div class="math-box">
+$$
+G_y = \begin{bmatrix}-1&-2&-1\\0&0&0\\1&2&1\end{bmatrix}
+$$
+<p>Detects <strong>horizontal edges</strong></p>
+</div>
+</div>
+</div>
+
+<p><strong>Note:</strong> Center row/column has weight 2 (Gaussian smoothing in perpendicular direction).</p>
+
+<h3>Gradient Magnitude:</h3>
+<div class="math-box highlight">
+$$
+G = \sqrt{G_x^2 + G_y^2} \approx |G_x| + |G_y|
+$$
+</div>
+<h3>Gradient Direction:</h3>
+<div class="math-box highlight">
+$$
+\theta = \arctan\left(\frac{G_y}{G_x}\right)
+$$
+$$
+\theta_{\text{edge}} = \theta + 90°
+$$
+</div>
+<p>Edge direction is <strong>perpendicular</strong> to gradient direction.</p>
+
+<h3>Edge Strength Classification:</h3>
+<table>
+<tr><th>Magnitude</th><th>Classification</th></tr>
+<tr><td>\(G > T\)</td><td>Strong edge</td></tr>
+<tr><td>\(T/2 < G \leq T\)</td><td>Weak edge</td></tr>
+<tr><td>\(G \leq T/2\)</td><td>Non-edge</td></tr>
+</table>
+<div class="exam-tip"><strong>Exam:</strong> Given a 3&times;3 image patch, apply \(G_x\) and \(G_y\) kernels to find edge magnitude and direction. Remember center weight = 2.</div>
+</div>
+</div>
+
+<div class="tab-content" id="laplacian-op">
+<div class="section">
+<h2>Laplacian Operator (2nd Order Derivative)</h2>
+<p>Edge = <strong>zero-crossing</strong> of the Laplacian. Positive &rarr; peak, Negative &rarr; valley, sign change = edge.</p>
+
+<h3>4-Connected Kernel:</h3>
+<div class="math-box">
+$$
+\nabla^2 f = \begin{bmatrix}0&-1&0\\-1&4&-1\\0&-1&0\end{bmatrix}
+$$
+</div>
+<h3>8-Connected Kernel:</h3>
+<div class="math-box">
+$$
+\nabla^2 f = \begin{bmatrix}-1&-1&-1\\-1&8&-1\\-1&-1&-1\end{bmatrix}
+$$
+</div>
+
+<h3>Zero-Crossing Detection:</h3>
+<p>After applying Laplacian, scan output. A zero-crossing occurs when:</p>
+<ul>
+<li>Value changes from positive to negative (or vice versa)</li>
+<li>At least one value &ge; threshold in magnitude</li>
+</ul>
+
+<h3>Problem: Noise Sensitivity</h3>
+<p>2nd derivative amplifies noise. Practical solution:</p>
+<div class="math-box highlight">
+$$
+\text{Pipeline: } f(x,y) \xrightarrow{\text{Gaussian}} \text{Smooth} \xrightarrow{\text{Laplacian}} \nabla^2(G * f) \xrightarrow{\text{Zero-Cross}} \text{Edges}
+$$
+<p style="margin-top:8px"><strong>Laplacian of Gaussian (LoG):</strong> First smooth with Gaussian, then apply Laplacian.</p>
+$$
+\text{LoG kernel} = \nabla^2 G(x,y) = -\frac{1}{\pi\sigma^4}\left(1 - \frac{x^2+y^2}{2\sigma^2}\right)e^{-\frac{x^2+y^2}{2\sigma^2}}
+$$
+</div>
+<div class="exam-tip"><strong>Exam:</strong> Laplacian zero-crossings = edges. Very noise sensitive &rarr; always smooth first (Gaussian) then Laplacian = LoG.</div>
+</div>
+</div>
+</div>
+
+<!-- ============ TOPIC: NOISE MODELS ============ -->
+<div class="topic-page" id="topic-noise">
+<button class="back-btn" onclick="goHome()">&#8592; Back to Topics</button>
+<h1 class="topic-title">Noise Models</h1>
+<div class="tabs">
+<div class="tab active" onclick="switchTab(this,'noise-gaussian')">Gaussian &amp; Salt Pepper</div>
+<div class="tab" onclick="switchTab(this,'noise-poisson')">Poisson &amp; Speckle</div>
+</div>
+
+<div class="tab-content active" id="noise-gaussian">
+<div class="section">
+<h2>Gaussian Noise</h2>
+<p>Additive noise. Each pixel value has random noise added from a Gaussian distribution. Caused by electronic circuit noise, sensor heat.</p>
+<div style="text-align:center;margin:16px 0">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Noise_salt_and_pepper.png/320px-Noise_salt_and_pepper.png" alt="Salt and Pepper Noise" style="max-width:45%;border-radius:8px;border:1px solid var(--border)">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Gaussian_noise_application.png/320px-Gaussian_noise_application.png" alt="Gaussian Noise" style="max-width:45%;border-radius:8px;border:1px solid var(--border);margin-left:10px">
+<p style="color:var(--text2);font-size:.85em;margin-top:8px;font-style:italic">Left: Salt & Pepper noise | Right: Gaussian noise (Wikimedia Commons CC)</p>
+</div>
+<div class="math-box highlight">
+$$
+g(x,y) = f(x,y) + \eta(x,y)
+$$
+$$
+\eta(x,y) \sim \mathcal{N}(\mu, \sigma^2)
+$$
+$$
+p(z) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(z-\mu)^2}{2\sigma^2}}
+$$
+</div>
+<p>\(\mu\) = mean of noise, \(\sigma\) = standard deviation (higher = more noise). Typically \(\mu = 0\) for zero-mean noise.</p>
+<div class="note"><strong>Appearance:</strong> Overall grainy/fuzzy look. Every pixel slightly shifted.</div>
+</div>
+<div class="section">
+<h2>Salt & Pepper (Impulse) Noise</h2>
+<p>Random pixels become either <strong>white (255, salt)</strong> or <strong>black (0, pepper)</strong>. Caused by transmission errors, dead/hot pixels.</p>
+<div class="math-box highlight">
+$$
+g(x,y) = \begin{cases} 0 & \text{with probability } p_p/2 \\ f(x,y) & \text{with probability } 1-p_p \\ 255 & \text{with probability } p_p/2 \end{cases}
+$$
+</div>
+<p>\(p_p\) = probability of noise (e.g., 0.1 means 10% pixels corrupted).</p>
+<div class="note"><strong>Appearance:</strong> Scattered white and black dots. Most pixels remain unchanged.</div>
+<div class="exam-tip"><strong>Exam:</strong> Best removed by <strong>Median filter</strong> (not mean filter, which smears them).</div>
+</div>
+</div>
+
+<div class="tab-content" id="noise-poisson">
+<div class="section">
+<h2>Poisson (Shot) Noise</h2>
+<p>Noise inherent to <strong>photon counting</strong>. Follows Poisson distribution. Common in low-light photography.</p>
+<div class="math-box highlight">
+$$
+P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}
+$$
+</div>
+<p>\(\lambda\) = average number of photons collected. Variance = mean = \(\lambda\).</p>
+<p>When \(\lambda\) is large, Poisson approximates Gaussian with \(\sigma^2 = \lambda\).</p>
+<div class="note"><strong>Appearance:</strong> Grainy in dark regions (low light = fewer photons = more relative noise).</div>
+</div>
+<div class="section">
+<h2>Speckle Noise</h2>
+<p>Multiplicative noise. Common in radar, ultrasound, SAR imaging.</p>
+<div class="math-box highlight">
+$$
+g(x,y) = f(x,y) + f(x,y) \cdot \eta(x,y) = f(x,y)(1 + \eta(x,y))
+$$
+$$
+\eta(x,y) \sim \mathcal{N}(0, \sigma^2)
+$$
+</div>
+<p>Noise is proportional to pixel intensity &mdash; brighter regions have more absolute noise.</p>
+<div class="note"><strong>Appearance:</strong> Grainy texture that varies with local brightness. Darker areas less affected.</div>
+<div class="exam-tip"><strong>Exam:</strong> Gaussian = additive. Speckle = multiplicative. Salt & Pepper = impulse. Poisson = photon-counting (variance = mean).</div>
+</div>
+</div>
+</div>
+
+<!-- ============ TOPIC: NOISE REMOVAL FILTERS ============ -->
+<div class="topic-page" id="topic-filters">
+<button class="back-btn" onclick="goHome()">&#8592; Back to Topics</button>
+<h1 class="topic-title">Noise Removal Filters</h1>
+<div class="tabs">
+<div class="tab active" onclick="switchTab(this,'filt-basic')">Mean &amp; Median</div>
+<div class="tab" onclick="switchTab(this,'filt-gauss')">Gaussian Filter</div>
+<div class="tab" onclick="switchTab(this,'filt-adaptive')">Adaptive Filter</div>
+</div>
+
+<div class="tab-content active" id="filt-basic">
+<div class="section">
+<h2>Mean (Arithmetic) Filter</h2>
+<div class="math-box">
+$$
+\hat{f}(x,y) = \frac{1}{mn}\sum_{(s,t)\in S_{xy}} g(s,t)
+$$
+</div>
+<p>Replaces each pixel with the <strong>average</strong> of its \(m \times n\) neighbourhood. Linear. Blurs edges. Best for Gaussian noise.</p>
+</div>
+<div class="section">
+<h2>Median Filter</h2>
+<div class="math-box highlight">
+$$
+\hat{f}(x,y) = \text{median}_{(s,t)\in S_{xy}}\{g(s,t)\}
+$$
+</div>
+<p>Non-linear. Sorts neighbourhood values, picks middle. Best for <strong>salt & pepper noise</strong>. Preserves edges better than mean.</p>
+</div>
+</div>
+
+<div class="tab-content" id="filt-gauss">
+<div class="section">
+<h2>Gaussian Smoothing Filter</h2>
+<div class="math-box highlight">
+$$
+G_\sigma(x,y) = \frac{1}{2\pi\sigma^2} e^{-\frac{x^2+y^2}{2\sigma^2}}
+$$
+$$
+\hat{f} = G_\sigma * g = \sum_{(s,t)} G_\sigma(s,t) \cdot g(x-s, y-t)
+$$
+</div>
+<p>\(\sigma\) controls smoothing: larger \(\sigma\) = more blur = more noise removed but edges also blurred.</p>
+<p>Separable: 2D Gaussian = product of two 1D Gaussians (efficiency trick).</p>
+</div>
+</div>
+
+<div class="tab-content" id="filt-adaptive">
+<div class="section">
+<h2>Adaptive (Local) Filter</h2>
+<p>Adjusts behaviour based on <strong>local statistics</strong>. Preserves edges while removing noise.</p>
+<h3>Adaptive Mean Filter:</h3>
+<div class="math-box highlight">
+$$
+\hat{f}(x,y) = g(x,y) - \frac{\sigma^2_\eta}{\sigma^2_L}\left(g(x,y) - \mu_L\right)
+$$
+</div>
+<ul>
+<li>\(g(x,y)\) = noisy pixel value</li>
+<li>\(\mu_L\) = local mean of \(m \times n\) neighbourhood</li>
+<li>\(\sigma^2_L\) = local variance of neighbourhood</li>
+<li>\(\sigma^2_\eta\) = noise variance (estimated from image or given)</li>
+</ul>
+<p><strong>How it works:</strong></p>
+<ul>
+<li>In <strong>flat regions</strong>: \(\sigma^2_L \approx \sigma^2_\eta\), filter averages heavily &rarr; removes noise</li>
+<li>In <strong>edge regions</strong>: \(\sigma^2_L \gg \sigma^2_\eta\), filter keeps original value &rarr; preserves edge</li>
+</ul>
+
+<h3>Adaptive Median Filter:</h3>
+<p>Works in levels. Increases window size until conditions met:</p>
+<div class="math-box">
+<p><strong>Level A:</strong> \(A_1 = z_{med} - z_{min}\), \(A_2 = z_{med} - z_{max}\). If \(A_1 > 0\) and \(A_2 < 0\), go to Level B. Else increase window size.</p>
+<p><strong>Level B:</strong> \(B_1 = z_{xy} - z_{min}\), \(B_2 = z_{xy} - z_{max}\). If \(B_1 > 0\) and \(B_2 < 0\), output \(z_{xy}\). Else output \(z_{med}\).</p>
+</div>
+<p>Where \(z_{min}, z_{max}, z_{med}\) are min, max, median of current window; \(z_{xy}\) is center pixel.</p>
+<div class="note"><strong>Advantage:</strong> Can remove salt & pepper noise that is <em>denser</em> than standard median can handle, while preserving more detail.</div>
+<div class="exam-tip"><strong>Exam:</strong> Adaptive filter: noise removal is proportional to local noise level. High local variance = edge = keep. Low local variance = flat = smooth.</div>
+</div>
+</div>
+</div>
+
+<!-- ============ TOPIC: SEGMENTATION ============ -->
+<div class="topic-page" id="topic-segmentation">
+<button class="back-btn" onclick="goHome()">&#8592; Back to Topics</button>
+<h1 class="topic-title">Segmentation Scenario</h1>
+<div class="tabs">
+<div class="tab active" onclick="switchTab(this,'seg-math')">Mathematical Methods</div>
+<div class="tab" onclick="switchTab(this,'seg-scenario')">Scenario Selection</div>
+</div>
+
+<div class="tab-content active" id="seg-math">
+<div class="section">
+<h2>Image Segmentation</h2>
+<p>Partitioning an image into <strong>meaningful regions</strong> (objects vs background, or multiple objects).</p>
+<h3>1. Thresholding-based</h3>
+<div class="math-box">
+$$
+g(x,y) = \begin{cases} \text{class}_1 & \text{if } f(x,y) \leq T \\ \text{class}_2 & \text{if } f(x,y) > T \end{cases}
+$$
+</div>
+<p>Simple, fast. Works when classes have distinct intensity ranges.</p>
+<h3>2. Region-based (Region Growing)</h3>
+<p>Start from seed pixels. Grow region by adding neighbouring pixels that satisfy a <strong>similarity criterion</strong> (intensity difference &lt; threshold).</p>
+<div class="math-box">
+$$
+\text{Add pixel } (x,y) \text{ if } |f(x,y) - \mu_R| < T
+$$
+<p>Where \(\mu_R\) = mean intensity of current region \(R\).</p>
+</div>
+<h3>3. Edge-based</h3>
+<p>Detect edges first (Sobel, Canny). Then <strong>close gaps</strong> and fill enclosed regions. Use edge boundaries to define segments.</p>
+<h3>4. Clustering (K-means)</h3>
+<div class="math-box">
+$$
+\text{Assign pixel to cluster } k = \arg\min_j \| f(x,y) - \mu_j \|^2
+$$
+<p>Iterate: update means \(\mu_j\), reassign pixels until convergence.</p>
+</div>
+</div>
+</div>
+
+<div class="tab-content" id="seg-scenario">
+<div class="section">
+<h2>Which Segmentation to Apply?</h2>
+<table>
+<tr><th>Scenario</th><th>Best Method</th><th>Why</th></tr>
+<tr><td>Document with black text on white</td><td>Global Thresholding / Otsu</td><td>Bimodal histogram, uniform lighting</td></tr>
+<tr><td>Image with shadows</td><td>Adaptive Thresholding</td><td>Non-uniform illumination</td></tr>
+<tr><td>Medical image (tumor on uniform tissue)</td><td>Region Growing</td><td>Similar intensity, connected region</td></tr>
+<tr><td>Multiple colored objects</td><td>K-means Clustering</td><td>Multiple intensity/color classes</td></tr>
+<tr><td>Object boundaries needed</td><td>Edge-based (Canny)</td><td>Sharp intensity changes at boundaries</td></tr>
+<tr><td>Texture-based regions</td><td>Texture analysis + clustering</td><td>Intensity alone insufficient</td></tr>
+</table>
+<div class="exam-tip"><strong>Exam:</strong> Given a scenario, identify: (1) lighting condition, (2) number of classes, (3) noise level, (4) need for boundaries vs regions. Then pick the method.</div>
+</div>
+</div>
+</div>
+
+<!-- ============ TOPIC: HARRIS CORNER ============ -->
+<div class="topic-page" id="topic-harris">
+<button class="back-btn" onclick="goHome()">&#8592; Back to Topics</button>
+<h1 class="topic-title">Harris Corner Detection</h1>
+<div class="tabs">
+<div class="tab active" onclick="switchTab(this,'harris-math')">Mathematics</div>
+<div class="tab" onclick="switchTab(this,'harris-theory')">Theory &amp; Algorithm</div>
+</div>
+
+<div class="tab-content active" id="harris-math">
+<div class="section">
+<h2>Harris Corner Detection</h2>
+<p>Corner = point where <strong>intensity changes significantly in all directions</strong>. Detects stable, repeatable feature points.</p>
+<span class="tag exam">Exam Important</span>
+<h3>Step 1: Shift Window &amp; Measure Intensity Change</h3>
+<div class="math-box">
+$$
+E(u,v) = \sum_{(x,y) \in W} \left[ I(x+u, y+v) - I(x,y) \right]^2
+$$
+</div>
+<p>Where \(W\) is the window, \((u,v)\) is the shift.</p>
+<h3>Step 2: Taylor Expansion Approximation</h3>
+<div class="math-box highlight">
+$$
+I(x+u,y+v) \approx I(x,y) + u\frac{\partial I}{\partial x} + v\frac{\partial I}{\partial y}
+$$
+$$
+E(u,v) \approx \begin{bmatrix}u & v\end{bmatrix} M \begin{bmatrix}u \\ v\end{bmatrix}
+$$
+$$
+M = \sum_{(x,y)\in W} \begin{bmatrix} I_x^2 & I_x I_y \\ I_x I_y & I_y^2 \end{bmatrix}
+$$
+</div>
+<p>Where \(I_x = \frac{\partial I}{\partial x}\), \(I_y = \frac{\partial I}{\partial y}\).</p>
+<h3>Step 3: Eigenvalue Analysis</h3>
+<div class="math-box highlight">
+<p>Eigenvalues of \(M\): \(\lambda_1, \lambda_2\)</p>
+<table>
+<tr><th>Case</th><th>Eigenvalues</th><th>Shape</th></tr>
+<tr><td>Flat region</td><td>\(\lambda_1 \approx 0, \lambda_2 \approx 0\)</td><td>No change in any direction</td></tr>
+<tr><td>Edge</td><td>\(\lambda_1 \gg \lambda_2 \approx 0\)</td><td>Change along one direction only</td></tr>
+<tr><td>Corner</td><td>\(\lambda_1 \gg 0, \lambda_2 \gg 0\)</td><td>Change in all directions</td></tr>
+</table>
+</div>
+<h3>Step 4: Corner Response Function (CRF)</h3>
+<div class="math-box highlight">
+$$
+R = \det(M) - k \cdot [\text{trace}(M)]^2
+$$
+$$
+\det(M) = \lambda_1 \lambda_2
+$$
+$$
+\text{trace}(M) = \lambda_1 + \lambda_2
+$$
+</div>
+<ul>
+<li>\(R > T\) (threshold) &rarr; <strong>corner</strong></li>
+<li>\(|R| \leq T\) &rarr; <strong>edge or flat</strong></li>
+<li>\(R < -T\) &rarr; <strong>local maximum (potential corner in some variants)</strong></li>
+</ul>
+<p>\(k\) = empirically chosen constant (typically 0.04 &ndash; 0.06).</p>
+<div class="exam-tip"><strong>Exam:</strong> Given eigenvalues, classify as flat/edge/corner. Given image patch with gradients, compute \(M\) matrix and \(R\).</div>
+</div>
+</div>
+
+<div class="tab-content" id="harris-theory">
+<div class="section">
+<h2>Theory &amp; Algorithm</h2>
+<h3>Complete Algorithm:</h3>
+<ol>
+<li>Compute \(I_x\) and \(I_y\) using Sobel operators</li>
+<li>Compute products: \(I_x^2\), \(I_y^2\), \(I_x I_y\) for each pixel</li>
+<li>Apply Gaussian smoothing to each product (sum over window)</li>
+<li>Compute \(R\) for each pixel using CRF formula</li>
+<li>Apply threshold: keep pixels where \(R > T\)</li>
+<li><strong>Non-maximum suppression:</strong> In local neighbourhood, keep only the pixel with maximum \(R\) (remove multiple responses at same corner)</li>
+</ol>
+<h3>Properties of Harris Detector:</h3>
+<ul>
+<li><strong>Rotation invariant:</strong> Corner detected regardless of image rotation (eigenvalues unchanged)</li>
+<li><strong>NOT scale invariant:</strong> A corner may not be detected at different scale</li>
+<li><strong>Fast to compute</strong> (uses only derivatives and Gaussian)</li>
+<li>Produces <strong>many responses</strong> per corner &rarr; need non-max suppression</li>
+</ul>
+<div class="note"><strong>Improvement:</strong> Scale-invariant detection can be achieved by combining with scale-space (e.g., SIFT).</div>
+</div>
+</div>
+</div>
+
+<!-- ============ TOPIC: GEOMETRIC TRANSFORMATIONS ============ -->
+<div class="topic-page" id="topic-transform">
+<button class="back-btn" onclick="goHome()">&#8592; Back to Topics</button>
+<h1 class="topic-title">Geometric Transformations</h1>
+<div class="tabs">
+<div class="tab active" onclick="switchTab(this,'trans-sr')">Scaling &amp; Rotation</div>
+<div class="tab" onclick="switchTab(this,'trans-ts')">Translation &amp; Shearing</div>
+<div class="tab" onclick="switchTab(this,'trans-homo')">Homogeneous &amp; Composites</div>
+</div>
+
+<div class="tab-content active" id="trans-sr">
+<div class="section">
+<h2>Scaling</h2>
+<div class="math-box highlight">
+$$
+\begin{bmatrix} x' \\ y' \end{bmatrix} = \begin{bmatrix} s_x & 0 \\ 0 & s_y \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix}
+$$
+</div>
+<p>\(s_x > 1\) = stretch horizontally, \(s_x < 1\) = shrink. \(s_x = s_y\) = uniform scaling.</p>
+</div>
+<div class="section">
+<h2>Rotation</h2>
+<p>Rotate point \((x,y)\) by angle \(\theta\) about the origin:</p>
+<div class="math-box highlight">
+$$
+\begin{bmatrix} x' \\ y' \end{bmatrix} = \begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix}
+$$
+</div>
+<p>Derivation:</p>
+<ul>
+<li>Rotate by angle \(\theta\): \(x' = x\cos\theta - y\sin\theta\), \(y' = x\sin\theta + y\cos\theta\)</li>
+<li>In matrix form: \(\mathbf{x'} = R_\theta \mathbf{x}\)</li>
+</ul>
+<p>Properties: \(\det(R) = \cos^2\theta + \sin^2\theta = 1\) (preserves area), \(R^T R = I\) (orthogonal), \(R^{-1} = R_{-\theta}\).</p>
+<div class="exam-tip"><strong>Exam:</strong> Rotation matrix: cos in diagonal, -sin/sin in off-diagonal. \(\cos\theta\) on top-left, \(\sin\theta\) on bottom-left.</div>
+</div>
+</div>
+
+<div class="tab-content" id="trans-ts">
+<div class="section">
+<h2>Translation</h2>
+<div class="math-box highlight">
+$$
+x' = x + t_x, \quad y' = y + t_y
+$$
+</div>
+<p>Shifts every point by \((t_x, t_y)\). Cannot be represented as a simple 2&times;2 matrix multiplication (requires homogeneous coordinates).</p>
+</div>
+<div class="section">
+<h2>Shearing</h2>
+<h3>X-Shear (horizontal):</h3>
+<div class="math-box highlight">
+$$
+\begin{bmatrix} x' \\ y' \end{bmatrix} = \begin{bmatrix} 1 & sh_x \\ 0 & 1 \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix}
+$$
+<p>\(x' = x + sh_x \cdot y\), \(y' = y\)</p>
+</div>
+<h3>Y-Shear (vertical):</h3>
+<div class="math-box highlight">
+$$
+\begin{bmatrix} x' \\ y' \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ sh_y & 1 \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix}
+$$
+<p>\(x' = x\), \(y' = sh_y \cdot x + y\)</p>
+</div>
+<p>Shearing slants the image. A square becomes a parallelogram.</p>
+</div>
+</div>
+
+<div class="tab-content" id="trans-homo">
+<div class="section">
+<h2>Homogeneous Coordinates</h2>
+<p>Represent 2D point \((x,y)\) as 3D: \((x, y, 1)\). This allows translation to be expressed as matrix multiplication.</p>
+<div class="math-box highlight">
+<h3>All transforms in 3&times;3 matrix form:</h3>
+<p><strong>Translation:</strong></p>
+$$
+T = \begin{bmatrix} 1 & 0 & t_x \\ 0 & 1 & t_y \\ 0 & 0 & 1 \end{bmatrix}
+$$
+<p><strong>Scaling:</strong></p>
+$$
+S = \begin{bmatrix} s_x & 0 & 0 \\ 0 & s_y & 0 \\ 0 & 0 & 1 \end{bmatrix}
+$$
+<p><strong>Rotation:</strong></p>
+$$
+R_\theta = \begin{bmatrix} \cos\theta & -\sin\theta & 0 \\ \sin\theta & \cos\theta & 0 \\ 0 & 0 & 1 \end{bmatrix}
+$$
+<p><strong>Shearing (X):</strong></p>
+$$
+Sh_x = \begin{bmatrix} 1 & sh_x & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}
+$$
+</div>
+<h2>Composite Transformations</h2>
+<p>Multiply matrices in order of application (right to left):</p>
+<div class="math-box highlight">
+$$
+\mathbf{x'} = T \cdot R \cdot S \cdot \mathbf{x}
+$$
+<p>Applied as: Scale first, then Rotate, then Translate.</p>
+</div>
+<div class="exam-tip"><strong>Exam:</strong> Order matters! \(T \cdot R \neq R \cdot T\) in general. Always apply transformations right-to-left: rightmost first.</div>
+</div>
+</div>
+</div>
+
+<!-- ============ TOPIC: NEURAL NETWORK ============ -->
+<div class="topic-page" id="topic-nn">
+<button class="back-btn" onclick="goHome()">&#8592; Back to Topics</button>
+<h1 class="topic-title">Neural Network (Theory)</h1>
+<div class="tabs">
+<div class="tab active" onclick="switchTab(this,'nn-layers')">Definition of Layers</div>
+<div class="tab" onclick="switchTab(this,'nn-activation')">Activation Functions</div>
+</div>
+
+<div class="tab-content active" id="nn-layers">
+<div class="section">
+<h2>Neural Network Definition</h2>
+<p>A <strong>neural network</strong> is a computational model inspired by biological neurons. It learns to map inputs to outputs by adjusting weights through training.</p>
+<div class="diagram">
+<svg width="600" height="220" viewBox="0 0 600 220">
+<text x="60" y="15" fill="#a29bfe" font-size="13" text-anchor="middle">Input Layer</text>
+<text x="300" y="15" fill="#fdcb6e" font-size="13" text-anchor="middle">Hidden Layer(s)</text>
+<text x="540" y="15" fill="#00b894" font-size="13" text-anchor="middle">Output Layer</text>
+<circle cx="60" cy="70" r="18" fill="none" stroke="#6c5ce7" stroke-width="2"/><circle cx="60" cy="130" r="18" fill="none" stroke="#6c5ce7" stroke-width="2"/><circle cx="60" cy="190" r="18" fill="none" stroke="#6c5ce7" stroke-width="2"/>
+<circle cx="230" cy="70" r="18" fill="none" stroke="#fdcb6e" stroke-width="2"/><circle cx="230" cy="130" r="18" fill="none" stroke="#fdcb6e" stroke-width="2"/><circle cx="230" cy="190" r="18" fill="none" stroke="#fdcb6e" stroke-width="2"/>
+<circle cx="370" cy="70" r="18" fill="none" stroke="#fdcb6e" stroke-width="2"/><circle cx="370" cy="130" r="18" fill="none" stroke="#fdcb6e" stroke-width="2"/><circle cx="370" cy="190" r="18" fill="none" stroke="#fdcb6e" stroke-width="2"/>
+<circle cx="540" cy="100" r="18" fill="none" stroke="#00b894" stroke-width="2"/><circle cx="540" cy="160" r="18" fill="none" stroke="#00b894" stroke-width="2"/>
+<line x1="78" y1="70" x2="212" y2="70" stroke="#555" stroke-width="1"/><line x1="78" y1="70" x2="212" y2="130" stroke="#555" stroke-width="1"/><line x1="78" y1="70" x2="212" y2="190" stroke="#555" stroke-width="1"/>
+<line x1="78" y1="130" x2="212" y2="70" stroke="#555" stroke-width="1"/><line x1="78" y1="130" x2="212" y2="130" stroke="#555" stroke-width="1"/><line x1="78" y1="130" x2="212" y2="190" stroke="#555" stroke-width="1"/>
+<line x1="78" y1="190" x2="212" y2="70" stroke="#555" stroke-width="1"/><line x1="78" y1="190" x2="212" y2="130" stroke="#555" stroke-width="1"/><line x1="78" y1="190" x2="212" y2="190" stroke="#555" stroke-width="1"/>
+<line x1="248" y1="70" x2="352" y2="70" stroke="#555" stroke-width="1"/><line x1="248" y1="70" x2="352" y2="130" stroke="#555" stroke-width="1"/><line x1="248" y1="70" x2="352" y2="190" stroke="#555" stroke-width="1"/>
+<line x1="248" y1="130" x2="352" y2="70" stroke="#555" stroke-width="1"/><line x1="248" y1="130" x2="352" y2="130" stroke="#555" stroke-width="1"/><line x1="248" y1="130" x2="352" y2="190" stroke="#555" stroke-width="1"/>
+<line x1="248" y1="190" x2="352" y2="70" stroke="#555" stroke-width="1"/><line x1="248" y1="190" x2="352" y2="130" stroke="#555" stroke-width="1"/><line x1="248" y1="190" x2="352" y2="190" stroke="#555" stroke-width="1"/>
+<line x1="388" y1="70" x2="522" y2="100" stroke="#555" stroke-width="1"/><line x1="388" y1="70" x2="522" y2="160" stroke="#555" stroke-width="1"/>
+<line x1="388" y1="130" x2="522" y2="100" stroke="#555" stroke-width="1"/><line x1="388" y1="130" x2="522" y2="160" stroke="#555" stroke-width="1"/>
+<line x1="388" y1="190" x2="522" y2="100" stroke="#555" stroke-width="1"/><line x1="388" y1="190" x2="522" y2="160" stroke="#555" stroke-width="1"/>
+</svg>
+<div class="caption">Fully Connected Neural Network (3-3-3-2 architecture)</div>
+</div>
+
+<h3>Types of Layers:</h3>
+<table>
+<tr><th>Layer</th><th>Role</th><th>Details</th></tr>
+<tr><td><strong>Input Layer</strong></td><td>Receives raw data</td><td>One neuron per feature/pixel. No computation, just passes values forward.</td></tr>
+<tr><td><strong>Hidden Layer(s)</strong></td><td>Feature extraction</td><td>Applies weights, bias, and activation function. Can have multiple layers (deep network). Each neuron computes: \(z = \sum w_i x_i + b\), then \(a = f(z)\).</td></tr>
+<tr><td><strong>Output Layer</strong></td><td>Final prediction</td><td>Produces the output. Activation depends on task: sigmoid (binary), softmax (multi-class), linear (regression).</td></tr>
+</table>
+<div class="note"><strong>Deep Learning</strong> = neural network with multiple hidden layers.</div>
+</div>
+</div>
+
+<div class="tab-content" id="nn-activation">
+<div class="section">
+<h2>Activation Functions</h2>
+<p>Introduce <strong>non-linearity</strong>. Without them, stacked linear layers = single linear layer.</p>
+<table>
+<tr><th>Function</th><th>Formula</th><th>Range</th><th>Use</th></tr>
+<tr><td>Sigmoid</td><td>\(\sigma(z) = \frac{1}{1+e^{-z}}\)</td><td>(0, 1)</td><td>Binary classification output</td></tr>
+<tr><td>Tanh</td><td>\(\tanh(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}}\)</td><td>(-1, 1)</td><td>Hidden layers (zero-centered)</td></tr>
+<tr><td>ReLU</td><td>\(f(z) = \max(0, z)\)</td><td>[0, &infin;)</td><td>Most common hidden layer</td></tr>
+<tr><td>Leaky ReLU</td><td>\(f(z) = \max(\alpha z, z)\), \(\alpha=0.01\)</td><td>(-&infin;, &infin;)</td><td>Prevents dead neurons</td></tr>
+<tr><td>Softmax</td><td>\(S(z_i) = \frac{e^{z_i}}{\sum_j e^{z_j}}\)</td><td>[0, 1], sum=1</td><td>Multi-class output</td></tr>
+</table>
+<div class="exam-tip"><strong>Exam:</strong> Why non-linearity? Because composition of linear functions is still linear. Without activation, network cannot learn complex patterns.</div>
+</div>
+</div>
+</div>
+
+<!-- ============ TOPIC: BACKPROPAGATION ============ -->
+<div class="topic-page" id="topic-backprop">
+<button class="back-btn" onclick="goHome()">&#8592; Back to Topics</button>
+<h1 class="topic-title">Backpropagation</h1>
+<div class="tabs">
+<div class="tab active" onclick="switchTab(this,'bp-terms')">Key Terms</div>
+<div class="tab" onclick="switchTab(this,'bp-network')">Network Flow</div>
+</div>
+
+<div class="tab-content active" id="bp-terms">
+<div class="section">
+<h2>Key Terms</h2>
+<table>
+<tr><th>Term</th><th>Definition</th></tr>
+<tr><td><strong>Loss Function</strong> \(L(\hat{y}, y)\)</td><td>Measures how far predictions \(\hat{y}\) are from true labels \(y\). E.g., MSE: \(L = \frac{1}{N}\sum(\hat{y}-y)^2\), Cross-entropy: \(L = -\sum y \log \hat{y}\)</td></tr>
+<tr><td><strong>Weights</strong> \(w\)</td><td>Learnable parameters connecting neurons. \(z = wx + b\).</td></tr>
+<tr><td><strong>Bias</strong> \(b\)</td><td>Additional parameter that shifts the activation function.</td></tr>
+<tr><td><strong>Forward Pass</strong></td><td>Compute output: input &rarr; weighted sum &rarr; activation &rarr; ... &rarr; output &rarr; loss</td></tr>
+<tr><td><strong>Backward Pass</strong></td><td>Compute gradients of loss w.r.t. each weight using the <strong>chain rule</strong>.</td></tr>
+<tr><td><strong>Chain Rule</strong></td><td>\(\frac{\partial L}{\partial w} = \frac{\partial L}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial z} \cdot \frac{\partial z}{\partial w}\)</td></tr>
+<tr><td><strong>Learning Rate</strong> \(\eta\)</td><td>Step size for weight updates. Too large = diverge, too small = slow convergence.</td></tr>
+<tr><td><strong>Gradient Descent</strong></td><td>\(w_{new} = w_{old} - \eta \cdot \frac{\partial L}{\partial w}\)</td></tr>
+</table>
+</div>
+</div>
+
+<div class="tab-content" id="bp-network">
+<div class="section">
+<h2>Backpropagation with Network</h2>
+<div class="diagram">
+<svg width="650" height="300" viewBox="0 0 650 300">
+<text x="325" y="20" fill="#a29bfe" font-size="14" text-anchor="middle" font-weight="bold">Forward Pass (&#8594;) and Backward Pass (&#8592;)</text>
+<rect x="10" y="50" width="630" height="240" fill="none" stroke="#2a2d3a" stroke-width="1" rx="8"/>
+<text x="60" y="45" fill="#6c5ce7" font-size="12" text-anchor="middle">Input</text>
+<text x="210" y="45" fill="#fdcb6e" font-size="12" text-anchor="middle">Hidden</text>
+<text x="370" y="45" fill="#fdcb6e" font-size="12" text-anchor="middle">Output</text>
+<text x="500" y="45" fill="#e17055" font-size="12" text-anchor="middle">Loss</text>
+<circle cx="60" cy="120" r="20" fill="#6c5ce7" fill-opacity="0.3" stroke="#6c5ce7" stroke-width="2"/><text x="60" y="125" fill="#fff" font-size="11" text-anchor="middle">x&#8321;</text>
+<circle cx="60" cy="210" r="20" fill="#6c5ce7" fill-opacity="0.3" stroke="#6c5ce7" stroke-width="2"/><text x="60" y="215" fill="#fff" font-size="11" text-anchor="middle">x&#8322;</text>
+<circle cx="210" cy="120" r="20" fill="#fdcb6e" fill-opacity="0.3" stroke="#fdcb6e" stroke-width="2"/><text x="210" y="125" fill="#fff" font-size="11" text-anchor="middle">h&#8321;</text>
+<circle cx="210" cy="210" r="20" fill="#fdcb6e" fill-opacity="0.3" stroke="#fdcb6e" stroke-width="2"/><text x="210" y="215" fill="#fff" font-size="11" text-anchor="middle">h&#8322;</text>
+<circle cx="370" cy="165" r="20" fill="#00b894" fill-opacity="0.3" stroke="#00b894" stroke-width="2"/><text x="370" y="170" fill="#fff" font-size="11" text-anchor="middle">&#375;</text>
+<circle cx="500" cy="165" r="20" fill="#e17055" fill-opacity="0.3" stroke="#e17055" stroke-width="2"/><text x="500" y="170" fill="#fff" font-size="11" text-anchor="middle">L</text>
+<line x1="80" y1="120" x2="190" y2="120" stroke="#6c5ce7" stroke-width="1.5"/><text x="135" y="112" fill="#a29bfe" font-size="10" text-anchor="middle">w&#8321;&#8321;</text>
+<line x1="80" y1="120" x2="190" y2="210" stroke="#6c5ce7" stroke-width="1.5"/><text x="135" y="175" fill="#a29bfe" font-size="10" text-anchor="middle">w&#8322;&#8321;</text>
+<line x1="80" y1="210" x2="190" y2="120" stroke="#6c5ce7" stroke-width="1.5"/><text x="135" y="145" fill="#a29bfe" font-size="10" text-anchor="middle">w&#8321;&#8322;</text>
+<line x1="80" y1="210" x2="190" y2="210" stroke="#6c5ce7" stroke-width="1.5"/><text x="135" y="208" fill="#a29bfe" font-size="10" text-anchor="middle">w&#8322;&#8322;</text>
+<line x1="230" y1="120" x2="350" y2="165" stroke="#fdcb6e" stroke-width="1.5"/><text x="290" y="132" fill="#fdcb6e" font-size="10" text-anchor="middle">v&#8321;</text>
+<line x1="230" y1="210" x2="350" y2="165" stroke="#fdcb6e" stroke-width="1.5"/><text x="290" y="202" fill="#fdcb6e" font-size="10" text-anchor="middle">v&#8322;</text>
+<line x1="390" y1="165" x2="480" y2="165" stroke="#00b894" stroke-width="1.5"/>
+<text x="15" y="290" fill="#e17055" font-size="10">Backprop: Compute &#8706;L/&#8706;w using chain rule through each layer</text>
+<text x="420" y="290" fill="#74b9ff" font-size="10">Forward: x &#8594; h &#8594; &#375; &#8594; L</text>
+</svg>
+<div class="caption">Feedforward network with labeled weights for backpropagation</div>
+</div>
+
+<h3>Backpropagation Steps (for network above):</h3>
+<h3>Forward Pass:</h3>
+<div class="math-box">
+$$
+h_j = f\left(\sum_i w_{ji} x_i + b_j\right), \quad \hat{y} = g\left(\sum_j v_j h_j + b_o\right)
+$$
+$$
+L = \frac{1}{2}(\hat{y} - y)^2
+$$
+</div>
+<h3>Backward Pass (Chain Rule):</h3>
+<div class="math-box highlight">
+$$
+\frac{\partial L}{\partial v_j} = \frac{\partial L}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial v_j} = (\hat{y} - y) \cdot g'(\cdot) \cdot h_j
+$$
+$$
+\frac{\partial L}{\partial w_{ji}} = \frac{\partial L}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial h_j} \cdot \frac{\partial h_j}{\partial w_{ji}} = (\hat{y}-y) \cdot g'(\cdot) \cdot v_j \cdot f'(\cdot) \cdot x_i
+$$
+</div>
+<h3>Weight Update:</h3>
+<div class="math-box">
+$$
+w_{new} = w_{old} - \eta \cdot \frac{\partial L}{\partial w}
+$$
+</div>
+<div class="exam-tip"><strong>Exam:</strong> Backprop = applying chain rule from output back to input. Compute error at output, propagate backwards, update each weight.</div>
+</div>
+</div>
+</div>
+
+<!-- ============ TOPIC: OPTIMIZER ============ -->
+<div class="topic-page" id="topic-optimizer">
+<button class="back-btn" onclick="goHome()">&#8592; Back to Topics</button>
+<h1 class="topic-title">Optimizers</h1>
+<div class="tabs">
+<div class="tab active" onclick="switchTab(this,'opt-sgd')">SGD &amp; Momentum</div>
+<div class="tab" onclick="switchTab(this,'opt-adam')">Adam &amp; When to Use</div>
+</div>
+
+<div class="tab-content active" id="opt-sgd">
+<div class="section">
+<h2>SGD (Stochastic Gradient Descent)</h2>
+<div class="math-box highlight">
+$$
+w_{t+1} = w_t - \eta \cdot \nabla L(w_t)
+$$
+</div>
+<ul>
+<li>Updates weights using gradient of loss w.r.t. a <strong>single sample or mini-batch</strong></li>
+<li>Fast but noisy updates &rarr; may oscillate around minimum</li>
+<li>Learning rate \(\eta\) is fixed (or decayed manually)</li>
+</ul>
+<h3>SGD with Momentum</h3>
+<div class="math-box highlight">
+$$
+v_t = \beta \cdot v_{t-1} + \nabla L(w_t)
+$$
+$$
+w_{t+1} = w_t - \eta \cdot v_t
+$$
+</div>
+<ul>
+<li>\(\beta\) = momentum coefficient (typically 0.9)</li>
+<li>Accumulates past gradients as "velocity"</li>
+<li>Accelerates convergence, dampens oscillations</li>
+<li>Helps escape shallow local minima</li>
+</ul>
+</div>
+</div>
+
+<div class="tab-content" id="opt-adam">
+<div class="section">
+<h2>Adam (Adaptive Moment Estimation)</h2>
+<p>Combines Momentum + RMSProp. Maintains both <strong>first moment</strong> (mean) and <strong>second moment</strong> (variance) of gradients.</p>
+<div class="math-box highlight">
+$$
+m_t = \beta_1 m_{t-1} + (1-\beta_1)\nabla L(w_t) \quad \text{(1st moment - mean)}
+$$
+$$
+v_t = \beta_2 v_{t-1} + (1-\beta_2)(\nabla L(w_t))^2 \quad \text{(2nd moment - variance)}
+$$
+$$
+\hat{m}_t = \frac{m_t}{1-\beta_1^t}, \quad \hat{v}_t = \frac{v_t}{1-\beta_2^t} \quad \text{(bias correction)}
+$$
+$$
+w_{t+1} = w_t - \eta \cdot \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}
+$$
+</div>
+<p>Default: \(\beta_1 = 0.9\), \(\beta_2 = 0.999\), \(\epsilon = 10^{-8}\).</p>
+</div>
+<div class="section">
+<h2>When to Use Which?</h2>
+<table>
+<tr><th>Optimizer</th><th>When to Use</th></tr>
+<tr><td><strong>SGD</strong></td><td>Simple problems, convex loss, when you want fine control. Good generalization.</td></tr>
+<tr><td><strong>SGD + Momentum</strong></td><td>Most deep learning tasks. Good default. Faster than plain SGD.</td></tr>
+<tr><td><strong>Adam</strong></td><td>Fast prototyping, sparse gradients (NLP), non-stationary objectives. Default choice for most problems.</td></tr>
+<tr><td><strong>RMSProp</strong></td><td>RNNs, non-stationary targets. Adapts learning rate per parameter.</td></tr>
+</table>
+<div class="exam-tip"><strong>Exam:</strong> Adam = momentum + adaptive learning rate. Best general-purpose optimizer. SGD may generalize better but needs more tuning.</div>
+</div>
+</div>
+</div>
+
+<!-- ============ TOPIC: ViT ============ -->
+<div class="topic-page" id="topic-vit">
+<button class="back-btn" onclick="goHome()">&#8592; Back to Topics</button>
+<h1 class="topic-title">Vision Transformer (ViT)</h1>
+<div class="tabs">
+<div class="tab active" onclick="switchTab(this,'vit-theory')">Theoretical Explanation</div>
+<div class="tab" onclick="switchTab(this,'vit-terms')">Key Terms</div>
+</div>
+
+<div class="tab-content active" id="vit-theory">
+<div class="section">
+<h2>Vision Transformer (ViT)</h2>
+<p>ViT applies the <strong>Transformer architecture</strong> (originally for NLP) directly to image classification, replacing CNN entirely.</p>
+<h3>Core Idea:</h3>
+<p>Split an image into <strong>fixed-size patches</strong>, linearly embed them, add positional encodings, and feed to a standard Transformer encoder.</p>
+
+<div class="diagram">
+<svg width="650" height="280" viewBox="0 0 650 280">
+<text x="325" y="20" fill="#a29bfe" font-size="14" text-anchor="middle" font-weight="bold">ViT Architecture Pipeline</text>
+<rect x="10" y="35" width="80" height="100" rx="8" fill="#6c5ce7" fill-opacity="0.2" stroke="#6c5ce7" stroke-width="2"/>
+<text x="50" y="80" fill="#fff" font-size="10" text-anchor="middle">Image</text>
+<text x="50" y="95" fill="#a29bfe" font-size="9" text-anchor="middle">224x224</text>
+<line x1="95" y1="85" x2="120" y2="85" stroke="#666" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="120" y="35" width="80" height="100" rx="8" fill="#74b9ff" fill-opacity="0.2" stroke="#74b9ff" stroke-width="2"/>
+<text x="160" y="70" fill="#fff" font-size="10" text-anchor="middle">Patch</text>
+<text x="160" y="85" fill="#fff" font-size="10" text-anchor="middle">Embed</text>
+<text x="160" y="100" fill="#74b9ff" font-size="9" text-anchor="middle">16x16 patches</text>
+<text x="160" y="115" fill="#74b9ff" font-size="9" text-anchor="middle">196 patches</text>
+<line x1="205" y1="85" x2="230" y2="85" stroke="#666" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="230" y="35" width="80" height="100" rx="8" fill="#fdcb6e" fill-opacity="0.2" stroke="#fdcb6e" stroke-width="2"/>
+<text x="270" y="70" fill="#fff" font-size="10" text-anchor="middle">+ Position</text>
+<text x="270" y="85" fill="#fff" font-size="10" text-anchor="middle">Encoding</text>
+<text x="270" y="100" fill="#fdcb6e" font-size="9" text-anchor="middle">Learnable</text>
+<line x1="315" y1="85" x2="340" y2="85" stroke="#666" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="340" y="35" width="90" height="100" rx="8" fill="#00b894" fill-opacity="0.2" stroke="#00b894" stroke-width="2"/>
+<text x="385" y="65" fill="#fff" font-size="10" text-anchor="middle">Transformer</text>
+<text x="385" y="80" fill="#fff" font-size="10" text-anchor="middle">Encoder</text>
+<text x="385" y="95" fill="#00b894" font-size="9" text-anchor="middle">L layers</text>
+<text x="385" y="110" fill="#00b894" font-size="9" text-anchor="middle">MSA + MLP</text>
+<line x1="435" y1="85" x2="460" y2="85" stroke="#666" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="460" y="35" width="80" height="100" rx="8" fill="#e17055" fill-opacity="0.2" stroke="#e17055" stroke-width="2"/>
+<text x="500" y="75" fill="#fff" font-size="10" text-anchor="middle">[CLS]</text>
+<text x="500" y="90" fill="#fff" font-size="10" text-anchor="middle">Token</text>
+<text x="500" y="105" fill="#e17055" font-size="9" text-anchor="middle">Extract</text>
+<line x1="545" y1="85" x2="570" y2="85" stroke="#666" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="570" y="35" width="70" height="100" rx="8" fill="#a29bfe" fill-opacity="0.2" stroke="#a29bfe" stroke-width="2"/>
+<text x="605" y="70" fill="#fff" font-size="10" text-anchor="middle">MLP</text>
+<text x="605" y="85" fill="#fff" font-size="10" text-anchor="middle">Head</text>
+<text x="605" y="100" fill="#a29bfe" font-size="9" text-anchor="middle">Class</text>
+<text x="325" y="170" fill="#e0e0e0" font-size="11" text-anchor="middle">Inside Transformer Encoder Layer (repeated L times):</text>
+<rect x="120" y="185" width="400" height="85" rx="8" fill="none" stroke="#2a2d3a" stroke-width="2"/>
+<rect x="130" y="195" width="100" height="30" rx="5" fill="#6c5ce7" fill-opacity="0.3" stroke="#6c5ce7"/>
+<text x="180" y="215" fill="#fff" font-size="10" text-anchor="middle">Multi-Head Self-Attn</text>
+<line x1="235" y1="210" x2="255" y2="210" stroke="#666" stroke-width="1"/>
+<rect x="255" y="195" width="50" height="30" rx="5" fill="#333" stroke="#555"/>
+<text x="280" y="215" fill="#aaa" font-size="10" text-anchor="middle">+ Norm</text>
+<line x1="310" y1="210" x2="330" y2="210" stroke="#666" stroke-width="1"/>
+<rect x="330" y="195" width="80" height="30" rx="5" fill="#00b894" fill-opacity="0.3" stroke="#00b894"/>
+<text x="370" y="215" fill="#fff" font-size="10" text-anchor="middle">MLP</text>
+<line x1="415" y1="210" x2="435" y2="210" stroke="#666" stroke-width="1"/>
+<rect x="435" y="195" width="50" height="30" rx="5" fill="#333" stroke="#555"/>
+<text x="460" y="215" fill="#aaa" font-size="10" text-anchor="middle">+ Norm</text>
+<text x="325" y="250" fill="#74b9ff" font-size="10" text-anchor="middle">Residual connections around each sub-layer</text>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#666"/></marker></defs>
+</svg>
+<div class="caption">Vision Transformer (ViT) Architecture</div>
+</div>
+
+<h3>Step-by-step:</h3>
+<ol>
+<li><strong>Patch Creation:</strong> Image \(H \times W \times C\) divided into \(N = \frac{H \times W}{P^2}\) patches of size \(P \times P\) (e.g., 16&times;16)</li>
+<li><strong>Linear Projection:</strong> Each patch flattened to vector, projected to embedding dimension \(D\) via learned matrix \(W_E\)</li>
+<li><strong>[CLS] Token:</strong> Prepend a learnable classification token</li>
+<li><strong>Positional Encoding:</strong> Add learnable position embeddings to each patch token</li>
+<li><strong>Transformer Encoder:</strong> L layers of Multi-Head Self-Attention + MLP with residual connections</li>
+<li><strong>Classification:</strong> Output of [CLS] token fed to MLP head for final prediction</li>
+</ol>
+</div>
+</div>
+
+<div class="tab-content" id="vit-terms">
+<div class="section">
+<h2>Key Terms</h2>
+<table>
+<tr><th>Term</th><th>Definition</th></tr>
+<tr><td><strong>Patch Embedding</strong></td><td>Convert image patches to vectors. Each \(P \times P \times 3\) patch &rarr; \(D\)-dim vector via linear projection.</td></tr>
+<tr><td><strong>Self-Attention</strong></td><td>Each patch attends to all other patches. Computes relationships: \(\text{Attention}(Q,K,V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V\)</td></tr>
+<tr><td><strong>Multi-Head Attention</strong></td><td>Multiple attention heads in parallel, each learning different relationships. Concatenated and projected.</td></tr>
+<tr><td><strong>[CLS] Token</strong></td><td>Special learnable token prepended to sequence. Its final representation used for classification.</td></tr>
+<tr><td><strong>Positional Encoding</strong></td><td>Learnable embeddings added to patch tokens to encode spatial position (ViT uses learnable, not sinusoidal).</td></tr>
+<tr><td><strong>Layer Norm</strong></td><td>Applied before (pre-norm) each sub-layer. Stabilizes training.</td></tr>
+<tr><td><strong>MLP</strong></td><td>Two linear layers with GELU activation. Hidden dim = 4&times; embedding dim.</td></tr>
+</table>
+<div class="exam-tip"><strong>Exam:</strong> ViT splits image into patches, embeds them, adds positional info, runs through Transformer encoder, uses [CLS] token for classification.</div>
+</div>
+</div>
+</div>
+
+<!-- ============ TOPIC: CNN ============ -->
+<div class="topic-page" id="topic-cnn">
+<button class="back-btn" onclick="goHome()">&#8592; Back to Topics</button>
+<h1 class="topic-title">Convolutional Neural Network (CNN)</h1>
+<div class="tabs">
+<div class="tab active" onclick="switchTab(this,'cnn-arch')">Architecture &amp; Figure</div>
+<div class="tab" onclick="switchTab(this,'cnn-components')">Component Explanation</div>
+</div>
+
+<div class="tab-content active" id="cnn-arch">
+<div class="section">
+<h2>CNN Architecture</h2>
+<div class="diagram">
+<svg width="700" height="250" viewBox="0 0 700 250">
+<text x="350" y="18" fill="#a29bfe" font-size="14" text-anchor="middle" font-weight="bold">Typical CNN Architecture (e.g., LeNet/AlexNet style)</text>
+<rect x="10" y="40" width="60" height="120" rx="4" fill="#6c5ce7" fill-opacity="0.3" stroke="#6c5ce7" stroke-width="2"/>
+<text x="40" y="105" fill="#fff" font-size="9" text-anchor="middle" transform="rotate(-90,40,105)">Input</text>
+<text x="40" y="180" fill="#a29bfe" font-size="8" text-anchor="middle">32x32x3</text>
+<rect x="85" y="30" width="55" height="140" rx="4" fill="#74b9ff" fill-opacity="0.3" stroke="#74b9ff" stroke-width="2"/>
+<text x="112" y="105" fill="#fff" font-size="9" text-anchor="middle" transform="rotate(-90,112,105)">Conv1</text>
+<text x="112" y="185" fill="#74b9ff" font-size="8" text-anchor="middle">28x28x6</text>
+<rect x="155" y="40" width="55" height="120" rx="4" fill="#00b894" fill-opacity="0.3" stroke="#00b894" stroke-width="2"/>
+<text x="182" y="105" fill="#fff" font-size="9" text-anchor="middle" transform="rotate(-90,182,105)">Pool1</text>
+<text x="182" y="180" fill="#00b894" font-size="8" text-anchor="middle">14x14x6</text>
+<rect x="225" y="30" width="55" height="140" rx="4" fill="#74b9ff" fill-opacity="0.3" stroke="#74b9ff" stroke-width="2"/>
+<text x="252" y="105" fill="#fff" font-size="9" text-anchor="middle" transform="rotate(-90,252,105)">Conv2</text>
+<text x="252" y="185" fill="#74b9ff" font-size="8" text-anchor="middle">10x10x16</text>
+<rect x="295" y="40" width="55" height="120" rx="4" fill="#00b894" fill-opacity="0.3" stroke="#00b894" stroke-width="2"/>
+<text x="322" y="105" fill="#fff" font-size="9" text-anchor="middle" transform="rotate(-90,322,105)">Pool2</text>
+<text x="322" y="180" fill="#00b894" font-size="8" text-anchor="middle">5x5x16</text>
+<rect x="370" y="30" width="55" height="140" rx="4" fill="#74b9ff" fill-opacity="0.3" stroke="#74b9ff" stroke-width="2"/>
+<text x="397" y="105" fill="#fff" font-size="9" text-anchor="middle" transform="rotate(-90,397,105)">Conv3</text>
+<text x="397" y="185" fill="#74b9ff" font-size="8" text-anchor="middle">1x1x120</text>
+<rect x="440" y="50" width="55" height="100" rx="4" fill="#fdcb6e" fill-opacity="0.3" stroke="#fdcb6e" stroke-width="2"/>
+<text x="467" y="105" fill="#fff" font-size="9" text-anchor="middle" transform="rotate(-90,467,105)">FC1</text>
+<text x="467" y="170" fill="#fdcb6e" font-size="8" text-anchor="middle">84</text>
+<rect x="510" y="60" width="55" height="80" rx="4" fill="#fdcb6e" fill-opacity="0.3" stroke="#fdcb6e" stroke-width="2"/>
+<text x="537" y="105" fill="#fff" font-size="9" text-anchor="middle" transform="rotate(-90,537,105)">FC2</text>
+<text x="537" y="160" fill="#fdcb6e" font-size="8" text-anchor="middle">10</text>
+<rect x="580" y="70" width="55" height="60" rx="4" fill="#e17055" fill-opacity="0.3" stroke="#e17055" stroke-width="2"/>
+<text x="607" y="105" fill="#fff" font-size="9" text-anchor="middle" transform="rotate(-90,607,105)">Output</text>
+<text x="607" y="150" fill="#e17055" font-size="8" text-anchor="middle">Softmax</text>
+<text x="60" y="230" fill="#74b9ff" font-size="10">Conv + ReLU</text>
+<text x="200" y="230" fill="#00b894" font-size="10">Max Pooling</text>
+<text x="370" y="230" fill="#fdcb6e" font-size="10">Fully Connected</text>
+<text x="530" y="230" fill="#e17055" font-size="10">Classification</text>
+</svg>
+<div class="caption">CNN: Convolution + Pooling layers (feature extraction) followed by FC layers (classification)</div>
+</div>
+<p><strong>Convolutional layers</strong> extract features (edges, textures, shapes). <strong>Pooling layers</strong> reduce spatial dimensions. <strong>FC layers</strong> perform classification.</p>
+</div>
+</div>
+
+<div class="tab-content" id="cnn-components">
+<div class="section">
+<h2>Component Explanation</h2>
+<h3>1. Convolutional Layer</h3>
+<p>Slides kernels/filters over input. Each kernel detects specific features.</p>
+<div class="math-box">
+$$
+\text{Output}(i,j) = \sum_m \sum_n I(i+m, j+n) \cdot K(m,n) + b
+$$
+</div>
+<ul>
+<li><strong>Stride:</strong> Step size of kernel movement (1 = every pixel)</li>
+<li><strong>Padding:</strong> Add zeros around border to control output size</li>
+<li><strong>Output size:</strong> \(\frac{W - K + 2P}{S} + 1\)</li>
+<li><strong>Multiple filters:</strong> Each filter produces one feature map. Stacked = depth.</li>
+</ul>
+<h3>2. Activation (ReLU)</h3>
+<div class="math-box">
+$$
+\text{ReLU}(x) = \max(0, x)
+$$
+</div>
+<p>Applied element-wise after convolution. Introduces non-linearity.</p>
+<h3>3. Pooling Layer</h3>
+<p><strong>Max Pooling:</strong> Takes maximum value in each window. Reduces spatial dimensions, provides translation invariance.</p>
+<div class="math-box">
+$$
+\text{MaxPool}(i,j) = \max_{(m,n) \in W_{ij}} f(m,n)
+$$
+</div>
+<p><strong>Average Pooling:</strong> Takes mean of each window.</p>
+<h3>4. Fully Connected (FC) Layer</h3>
+<p>Flattens feature maps into 1D vector. Each neuron connected to all previous neurons. Final layers for classification.</p>
+<div class="math-box">
+$$
+z = W \cdot \text{flatten}(\text{features}) + b, \quad \text{output} = \text{softmax}(z)
+$$
+</div>
+<h3>Feature Learning Hierarchy:</h3>
+<table>
+<tr><th>Layer Depth</th><th>Learns</th><th>Example</th></tr>
+<tr><td>Early layers</td><td>Low-level features</td><td>Edges, corners, colors</td></tr>
+<tr><td>Middle layers</td><td>Mid-level features</td><td>Textures, patterns, shapes</td></tr>
+<tr><td>Deep layers</td><td>High-level features</td><td>Objects, faces, scenes</td></tr>
+</table>
+<div class="exam-tip"><strong>Exam:</strong> CNN = weight sharing (same kernel across image) + local connectivity + pooling = translation invariant, parameter efficient.</div>
+</div>
+</div>
+</div>
+
+<!-- ============ TOPIC: VISION TRANSFORMER LAYER ARCHITECTURE ============ -->
+<div class="topic-page" id="topic-vitlayer">
+<button class="back-btn" onclick="goHome()">&#8592; Back to Topics</button>
+<h1 class="topic-title">Vision Transformer - Layer Architecture</h1>
+<div class="tabs">
+<div class="tab active" onclick="switchTab(this,'vitl-page1')">Layer Architecture</div>
+<div class="tab" onclick="switchTab(this,'vitl-page2')">How It Works</div>
+</div>
+
+<div class="tab-content active" id="vitl-page1">
+<div class="section">
+<h2>Vision Transformer Layer Architecture (Page 7)</h2>
+<p>Each Transformer encoder layer in ViT consists of two sub-layers with residual connections and layer normalization.</p>
+
+<div class="diagram">
+<svg width="500" height="500" viewBox="0 0 500 500">
+<text x="250" y="20" fill="#a29bfe" font-size="15" text-anchor="middle" font-weight="bold">Single ViT Encoder Layer (Detailed)</text>
+<text x="250" y="45" fill="#666" font-size="11" text-anchor="middle">Input: Sequence of patch embeddings [x&#8321;, x&#8322;, ..., x&#8351;, x&#8343;&#8312;]</text>
+<line x1="250" y1="55" x2="250" y2="75" stroke="#666" stroke-width="1.5"/>
+<rect x="150" y="75" width="200" height="40" rx="6" fill="#6c5ce7" fill-opacity="0.3" stroke="#6c5ce7" stroke-width="2"/>
+<text x="250" y="100" fill="#fff" font-size="12" text-anchor="middle">Multi-Head Self-Attention (MSA)</text>
+<line x1="250" y1="115" x2="250" y2="135" stroke="#666" stroke-width="1.5"/>
+<rect x="150" y="135" width="200" height="40" rx="6" fill="#333" stroke="#555" stroke-width="2"/>
+<text x="250" y="160" fill="#aaa" font-size="12" text-anchor="middle">Add &amp; Norm (Residual + LayerNorm)</text>
+<line x1="250" y1="175" x2="250" y2="215" stroke="#666" stroke-width="1.5"/>
+<rect x="150" y="215" width="200" height="40" rx="6" fill="#00b894" fill-opacity="0.3" stroke="#00b894" stroke-width="2"/>
+<text x="250" y="240" fill="#fff" font-size="12" text-anchor="middle">MLP (GELU activation)</text>
+<line x1="250" y1="255" x2="250" y2="275" stroke="#666" stroke-width="1.5"/>
+<rect x="150" y="275" width="200" height="40" rx="6" fill="#333" stroke="#555" stroke-width="2"/>
+<text x="250" y="300" fill="#aaa" font-size="12" text-anchor="middle">Add &amp; Norm (Residual + LayerNorm)</text>
+<line x1="250" y1="315" x2="250" y2="345" stroke="#666" stroke-width="1.5"/>
+<text x="250" y="365" fill="#e0e0e0" font-size="12" text-anchor="middle">Output: Same shape sequence of embeddings</text>
+<line x1="80" y1="95" x2="80" y2="155" stroke="#a29bfe" stroke-width="1.5" stroke-dasharray="4"/>
+<line x1="80" y1="155" x2="150" y2="155" stroke="#a29bfe" stroke-width="1.5" stroke-dasharray="4"/>
+<text x="65" y="130" fill="#a29bfe" font-size="10" text-anchor="end">Residual</text>
+<line x1="80" y1="235" x2="80" y2="295" stroke="#a29bfe" stroke-width="1.5" stroke-dasharray="4"/>
+<line x1="80" y1="295" x2="150" y2="295" stroke="#a29bfe" stroke-width="1.5" stroke-dasharray="4"/>
+<text x="65" y="270" fill="#a29bfe" font-size="10" text-anchor="end">Residual</text>
+<rect x="130" y="400" width="240" height="80" rx="8" fill="none" stroke="#fdcb6e" stroke-width="1.5" stroke-dasharray="3"/>
+<text x="250" y="420" fill="#fdcb6e" font-size="11" text-anchor="middle" font-weight="bold">Inside MSA (per head):</text>
+<text x="250" y="440" fill="#e0e0e0" font-size="10" text-anchor="middle">Q = XW&#8311;, K = XW&#8312;, V = XW&#8315;</text>
+<text x="250" y="458" fill="#e0e0e0" font-size="10" text-anchor="middle">Attn = softmax(QK&#8307; / &#8730;d&#8343;)V</text>
+<text x="250" y="476" fill="#74b9ff" font-size="10" text-anchor="middle">Multi-head: concat heads then linear projection</text>
+</svg>
+<div class="caption">Detailed single ViT encoder layer with residual connections</div>
+</div>
+
+<h3>Mathematical Details:</h3>
+<h3>Multi-Head Self-Attention:</h3>
+<div class="math-box highlight">
+$$
+\text{head}_i = \text{Attention}(XW_i^Q, XW_i^K, XW_i^V)
+$$
+$$
+\text{Attention}(Q,K,V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+$$
+$$
+\text{MSA}(X) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h)W^O
+$$
+</div>
+<p>Where \(d_k = D/h\) (embedding dim / number of heads).</p>
+<h3>MLP:</h3>
+<div class="math-box">
+$$
+\text{MLP}(x) = W_2 \cdot \text{GELU}(W_1 x + b_1) + b_2
+$$
+<p>Hidden dimension = \(4D\) (4x embedding dim).</p>
+</div>
+<h3>Residual + LayerNorm:</h3>
+<div class="math-box">
+$$
+x_{out} = \text{LayerNorm}(x + \text{SubLayer}(x))
+$$
+</div>
+</div>
+</div>
+
+<div class="tab-content" id="vitl-page2">
+<div class="section">
+<h2>How It Works (End to End)</h2>
+<ol>
+<li><strong>Input Image</strong> (e.g., 224&times;224&times;3)</li>
+<li><strong>Patch Splitting:</strong> Divide into 16&times;16 patches &rarr; 196 patches, each 16&times;16&times;3 = 768 dims</li>
+<li><strong>Linear Projection:</strong> Each patch &rarr; \(D\)-dim embedding (e.g., \(D=768\))</li>
+<li><strong>Add [CLS] token:</strong> Prepend learnable [CLS] token &rarr; sequence length becomes 197</li>
+<li><strong>Add Position Embeddings:</strong> Add learnable positional embeddings to all tokens</li>
+<li><strong>Pass through L Transformer Encoder Layers:</strong>
+  <ul>
+  <li>Each layer: MSA &rarr; Add+Norm &rarr; MLP &rarr; Add+Norm</li>
+  <li>Self-attention captures global relationships between all patches</li>
+  <li>MLP processes each patch independently with non-linearity</li>
+  <li>Residual connections preserve information</li>
+  </ul>
+</li>
+<li><strong>Extract [CLS] output:</strong> Take the [CLS] token's final representation</li>
+<li><strong>Classification Head:</strong> [CLS] output &rarr; MLP/Linear &rarr; class probabilities</li>
+</ol>
+<h3>Key Differences from CNN:</h3>
+<table>
+<tr><th>Aspect</th><th>CNN</th><th>ViT</th></tr>
+<tr><td>Receptive field</td><td>Local (grows with depth)</td><td>Global (from first layer)</td></tr>
+<tr><td>Inductive bias</td><td>Translation invariance, locality</td><td>None (learns from data)</td></tr>
+<tr><td>Data requirement</td><td>Less data needed</td><td>Needs large dataset or pretraining</td></tr>
+<tr><td>Spatial structure</td><td>Preserved via pooling</td><td>Flattened (positional encoding restores)</td></tr>
+</table>
+<div class="exam-tip"><strong>Exam:</strong> ViT = patches + positional encoding + Transformer encoder. No convolution. Self-attention enables global context from the start. Needs more data than CNN.</div>
+</div>
+</div>
+</div>
+
+<script>
+function openTopic(id){
+  document.getElementById('coverpage').style.display='none';
+  document.querySelectorAll('.topic-page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('topic-'+id).classList.add('active');
+  window.scrollTo(0,0);
+  renderMath();
+}
+function goHome(){
+  document.querySelectorAll('.topic-page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('coverpage').style.display='flex';
+  window.scrollTo(0,0);
+}
+function switchTab(el,tabId){
+  const parent=el.closest('.topic-page');
+  parent.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  parent.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  window.scrollTo(0,0);
+  renderMath();
+}
+function renderMath(){
+  if(window.MathJax&&MathJax.typeset){
+    setTimeout(()=>MathJax.typeset(),100);
+  }
+}
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('progressBar').style.width=pct+'%';
+});
+renderMath();
+</script>
+</body>
+</html>
